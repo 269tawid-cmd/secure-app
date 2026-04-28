@@ -1,0 +1,126 @@
+/* background */
+body {
+  background: linear-gradient(135deg, #020617, #0f172a);
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+/* title */
+h1 {
+  color: cyan;
+  text-shadow: 0 0 20px cyan;
+  margin-top: 20px;
+}
+
+/* login box */
+#loginBox {
+  margin-top: 50px;
+}
+
+/* form */
+.form-box {
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* inputs */
+input {
+  padding: 12px;
+  border: 1px solid cyan;
+  background: rgba(255,255,255,0.05);
+  color: white;
+  border-radius: 8px;
+  outline: none;
+  width: 150px;
+}
+
+input:focus {
+  box-shadow: 0 0 10px cyan;
+}
+
+/* button */
+button {
+  padding: 12px 20px;
+  background: cyan;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+button:hover {
+  box-shadow: 0 0 20px cyan;
+  transform: scale(1.05);
+}
+
+/* table */
+table {
+  margin: 30px auto;
+  border-collapse: collapse;
+  width: 85%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* header */
+th {
+  padding: 12px;
+  background: #020617;
+  color: cyan;
+  border-bottom: 1px solid cyan;
+}
+
+/* data */
+td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,255,255,0.2);
+}
+
+/* hover */
+tr:hover {
+  background: rgba(0,255,255,0.1);
+}
+
+/* logout button */
+button:first-of-type {
+  margin-top: 10px;
+}
+.dashboard {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid cyan;
+  padding: 20px;
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,255,255,0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px cyan;
+}
+
+.card h3 {
+  color: cyan;
+}
+
+.card p {
+  font-size: 22px;
+  font-weight: bold;
+}
