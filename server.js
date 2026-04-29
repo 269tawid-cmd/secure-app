@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose"); // ← এটা add করো
 
 app.use(express.json());
 app.use(express.static("public"));
-const mongoose = require("mongoose"); // ← এটা add করো
 // 👇 এখানেই MongoDB connect বসাও
 mongoose.connect("mongodb+srv://360tawhid_db_KING:YOUR_PASSWORD@king360.pi7ezue.mongodb.net/Madrasha")
 .then(() => console.log("MongoDB connected"))
