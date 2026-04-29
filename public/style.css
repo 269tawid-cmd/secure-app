@@ -1,126 +1,67 @@
-/* background */
 body {
-  background: linear-gradient(135deg, #020617, #0f172a);
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
+  background: #0a0f1c;
+  color: #fff;
+  font-family: Arial, sans-serif;
   text-align: center;
 }
 
-/* title */
-h1 {
-  color: cyan;
-  text-shadow: 0 0 20px cyan;
-  margin-top: 20px;
-}
-
-/* login box */
-#loginBox {
-  margin-top: 50px;
-}
-
-/* form */
-.form-box {
-  margin: 20px auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+/* headings */
+h2, h3 {
+  color: #00f7ff;
 }
 
 /* inputs */
 input {
-  padding: 12px;
-  border: 1px solid cyan;
-  background: rgba(255,255,255,0.05);
-  color: white;
-  border-radius: 8px;
-  outline: none;
-  width: 150px;
-}
-
-input:focus {
-  box-shadow: 0 0 10px cyan;
-}
-
-/* button */
-button {
-  padding: 12px 20px;
-  background: cyan;
+  padding: 10px;
+  margin: 8px;
   border: none;
+  outline: none;
+  background: #111827;
+  color: white;
+  border-bottom: 2px solid #00f7ff;
+}
+
+/* buttons */
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  background: #00f7ff;
   color: black;
   font-weight: bold;
-  cursor: pointer;
-  border-radius: 8px;
   transition: 0.3s;
 }
 
 button:hover {
-  box-shadow: 0 0 20px cyan;
-  transform: scale(1.05);
+  background: #00c3cc;
+  box-shadow: 0 0 10px #00f7ff;
 }
 
 /* table */
 table {
-  margin: 30px auto;
+  margin: 20px auto;
   border-collapse: collapse;
-  width: 85%;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  overflow: hidden;
+  width: 80%;
 }
 
-/* header */
-th {
-  padding: 12px;
-  background: #020617;
-  color: cyan;
-  border-bottom: 1px solid cyan;
-}
-
-/* data */
-td {
+th, td {
+  border: 1px solid #00f7ff;
   padding: 10px;
-  border-bottom: 1px solid rgba(0,255,255,0.2);
 }
 
-/* hover */
-tr:hover {
-  background: rgba(0,255,255,0.1);
+th {
+  background: #001f2f;
 }
 
-/* logout button */
-button:first-of-type {
-  margin-top: 10px;
-}
-.dashboard {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 20px;
-  flex-wrap: wrap;
-}
-
-.card {
-  background: rgba(0, 255, 255, 0.05);
-  border: 1px solid cyan;
+/* container box */
+.form-box {
+  background: #111827;
   padding: 20px;
-  width: 150px;
+  margin: 20px auto;
+  width: 300px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,255,255,0.2);
-  transition: 0.3s;
+  box-shadow: 0 0 15px #00f7ff;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px cyan;
-}
 
-.card h3 {
-  color: cyan;
-}
-
-.card p {
-  font-size: 22px;
-  font-weight: bold;
-}
