@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create Admin</h2>
+
+<button onclick="createAdmin()">Create Admin</button>
+
+<script>
+function createAdmin() {
+  fetch("/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: "admin",
+      password: "1234",
+      role: "admin"
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("Admin Created!");
+    console.log(data);
+  });
+}
+</script>
+
+</body>
+</html>

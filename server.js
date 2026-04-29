@@ -10,14 +10,18 @@ mongoose.connect("mongodb+srv://360tawhid_db_KING:kingkhan77797KING@king360.pi7e
 .catch(err => console.log(err));
 
 // login API
-app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+app.post("/register", async (req, res) => {
+  const { username, password, role } = req.body;
 
-  if (username === "admin" && password === "1234") {
-    res.json({ success: true });
-  } else {
-    res.json({ success: false });
-  }
+  const hashed = await bcrypt.hash(password, 10);
+
+  await User.create({
+    username,
+    password: hashed,
+    role
+  });
+
+  res.json({ success: true });
 });
 
 const PORT = process.env.PORT || 3000;
@@ -25,3 +29,12 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
 });
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const userSchema = new mongoose.Schema({
+  username: String,
+  password: String
+});
+
+const User = mongoose.model("User", userSchema);
