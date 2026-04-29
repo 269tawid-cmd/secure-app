@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // 🔗 MongoDB (password বসাও)
-mongoose.connect("mongodb+srv://360tawhid_db_KING:YOUR_PASSWORD@king360.pi7ezue.mongodb.net/Madrasha")
+mongoose.connect("mongodb+srv://360tawhid_db_KING:kingkhan77797KING@king360.pi7ezue.mongodb.net/Madrasha")
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.log(err));
 
