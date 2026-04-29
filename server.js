@@ -5,15 +5,19 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 
+// middleware
 app.use(express.json());
 app.use(express.static("public"));
 
-// 🔗 MongoDB (password বসাও)
-mongoose.connect("mongodb+srv://360tawhid_db_KING:kingkhan77797KING@king360.pi7ezue.mongodb.net/Madrasha")
-.then(() => console.log("MongoDB connected"))
-.catch(err => console.log(err));
+// ================== DB CONNECT ==================
+mongoose.connect(process.env.MONGO_URI)
+  .then(async () => {
+    console.log("MongoDB connected");
+    await createAdmin(); // ensure default admin
+  })
+  .catch(err => console.log(err));
 
-// 📦 USER
+// ================== SCHEMAS ==================
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
@@ -21,7 +25,6 @@ const userSchema = new mongoose.Schema({
 });
 const User = mongoose.model("User", userSchema);
 
-// 📦 STUDENT
 const studentSchema = new mongoose.Schema({
   id: String,
   name: String,
@@ -34,7 +37,33 @@ const studentSchema = new mongoose.Schema({
 });
 const Student = mongoose.model("Student", studentSchema);
 
-// 🔐 LOGIN
+// ================== AUTH ROUTES ==================
+
+// REGISTER
+app.post("/register", async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || password.length < 4) {
+    return res.json({ success: false, message: "Invalid input" });
+  }
+
+  const exists = await User.findOne({ username });
+  if (exists) {
+    return res.json({ success: false, message: "User already exists" });
+  }
+
+  const hashed = await bcrypt.hash(password, 10);
+
+  await User.create({
+    username,
+    password: hashed,
+    role: "user"
+  });
+
+  res.json({ success: true });
+});
+
+// LOGIN
 app.post("/login", async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
   if (!user) return res.json({ success: false });
@@ -42,16 +71,21 @@ app.post("/login", async (req, res) => {
   const match = await bcrypt.compare(req.body.password, user.password);
   if (!match) return res.json({ success: false });
 
-  const token = jwt.sign({ id: user._id, role: user.role }, "secret123");
+  const token = jwt.sign(
+    { id: user._id, role: user.role },
+    process.env.JWT_SECRET
+  );
 
   res.json({ success: true, token, role: user.role });
 });
 
-// 🔐 MIDDLEWARE
+// ================== MIDDLEWARE ==================
 function auth(req, res, next) {
   const token = req.headers.authorization;
+
   try {
-    req.user = jwt.verify(token, "secret123");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
     next();
   } catch {
     res.status(401).json({ error: "Unauthorized" });
@@ -65,7 +99,9 @@ function isAdmin(req, res, next) {
   next();
 }
 
-// ➕ ADD STUDENT
+// ================== STUDENT ROUTES ==================
+
+// ADD STUDENT (admin only)
 app.post("/add", auth, isAdmin, async (req, res) => {
   const s = req.body;
 
@@ -81,54 +117,12 @@ app.post("/add", auth, isAdmin, async (req, res) => {
   res.json({ success: true });
 });
 
-// 📥 GET STUDENTS
+// GET ALL STUDENTS
 app.get("/students", auth, async (req, res) => {
-  res.json(await Student.find());
+  const data = await Student.find();
+  res.json(data);
 });
 
+// ================== START SERVER ==================
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server running"));
-
-const createAdmin = async () => {
-  const existing = await User.findOne({ username: "King-Tawhid" });
-
-  if (!existing) {
-    const hashed = await bcrypt.hash("king321", 10);
-
-    await User.create({
-      username: "King-Tawhid",
-      password: hashed,
-      role: "admin"
-    });
-
-    console.log("Admin created");
-  }
-};
-
-createAdmin();
-
-app.post("/register", async (req, res) => {
-  const { username, password } = req.body;
-
-  // basic validation
-  if (!username || !password) {
-    return res.json({ success: false, message: "Missing fields" });
-  }
-
-  // already exists?
-  const exists = await User.findOne({ username });
-  if (exists) {
-    return res.json({ success: false, message: "User already exists" });
-  }
-
-  // hash password
-  const hashed = await bcrypt.hash(password, 10);
-
-  await User.create({
-    username,
-    password: hashed,
-    role: "user" // default user
-  });
-
-  res.json({ success: true });
-});
+app.listen(PORT, () => console.log("Server running on port " + PORT));
