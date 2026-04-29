@@ -1,12 +1,10 @@
 function login() {
   fetch("/login", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
+    headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
-      username: document.getElementById("username").value,
-      password: document.getElementById("password").value
+      username: username.value,
+      password: password.value
     })
   })
   .then(res => res.json())
@@ -15,12 +13,10 @@ function login() {
       localStorage.setItem("token", data.token);
 
       if (data.role === "admin") {
-        window.location.href = "admin.html";
+        location.href = "admin.html";
       } else {
-        window.location.href = "user.html";
+        location.href = "user.html";
       }
-    } else {
-      alert("Login failed");
-    }
+    } else alert("Login failed");
   });
 }

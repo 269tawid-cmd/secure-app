@@ -8,20 +8,20 @@ const app = express();
 app.use(express.json());
 app.use(express.static("public"));
 
-// 🔗 MongoDB
+// 🔗 MongoDB (password বসাও)
 mongoose.connect("mongodb+srv://360tawhid_db_KING:YOUR_PASSWORD@king360.pi7ezue.mongodb.net/Madrasha")
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.log(err));
 
-// 📦 Schema
+// 📦 USER
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
   role: String
 });
-
 const User = mongoose.model("User", userSchema);
 
+// 📦 STUDENT
 const studentSchema = new mongoose.Schema({
   id: String,
   name: String,
@@ -32,34 +32,26 @@ const studentSchema = new mongoose.Schema({
   total: Number,
   grade: String
 });
-
 const Student = mongoose.model("Student", studentSchema);
 
 // 🔐 LOGIN
 app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ username: req.body.username });
   if (!user) return res.json({ success: false });
 
-  const match = await bcrypt.compare(password, user.password);
+  const match = await bcrypt.compare(req.body.password, user.password);
   if (!match) return res.json({ success: false });
 
-  const token = jwt.sign(
-    { id: user._id, role: user.role },
-    "secret123"
-  );
+  const token = jwt.sign({ id: user._id, role: user.role }, "secret123");
 
   res.json({ success: true, token, role: user.role });
 });
 
-// 🔐 Middleware
+// 🔐 MIDDLEWARE
 function auth(req, res, next) {
   const token = req.headers.authorization;
-
   try {
-    const decoded = jwt.verify(token, "secret123");
-    req.user = decoded;
+    req.user = jwt.verify(token, "secret123");
     next();
   } catch {
     res.status(401).json({ error: "Unauthorized" });
@@ -73,20 +65,26 @@ function isAdmin(req, res, next) {
   next();
 }
 
-// ➕ Add Student (admin only)
+// ➕ ADD STUDENT
 app.post("/add", auth, isAdmin, async (req, res) => {
   const s = req.body;
+
   s.total = s.math + s.eng + s.sci + s.prog;
+
+  if (s.total >= 80) s.grade = "A+";
+  else if (s.total >= 60) s.grade = "A";
+  else if (s.total >= 40) s.grade = "B";
+  else s.grade = "F";
+
   await Student.create(s);
+
   res.json({ success: true });
 });
 
-// 📥 Get Students
+// 📥 GET STUDENTS
 app.get("/students", auth, async (req, res) => {
-  const data = await Student.find();
-  res.json(data);
+  res.json(await Student.find());
 });
 
-// 🚀 Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server running"));

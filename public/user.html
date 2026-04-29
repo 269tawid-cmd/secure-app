@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Dashboard</title>
+  <title>User</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -9,18 +10,11 @@
 
 <button onclick="logout()">Logout</button>
 
-<h3>Students result</h3>
-
-<table border="1">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Total</th>
-      <th>Grade</th>
-    </tr>
-  </thead>
-  <tbody id="table"></tbody>
+<table>
+<thead>
+<tr><th>ID</th><th>Name</th><th>Total</th><th>Grade</th></tr>
+</thead>
+<tbody id="table"></tbody>
 </table>
 
 <script src="user.js"></script>

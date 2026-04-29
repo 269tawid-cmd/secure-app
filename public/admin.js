@@ -1,8 +1,10 @@
 const token = localStorage.getItem("token");
 
+if (!token) location.href = "index.html";
+
 function logout() {
   localStorage.removeItem("token");
-  window.location.href = "index.html";
+  location.href = "index.html";
 }
 
 function addStudent() {
@@ -20,8 +22,7 @@ function addStudent() {
       sci: +sci.value,
       prog: +prog.value
     })
-  })
-  .then(() => load());
+  }).then(load);
 }
 
 function load() {
@@ -30,14 +31,14 @@ function load() {
   })
   .then(res => res.json())
   .then(data => {
-    let html = "";
-    data.forEach(s => {
-      html += `<tr>
+    table.innerHTML = data.map(s => `
+      <tr>
+        <td>${s.id}</td>
         <td>${s.name}</td>
         <td>${s.total}</td>
-      </tr>`;
-    });
-    table.innerHTML = html;
+        <td>${s.grade}</td>
+      </tr>
+    `).join("");
   });
 }
 

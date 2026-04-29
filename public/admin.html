@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Admin</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
- <h2>Admin Dashboard</h2>
+<h2>Admin Dashboard</h2>
+
+<button onclick="logout()">Logout</button>
 
 <div class="form-box">
   <input id="id" placeholder="ID">
@@ -21,12 +21,15 @@
   <button onclick="addStudent()">Add Student</button>
 </div>
 
-<table border="1">
-  <tbody id="table"></tbody>
+<table>
+<thead>
+<tr><th>ID</th><th>Name</th><th>Total</th><th>Grade</th></tr>
+</thead>
+<tbody id="table"></tbody>
 </table>
 
 <script src="admin.js"></script>
-  
+
 </body>
 </html>
 
