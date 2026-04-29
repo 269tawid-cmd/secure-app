@@ -10,7 +10,10 @@ function logout() {
 fetch("/students", {
   headers: { Authorization: token }
 })
-.then(res => res.json())
+.then(res => {
+  if (res.status === 401) location.href = "index.html";
+  return res.json();
+})
 .then(data => {
   table.innerHTML = data.map(s => `
     <tr>

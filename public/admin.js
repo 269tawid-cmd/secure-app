@@ -8,6 +8,12 @@ function logout() {
 }
 
 function addStudent() {
+
+  if (!id.value || !name.value) {
+    alert("Fill all fields!");
+    return;
+  }
+
   fetch("/add", {
     method: "POST",
     headers: {
@@ -29,7 +35,10 @@ function load() {
   fetch("/students", {
     headers: { Authorization: token }
   })
-  .then(res => res.json())
+  .then(res => {
+    if (res.status === 401) location.href = "index.html";
+    return res.json();
+  })
   .then(data => {
     table.innerHTML = data.map(s => `
       <tr>
