@@ -126,3 +126,18 @@ app.get("/students", auth, async (req, res) => {
 // ================== START SERVER ==================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server running on port " + PORT));
+
+// ✏️ UPDATE STUDENT
+app.put("/update/:id", auth, isAdmin, async (req, res) => {
+  await Student.findOneAndUpdate(
+    { id: req.params.id },
+    req.body
+  );
+  res.json({ success: true });
+});
+
+// ❌ DELETE STUDENT
+app.delete("/delete/:id", auth, isAdmin, async (req, res) => {
+  await Student.findOneAndDelete({ id: req.params.id });
+  res.json({ success: true });
+});
