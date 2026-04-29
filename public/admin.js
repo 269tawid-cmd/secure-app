@@ -1,9 +1,14 @@
 const token = localStorage.getItem("token");
+const role = localStorage.getItem("role");
 
-if (!token) location.href = "index.html";
+// 🔐 protect admin page
+if (!token || role !== "admin") {
+  alert("Access denied");
+  location.href = "index.html";
+}
 
 function logout() {
-  localStorage.removeItem("token");
+  localStorage.clear();
   location.href = "index.html";
 }
 
@@ -52,3 +57,36 @@ function load() {
 }
 
 load();
+let students = [];
+
+function load() {
+  fetch("/students", {
+    headers: { Authorization: token }
+  })
+  .then(res => res.json())
+  .then(data => {
+    students = data;
+    render(data);
+  });
+}
+
+function render(data) {
+  table.innerHTML = data.map(s => `
+    <tr>
+      <td>${s.id}</td>
+      <td>${s.name}</td>
+      <td>${s.total}</td>
+      <td>${s.grade}</td>
+    </tr>
+  `).join("");
+}
+
+function searchStudent() {
+  const value = search.value.toLowerCase();
+
+  const filtered = students.filter(s =>
+    s.name.toLowerCase().includes(value)
+  );
+
+  render(filtered);
+}
