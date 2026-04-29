@@ -3,18 +3,29 @@ const token = localStorage.getItem("token");
 if (!token) location.href = "index.html";
 
 function logout() {
-  localStorage.removeItem("token");
+  localStorage.clear();
   location.href = "index.html";
 }
 
-fetch("/students", {
-  headers: { Authorization: token }
-})
-.then(res => {
-  if (res.status === 401) location.href = "index.html";
-  return res.json();
-})
-.then(data => {
+let students = [];
+
+// 🔄 load data
+function loadStudents() {
+  fetch("/students", {
+    headers: { Authorization: token }
+  })
+  .then(res => {
+    if (res.status === 401) location.href = "index.html";
+    return res.json();
+  })
+  .then(data => {
+    students = data;
+    render(data);
+  });
+}
+
+// 🖥️ render table
+function render(data) {
   table.innerHTML = data.map(s => `
     <tr>
       <td>${s.id}</td>
@@ -23,4 +34,17 @@ fetch("/students", {
       <td>${s.grade}</td>
     </tr>
   `).join("");
-});
+}
+
+// 🔍 search
+function searchStudent() {
+  const val = search.value.toLowerCase();
+
+  const filtered = students.filter(s =>
+    s.name.toLowerCase().includes(val)
+  );
+
+  render(filtered);
+}
+
+loadStudents();
