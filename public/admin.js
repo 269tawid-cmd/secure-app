@@ -15,10 +15,13 @@ let students = [];
 
 // ➕ ADD
 function addStudent() {
-  if (!id.value || !name.value) {
-    alert("Fill all fields!");
-    return;
-  }
+  if (
+  !document.getElementById("id").value ||
+  !document.getElementById("name").value
+) {
+  alert("Fill all fields!");
+  return;
+}
 
   fetch("/add", {
     method: "POST",
