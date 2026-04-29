@@ -1,77 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Madrasatur rashid result shit </title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<html>
 <body>
 
-<h1>Madrasha result system</h1>
+<h2>Login</h2>
 
-<p style="color: #94a3b8;">Secure Student Management System</p>
+<input id="username" placeholder="Username">
+<input id="password" placeholder="Password" type="password">
 
-<div class="dashboard">
-  <div class="card">
-    <h3>Total</h3>
-    <p id="total">0</p>
-  </div>
-  <div class="card">
-    <h3>Average</h3>
-    <p id="avg">0</p>
-  </div>
-  <div class="card">
-    <h3>Pass</h3>
-    <p id="pass">0</p>
-  </div>
-  <div class="card">
-    <h3>Fail</h3>
-    <p id="fail">0</p>
-  </div>
-</div>
+<button onclick="login()">Login</button>
 
-<!-- Login -->
-<div id="loginBox">
-  <input type="text" id="username" placeholder="Username">
-  <input type="password" id="password" placeholder="Password">
-  <button onclick="login()">Login</button>
-</div>
+<script src="login.js"></script>
 
-<!-- Main App -->
-<div id="app" style="display:none;">
-
-  <button onclick="logout()">Logout</button>
-
-  <div class="form-box">
-    <input type="text" id="id" placeholder="ID">
-    <input type="text" id="name" placeholder="Name">
-    <input type="number" id="math" placeholder="Math">
-    <input type="number" id="eng" placeholder="English">
-    <input type="number" id="sci" placeholder="Science">
-    <input type="number" id="prog" placeholder="Programming">
-    <button onclick="addStudent()">Add</button>
-    <input type="text" id="search" placeholder="Search by ID or Name" onkeyup="searchStudent()">
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Math</th>
-        <th>English</th>
-        <th>Total</th>
-        <th>Science</th>
-        <th>Programming</th>
-        <th>Total</th>
-        <th>Grade</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
-
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>

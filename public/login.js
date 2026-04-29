@@ -1,18 +1,26 @@
-if (localStorage.getItem("loggedIn") !== "true") {
-  window.location.href = "login.html";
-}
 function login() {
-  let user = document.getElementById("username").value;
-  let pass = document.getElementById("password").value;
+  fetch("/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: document.getElementById("username").value,
+      password: document.getElementById("password").value
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      localStorage.setItem("token", data.token);
 
-  if (user === "admin" && pass === "1234") {
-    localStorage.setItem("loggedIn", "true");
-    window.location.href = "index.html";
-  } else {
-    alert("Wrong login!");
-  }
-}
-function logout() {
-  localStorage.removeItem("loggedIn");
-  window.location.href = "login.html";
+      if (data.role === "admin") {
+        window.location.href = "admin.html";
+      } else {
+        window.location.href = "user.html";
+      }
+    } else {
+      alert("Login failed");
+    }
+  });
 }
