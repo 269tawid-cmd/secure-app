@@ -52,6 +52,10 @@ function render(data) {
     <tr>
       <td>${s.id}</td>
       <td>${s.name}</td>
+      <td>${s.math}</td>
+      <td>${s.eng}</td>
+      <td>${s.sci}</td>
+      <td>${s.prog}</td>
       <td>${s.total}</td>
       <td>${s.grade}</td>
     </tr>
