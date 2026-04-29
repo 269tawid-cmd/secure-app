@@ -88,3 +88,21 @@ app.get("/students", auth, async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server running"));
+
+const createAdmin = async () => {
+  const existing = await User.findOne({ username: "King-Tawhid" });
+
+  if (!existing) {
+    const hashed = await bcrypt.hash("king321", 10);
+
+    await User.create({
+      username: "King-Tawhid",
+      password: hashed,
+      role: "admin"
+    });
+
+    console.log("Admin created");
+  }
+};
+
+createAdmin();
