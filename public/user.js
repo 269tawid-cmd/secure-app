@@ -1,5 +1,4 @@
 const token = localStorage.getItem("token");
-
 if (!token) location.href = "index.html";
 
 function logout() {
@@ -9,7 +8,7 @@ function logout() {
 
 let students = [];
 
-// 🔄 load data
+// 🔄 LOAD
 function loadStudents() {
   fetch("/students", {
     headers: { Authorization: token }
@@ -20,11 +19,34 @@ function loadStudents() {
   })
   .then(data => {
     students = data;
-    render(data);
+    applyAll(); // render with filters/sort
   });
 }
 
-// 🖥️ render table
+// 🧠 APPLY: search + filter + sort
+function applyAll() {
+  const q = (search.value || "").toLowerCase();
+  const g = gradeFilter.value;
+  const sort = sortOrder.value;
+
+  let data = students
+    // 🔎 search (name বা id)
+    .filter(s =>
+      s.name.toLowerCase().includes(q) ||
+      String(s.id).toLowerCase().includes(q)
+    )
+    // 🎚️ grade filter
+    .filter(s => !g || s.grade === g);
+
+  // ↕️ sort by total
+  if (sort === "asc") data.sort((a, b) => a.total - b.total);
+  if (sort === "desc") data.sort((a, b) => b.total - a.total);
+
+  render(data);
+  renderStats(data);
+}
+
+// 🖥️ RENDER TABLE
 function render(data) {
   table.innerHTML = data.map(s => `
     <tr>
@@ -36,15 +58,17 @@ function render(data) {
   `).join("");
 }
 
-// 🔍 search
-function searchStudent() {
-  const val = search.value.toLowerCase();
+// 📊 STATS
+function renderStats(data) {
+  const count = data.length;
+  const avg = count ? Math.round(data.reduce((a, c) => a + c.total, 0) / count) : 0;
+  const top = data.reduce((m, c) => c.total > (m?.total || -1) ? c : m, null);
 
-  const filtered = students.filter(s =>
-    s.name.toLowerCase().includes(val)
-  );
-
-  render(filtered);
+  stats.innerHTML = `
+    <b>Students:</b> ${count} |
+    <b>Average:</b> ${avg} |
+    <b>Top:</b> ${top ? `${top.name} (${top.total})` : "-"}
+  `;
 }
 
 loadStudents();

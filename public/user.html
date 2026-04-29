@@ -7,10 +7,30 @@
 <body>
 
 <h2>User Dashboard</h2>
-
 <button onclick="logout()">Logout</button>
 
-<input id="search" placeholder="Search by name..." onkeyup="searchStudent()">
+<!-- 🔧 CONTROLS -->
+<div style="margin:10px;">
+  <input id="search" placeholder="Search name or ID..." onkeyup="applyAll()">
+  
+  <select id="gradeFilter" onchange="applyAll()">
+    <option value="">All Grades</option>
+    <option>A+</option>
+    <option>A</option>
+    <option>B</option>
+    <option>F</option>
+  </select>
+
+  <select id="sortOrder" onchange="applyAll()">
+    <option value="">Sort</option>
+    <option value="asc">Total ↑</option>
+    <option value="desc">Total ↓</option>
+  </select>
+</div>
+
+<!-- 📊 STATS -->
+<div id="stats" style="margin:10px;"></div>
+
 <table>
 <thead>
 <tr><th>ID</th><th>Name</th><th>Total</th><th>Grade</th></tr>
@@ -19,6 +39,5 @@
 </table>
 
 <script src="user.js"></script>
-
 </body>
 </html>
