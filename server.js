@@ -106,3 +106,29 @@ const createAdmin = async () => {
 };
 
 createAdmin();
+
+app.post("/register", async (req, res) => {
+  const { username, password } = req.body;
+
+  // basic validation
+  if (!username || !password) {
+    return res.json({ success: false, message: "Missing fields" });
+  }
+
+  // already exists?
+  const exists = await User.findOne({ username });
+  if (exists) {
+    return res.json({ success: false, message: "User already exists" });
+  }
+
+  // hash password
+  const hashed = await bcrypt.hash(password, 10);
+
+  await User.create({
+    username,
+    password: hashed,
+    role: "user" // default user
+  });
+
+  res.json({ success: true });
+});
