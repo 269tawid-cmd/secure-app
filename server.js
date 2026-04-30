@@ -4,62 +4,61 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const app = express();
-
 app.use(express.json());
 app.use(express.static("public"));
 
-// DB
+// ===== DB =====
 mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log("MongoDB connected"))
-.catch(err => console.log(err));
+.then(()=>console.log("MongoDB connected"))
+.catch(err=>console.log(err));
 
-// USER
-const User = mongoose.model("User", new mongoose.Schema({
-  username: String,
-  password: String,
-  role: String
-}));
-
-// STUDENT (dynamic subjects)
-const Student = mongoose.model("Student", new mongoose.Schema({
-  id: String,
-  name: String,
-  subjects: Object,
-  total: Number,
-  grade: String
-}));
-
-// 🔐 REGISTER
-app.post("/register", async (req, res) => {
-  const { username, password } = req.body;
-
-  const exists = await User.findOne({ username });
-  if (exists) return res.json({ success:false, message:"User exists" });
-
-  const hashed = await bcrypt.hash(password, 10);
-
-  await User.create({ username, password: hashed, role: "user" });
-
-  res.json({ success:true });
+// ===== MODELS =====
+const User = mongoose.model("User", {
+  username:String,
+  password:String,
+  role:String
 });
 
-// 🔐 LOGIN
-app.post("/login", async (req, res) => {
-  const user = await User.findOne({ username: req.body.username });
-  if (!user) return res.json({ success:false });
-
-  const ok = await bcrypt.compare(req.body.password, user.password);
-  if (!ok) return res.json({ success:false });
-
-  const token = jwt.sign({ id:user._id, role:user.role }, process.env.JWT_SECRET);
-
-  res.json({ success:true, token, role:user.role });
+const Student = mongoose.model("Student", {
+  id:String,
+  name:String,
+  subjects:Object,
+  total:Number,
+  grade:String
 });
 
-// 🔐 middleware
+// ===== AUTH =====
+app.post("/register", async(req,res)=>{
+  const {username,password} = req.body;
+
+  const exists = await User.findOne({username});
+  if(exists) return res.json({success:false,message:"Exists"});
+
+  const hashed = await bcrypt.hash(password,10);
+
+  await User.create({username,password:hashed,role:"user"});
+  res.json({success:true});
+});
+
+app.post("/login", async(req,res)=>{
+  const user = await User.findOne({username:req.body.username});
+  if(!user) return res.json({success:false});
+
+  const match = await bcrypt.compare(req.body.password,user.password);
+  if(!match) return res.json({success:false});
+
+  const token = jwt.sign(
+    {id:user._id,role:user.role},
+    process.env.JWT_SECRET
+  );
+
+  res.json({success:true,token,role:user.role});
+});
+
+// ===== MIDDLEWARE =====
 function auth(req,res,next){
   try{
-    req.user = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
+    req.user = jwt.verify(req.headers.authorization,process.env.JWT_SECRET);
     next();
   }catch{
     res.status(401).json({error:"Unauthorized"});
@@ -71,49 +70,43 @@ function isAdmin(req,res,next){
   next();
 }
 
-// ➕ ADD
-app.post("/add", auth, isAdmin, async (req, res) => {
+// ===== ADD STUDENT (dynamic) =====
+app.post("/add", auth, isAdmin, async(req,res)=>{
   const s = req.body;
 
-  // validate
-  for (let k in s.subjects) {
-    if (s.subjects[k] > 100) {
-      return res.json({ success:false, message:"Max 100" });
+  // validate marks
+  for(let key in s.subjects){
+    if(s.subjects[key] > 100){
+      return res.json({success:false,message:"Max 100"});
     }
   }
 
   s.total = Object.values(s.subjects).reduce((a,b)=>a+b,0);
 
-  if (s.total >= 80) s.grade="A+";
-  else if (s.total >= 60) s.grade="A";
-  else if (s.total >= 40) s.grade="B";
+  if(s.total>=80) s.grade="A+";
+  else if(s.total>=60) s.grade="A";
+  else if(s.total>=40) s.grade="B";
   else s.grade="F";
 
   await Student.create(s);
-
-  res.json({ success:true });
+  res.json({success:true});
 });
 
-// 📥 GET
-app.get("/students", auth, async (req,res)=>{
+// ===== GET =====
+app.get("/students", auth, async(req,res)=>{
   res.json(await Student.find());
 });
 
-// ✏️ UPDATE
-app.put("/update/:id", auth, isAdmin, async (req,res)=>{
-  const s = req.body;
-
-  s.total = Object.values(s.subjects).reduce((a,b)=>a+b,0);
-
-  await Student.findOneAndUpdate({ id:req.params.id }, s);
-
-  res.json({ success:true });
+// ===== UPDATE =====
+app.put("/update/:id", auth, isAdmin, async(req,res)=>{
+  await Student.findOneAndUpdate({id:req.params.id},req.body);
+  res.json({success:true});
 });
 
-// ❌ DELETE
-app.delete("/delete/:id", auth, isAdmin, async (req,res)=>{
-  await Student.findOneAndDelete({ id:req.params.id });
-  res.json({ success:true });
+// ===== DELETE =====
+app.delete("/delete/:id", auth, isAdmin, async(req,res)=>{
+  await Student.findOneAndDelete({id:req.params.id});
+  res.json({success:true});
 });
 
-app.listen(3000, ()=>console.log("Server running"));
+app.listen(3000,()=>console.log("Server running"));
