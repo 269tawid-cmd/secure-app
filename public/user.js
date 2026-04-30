@@ -1,4 +1,5 @@
 const token = localStorage.getItem("token");
+
 if (!token) location.href = "index.html";
 
 function logout() {
@@ -6,22 +7,30 @@ function logout() {
   location.href = "index.html";
 }
 
-let students = [];
-
-// 🔄 LOAD
 function loadStudents() {
   fetch("/students", {
     headers: { Authorization: token }
   })
-  .then(res => {
-    if (res.status === 401) location.href = "index.html";
-    return res.json();
-  })
+  .then(res => res.json())
   .then(data => {
-    students = data;
-    applyAll(); // render with filters/sort
+    console.log(data); // 🔍 debug
+
+    table.innerHTML = data.map(s => `
+      <tr>
+        <td>${s.id}</td>
+        <td>${s.name}</td>
+        <td>${s.math}</td>
+        <td>${s.eng}</td>
+        <td>${s.sci}</td>
+        <td>${s.prog}</td>
+        <td>${s.total}</td>
+        <td>${s.grade}</td>
+      </tr>
+    `).join("");
   });
 }
+
+loadStudents();
 
 // 🧠 APPLY: search + filter + sort
 function applyAll() {

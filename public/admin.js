@@ -15,13 +15,17 @@ let students = [];
 
 // ➕ ADD
 function addStudent() {
-  if (
-  !document.getElementById("id").value ||
-  !document.getElementById("name").value
-) {
-  alert("Fill all fields!");
-  return;
-}
+  const idVal = document.getElementById("id").value;
+  const nameVal = document.getElementById("name").value;
+  const mathVal = document.getElementById("math").value;
+  const engVal = document.getElementById("eng").value;
+  const sciVal = document.getElementById("sci").value;
+  const progVal = document.getElementById("prog").value;
+
+  if (!idVal || !nameVal) {
+    alert("Fill all fields!");
+    return;
+  }
 
   fetch("/add", {
     method: "POST",
@@ -30,17 +34,14 @@ function addStudent() {
       "Authorization": token
     },
     body: JSON.stringify({
-      id: id.value,
-      name: name.value,
-      math: +math.value,
-      eng: +eng.value,
-      sci: +sci.value,
-      prog: +prog.value
+      id: idVal,
+      name: nameVal,   // 🔥 fix এখানে
+      math: +mathVal,
+      eng: +engVal,
+      sci: +sciVal,
+      prog: +progVal
     })
-  }).then(() => {
-    clearForm();
-    load();
-  });
+  }).then(load);
 }
 
 // 🔄 LOAD
