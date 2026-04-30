@@ -32,18 +32,17 @@ body.light{
   --table-head-text:#fff;
 }
 
-body.dark{
-  --bg:#0a0f1c;
-  --text:#e5e7eb;
-  --muted:#9ca3af;
-  --card:#111827cc;
-  --border:#00f7ff33;
-  --primary:#00f7ff;
-  --primary-2:#00c3cc;
-  --table-head:#001f2f;
-  --table-head-text:#00f7ff;
+body.dark {
+  background: linear-gradient(-45deg, #0a0f1c, #111827, #001f2f, #00c3cc);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
 }
 
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 /* ========= BASE ========= */
 body{
   font-family: Inter, Arial, sans-serif;
@@ -266,4 +265,32 @@ mark{ background:#00f7ff55; padding:0 3px; border-radius:4px }
 .login-card button:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 15px #00f7ff;
+}
+.input-group {
+  position: relative;
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #00f7ff;
+  font-size: 14px;
+}
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+.shake {
+  animation: shakeAnim 0.3s;
+}
+
+@keyframes shakeAnim {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
 }

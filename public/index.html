@@ -1,31 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body class="dark">
+  <body class="dark">
+    <div class="center-box">
+      <div class="login-card">
+        <h2>Login</h2>
 
-<div class="center-box">
+        <div class="input-group">
+          <input id="username" placeholder="Username" />
+          <input id="password" type="password" placeholder="Password" />
+          <span class="toggle-pass" onclick="togglePassword()">👁</span>
+        </div>
 
-  <div class="login-card">
-    <h2>Login</h2>
+        <button onclick="login()">Login</button>
 
-    <input id="username" placeholder="Username">
-    <input id="password" type="password" placeholder="Password">
+        <p>
+          Don't have an account?
+          <a href="register.html">Register here</a>
+        </p>
+      </div>
+    </div>
 
-    <button onclick="login()">Login</button>
-
-    <p>
-      Don't have an account? 
-      <a href="register.html">Register here</a>
-    </p>
-  </div>
-
-</div>
-
-<script src="login.js"></script>
-
-</body>
+    <script src="login.js"></script>
+  </body>
 </html>
