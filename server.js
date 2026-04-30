@@ -5,138 +5,115 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 
-// middleware
 app.use(express.json());
 app.use(express.static("public"));
 
-// ================== DB CONNECT ==================
+// DB
 mongoose.connect(process.env.MONGO_URI)
-  .then(async () => {
-    console.log("MongoDB connected");
-    await createAdmin(); // ensure default admin
-  })
-  .catch(err => console.log(err));
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.log(err));
 
-// ================== SCHEMAS ==================
-const userSchema = new mongoose.Schema({
+// USER
+const User = mongoose.model("User", new mongoose.Schema({
   username: String,
   password: String,
   role: String
-});
-const User = mongoose.model("User", userSchema);
+}));
 
-const studentSchema = new mongoose.Schema({
+// STUDENT (dynamic subjects)
+const Student = mongoose.model("Student", new mongoose.Schema({
   id: String,
   name: String,
-  subjects: Object, // 🔥 dynamic
+  subjects: Object,
   total: Number,
   grade: String
-});
-s.total = Object.values(s.subjects).reduce((a,b)=>a+b,0);
-const Student = mongoose.model("Student", studentSchema);
+}));
 
-// ================== AUTH ROUTES ==================
+// 🔐 REGISTER
+app.post("/register", async (req, res) => {
+  const { username, password } = req.body;
 
-// REGISTER
-app.post("/add", auth, isAdmin, async (req, res) => {
-  const s = req.body;
+  const exists = await User.findOne({ username });
+  if (exists) return res.json({ success:false, message:"User exists" });
 
-  // 🔥 validate all subjects
-  for (let key in s.subjects) {
-    if (s.subjects[key] > 100) {
-      return res.json({ success: false, message: "Marks cannot exceed 100" });
-    }
-  }
+  const hashed = await bcrypt.hash(password, 10);
 
-  // total
-  s.total = Object.values(s.subjects).reduce((a,b)=>a+b,0);
+  await User.create({ username, password: hashed, role: "user" });
 
-  // grade
-  if (s.total >= 80) s.grade = "A+";
-  else if (s.total >= 60) s.grade = "A";
-  else if (s.total >= 40) s.grade = "B";
-  else s.grade = "F";
-
-  await Student.create(s);
-
-  res.json({ success: true });
+  res.json({ success:true });
 });
 
-// LOGIN
+// 🔐 LOGIN
 app.post("/login", async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
-  if (!user) return res.json({ success: false });
+  if (!user) return res.json({ success:false });
 
-  const match = await bcrypt.compare(req.body.password, user.password);
-  if (!match) return res.json({ success: false });
+  const ok = await bcrypt.compare(req.body.password, user.password);
+  if (!ok) return res.json({ success:false });
 
-  const token = jwt.sign(
-    { id: user._id, role: user.role },
-    process.env.JWT_SECRET
-  );
+  const token = jwt.sign({ id:user._id, role:user.role }, process.env.JWT_SECRET);
 
-  res.json({ success: true, token, role: user.role });
+  res.json({ success:true, token, role:user.role });
 });
 
-// ================== MIDDLEWARE ==================
-function auth(req, res, next) {
-  const token = req.headers.authorization;
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+// 🔐 middleware
+function auth(req,res,next){
+  try{
+    req.user = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
     next();
-  } catch {
-    res.status(401).json({ error: "Unauthorized" });
+  }catch{
+    res.status(401).json({error:"Unauthorized"});
   }
 }
 
-function isAdmin(req, res, next) {
-  if (req.user.role !== "admin") {
-    return res.status(403).json({ error: "Forbidden" });
-  }
+function isAdmin(req,res,next){
+  if(req.user.role!=="admin") return res.status(403).json({error:"Forbidden"});
   next();
 }
 
-// ================== STUDENT ROUTES ==================
-
-// ADD STUDENT (admin only)
+// ➕ ADD
 app.post("/add", auth, isAdmin, async (req, res) => {
   const s = req.body;
 
-  s.total = s.math + s.eng + s.sci + s.prog;
+  // validate
+  for (let k in s.subjects) {
+    if (s.subjects[k] > 100) {
+      return res.json({ success:false, message:"Max 100" });
+    }
+  }
 
-  if (s.total >= 80) s.grade = "A+";
-  else if (s.total >= 60) s.grade = "A";
-  else if (s.total >= 40) s.grade = "B";
-  else s.grade = "F";
+  s.total = Object.values(s.subjects).reduce((a,b)=>a+b,0);
+
+  if (s.total >= 80) s.grade="A+";
+  else if (s.total >= 60) s.grade="A";
+  else if (s.total >= 40) s.grade="B";
+  else s.grade="F";
 
   await Student.create(s);
 
-  res.json({ success: true });
+  res.json({ success:true });
 });
 
-// GET ALL STUDENTS
-app.get("/students", auth, async (req, res) => {
-  const data = await Student.find();
-  res.json(data);
+// 📥 GET
+app.get("/students", auth, async (req,res)=>{
+  res.json(await Student.find());
 });
 
-// ================== START SERVER ==================
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server running on port " + PORT));
+// ✏️ UPDATE
+app.put("/update/:id", auth, isAdmin, async (req,res)=>{
+  const s = req.body;
 
-// ✏️ UPDATE STUDENT
-app.put("/update/:id", auth, isAdmin, async (req, res) => {
-  await Student.findOneAndUpdate(
-    { id: req.params.id },
-    req.body
-  );
-  res.json({ success: true });
+  s.total = Object.values(s.subjects).reduce((a,b)=>a+b,0);
+
+  await Student.findOneAndUpdate({ id:req.params.id }, s);
+
+  res.json({ success:true });
 });
 
-// ❌ DELETE STUDENT
-app.delete("/delete/:id", auth, isAdmin, async (req, res) => {
-  await Student.findOneAndDelete({ id: req.params.id });
-  res.json({ success: true });
+// ❌ DELETE
+app.delete("/delete/:id", auth, isAdmin, async (req,res)=>{
+  await Student.findOneAndDelete({ id:req.params.id });
+  res.json({ success:true });
 });
+
+app.listen(3000, ()=>console.log("Server running"));

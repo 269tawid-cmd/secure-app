@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
   <title>Admin</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body><div class="header">
+<body class="dark">
+
+<div class="header">
   <div class="wrap">
     <div class="brand">
-      <img src="logo.png" alt="logo">
-      <h1>Student Result System</h1>
+      <img src="logo.png">
+      <h1>Admin Panel</h1>
     </div>
-
     <div class="actions">
       <button class="btn ghost" onclick="toggleTheme()">Theme</button>
       <button class="btn danger" onclick="logout()">Logout</button>
@@ -19,65 +20,31 @@
 </div>
 
 <div class="container">
-  <!-- FORM CARD -->
   <div class="card">
     <h2>Add / Edit Student</h2>
-    
 
-    <div class="form-grid mt-12">
+    <div class="form-grid">
       <input id="id" placeholder="ID">
       <input id="name" placeholder="Name">
-      <input id="math" placeholder="Math">
-      <input id="eng" placeholder="English">
-      <input id="sci" placeholder="Science">
-      <input id="prog" placeholder="Programming">
     </div>
 
-    <div id="subjects-box" class="form-grid"></div>
+    <div id="subjects-box" class="form-grid mt-12"></div>
 
-<button onclick="addSubject()">+ Add Subject</button>
-<button onclick="addStudent()">Add Student</button>
-<button onclick="updateStudent()">Update Student</button>
-  </div>
-
-  <!-- TOOLBAR -->
-  <div class="toolbar">
-    <div class="left">
-      <input id="search" placeholder="Search..." onkeyup="onSearchInput()">
-      <select id="gradeFilter" class="select" onchange="applyAll()">
-        <option value="">All</option>
-        <option>A+</option><option>A</option><option>B</option><option>F</option>
-      </select>
-      <select id="sortOrder" class="select" onchange="applyAll()">
-        <option value="">Sort</option>
-        <option value="asc">Total ↑</option>
-        <option value="desc">Total ↓</option>
-      </select>
-    </div>
-    <div class="right">
-      <div id="stats" class="stats"></div>
+    <div class="mt-12">
+      <button class="btn" onclick="addStudent()">Add</button>
+      <button class="btn" onclick="updateStudent()">Update</button>
     </div>
   </div>
 
-  <!-- TABLE -->
   <div class="table-wrap card">
     <table>
-      <thead>
-        <tr>
-          <th>ID</th><th>Name</th>
-          <th>Math</th><th>Eng</th><th>Sci</th><th>Prog</th>
-          <th>Total</th><th>Grade</th><th>Action</th>
-        </tr>
-      </thead>
+      <thead id="thead"></thead>
       <tbody id="table"></tbody>
     </table>
   </div>
-
-  <!-- PAGINATION -->
-  <div id="pagination" class="pagination"></div>
 </div>
-<script src="admin.js"></script>
 
+<script src="admin.js"></script>
 </body>
 </html>
 

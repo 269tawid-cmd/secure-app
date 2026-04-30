@@ -1,81 +1,52 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Madrasatur Rashid Al Islamia</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="header">
-      <div class="wrap">
-        <div class="header">
-          <img src="logo.png" style="height: 40px" />
-          <h2>Madrasa Result System</h2>
-        </div>
+<head>
+  <title>Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light">
 
-        <div class="actions">
-          <button class="btn ghost" onclick="toggleTheme()">Theme</button>
-          <button class="btn danger" onclick="logout()">Logout</button>
-        </div>
-      </div>
-    </div>
+<div class="container">
+  <h2>Student Result</h2>
 
-    <div class="container">
-      <!-- 🔍 TOOLBAR -->
-      <div class="toolbar">
-        <div class="left">
-          <input
-            id="search"
-            placeholder="Search..."
-            onkeyup="onSearchInput()"
-          />
+  <!-- 🔍 toolbar -->
+  <div class="toolbar">
+    <input id="search" placeholder="Search..." onkeyup="onSearchInput()">
 
-          <select id="gradeFilter" class="select" onchange="applyAll()">
-            <option value="">All</option>
-            <option>A+</option>
-            <option>A</option>
-            <option>B</option>
-            <option>F</option>
-          </select>
+    <select id="gradeFilter" onchange="applyAll()">
+      <option value="">All</option>
+      <option>A+</option>
+      <option>A</option>
+      <option>B</option>
+      <option>F</option>
+    </select>
 
-          <select id="sortOrder" class="select" onchange="applyAll()">
-            <option value="">Sort</option>
-            <option value="asc">Total ↑</option>
-            <option value="desc">Total ↓</option>
-          </select>
-        </div>
+    <select id="sortOrder" onchange="applyAll()">
+      <option value="">Sort</option>
+      <option value="asc">Low → High</option>
+      <option value="desc">High → Low</option>
+    </select>
 
-        <div id="stats" class="stats"></div>
-      </div>
+    <button onclick="downloadPDF()">PDF</button>
+  </div>
 
-      <button onclick="downloadPDF()" class="btn">Download PDF</button>
+  <!-- 📊 stats -->
+  <div id="stats"></div>
 
-      <!-- 📊 TABLE -->
-      <div class="table-wrap card">
-        <table>
-          <thead id="thead">
-            <tr>
-              <th>Rank</th>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Math</th>
-              <th>Eng</th>
-              <th>Sci</th>
-              <th>Prog</th>
-              <th>Total</th>
-              <th>Grade</th>
-            </tr>
-          </thead>
-          <tbody id="table"></tbody>
-        </table>
-      </div>
-      <canvas id="chart" style="max-width: 600px; margin: 20px auto"></canvas>
+  <!-- 📊 table -->
+  <table>
+    <thead id="thead"></thead>
+    <tbody id="table"></tbody>
+  </table>
 
-      <!-- 📄 PAGINATION -->
-      <div id="pagination" class="pagination"></div>
-    </div>
-    <button onclick="window.print()" class="btn">Print</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- 📈 chart -->
+  <canvas id="chart" style="max-width:600px;margin:20px auto;"></canvas>
 
-    <script src="user.js"></script>
-  </body>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="user.js"></script>
+
+</body>
 </html>

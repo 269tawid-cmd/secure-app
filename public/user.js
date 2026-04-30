@@ -1,16 +1,12 @@
+const token = localStorage.getItem("token");
+if (!token) location.href = "index.html";
+
 const SUBJECT_CONFIG = [
   { key: "math", label: "Mathematics", icon: "📐" },
   { key: "eng",  label: "English",     icon: "📘" },
   { key: "sci",  label: "Science",     icon: "🔬" },
   { key: "prog", label: "Programming", icon: "💻" }
 ];
-const token = localStorage.getItem("token");
-if (!token) location.href = "index.html";
-
-function logout() {
-  localStorage.clear();
-  location.href = "index.html";
-}
 
 let students = [];
 let debounceTimer = null;
@@ -22,29 +18,26 @@ function loadStudents() {
   })
   .then(res => res.json())
   .then(data => {
-    console.log("DATA:", data); // 🔍 check
-
     students = data.sort((a, b) => b.total - a.total);
+    applyAll();
 
-    render(students);
-
-    // chart থাকলে
     if (typeof renderChart === "function") {
       renderChart(students);
     }
   });
 }
 
-// 🧠 APPLY (debounced)
+// 🔍 SEARCH (debounce)
 function onSearchInput() {
   clearTimeout(debounceTimer);
-  debounceTimer = setTimeout(applyAll, 200); // 200ms debounce
+  debounceTimer = setTimeout(applyAll, 200);
 }
 
+// 🎯 FILTER + SORT
 function applyAll() {
-  const q = (document.getElementById("search")?.value || "").toLowerCase();
-  const g = document.getElementById("gradeFilter")?.value;
-  const sort = document.getElementById("sortOrder")?.value;
+  const q = (search.value || "").toLowerCase();
+  const g = gradeFilter.value;
+  const sort = sortOrder.value;
 
   let data = students
     .filter(s =>
@@ -60,58 +53,50 @@ function applyAll() {
   renderStats(data);
 }
 
-// 🔤 highlight helper
+// 🔤 highlight
 function highlight(text, q) {
   if (!q) return text;
-  const re = new RegExp(`(${q})`, "ig");
-  return String(text).replace(re, "<mark>$1</mark>");
+  return String(text).replace(new RegExp(q, "gi"), m => `<mark>${m}</mark>`);
 }
 
-// 🖥️ RENDER (with animation + highlight)
-function render(data) {
+// 🖥️ RENDER
+function render(data, q="") {
   renderHeader();
 
-  table.innerHTML = data.map((s, i) => `
-    <tr class="row-enter">
-      <td>${i + 1}</td>
-      <td>${s.id}</td>
-      <td>${s.name}</td>
+  table.innerHTML = data.map((s, i) => {
+    let rankClass = "";
+    if (i === 0) rankClass = "rank-1";
+    else if (i === 1) rankClass = "rank-2";
+    else if (i === 2) rankClass = "rank-3";
 
-      ${SUBJECT_CONFIG.map(sub => {
-        const val = s.subjects?.[sub.key] ?? 0; // missing হলে 0
-        return `<td>${progress(val)}</td>`;
-      }).join("")}
+    return `
+      <tr class="row-enter ${rankClass}">
+        <td>${i + 1}</td>
+        <td>${highlight(s.id, q)}</td>
+        <td>${highlight(s.name, q)}</td>
 
-      <td>${s.total}</td>
-      <td>${getGradeBadge(s.grade)}</td>
-    </tr>
-  `).join("");
+        ${SUBJECT_CONFIG.map(sub => {
+          const val = s.subjects?.[sub.key] ?? 0;
+          return `<td>${progress(val)}</td>`;
+        }).join("")}
 
-
-
-
-
-  // small delay for smoother feel
-  setTimeout(() => {
-    tbody.innerHTML = html;
-    tbody.style.opacity = "1";
-  }, 60);
+        <td>${s.total}</td>
+        <td>${getGradeBadge(s.grade)}</td>
+      </tr>
+    `;
+  }).join("");
 }
 
+// 📊 HEADER
 function renderHeader() {
   thead.innerHTML = `
     <tr>
-      <th>Rank</th>
+      <th>#</th>
       <th>ID</th>
       <th>Name</th>
-
       ${SUBJECT_CONFIG.map(s => `
-        <th>
-          <span class="sub-icon">${s.icon}</span>
-          ${s.label}
-        </th>
+        <th>${s.icon} ${s.label}</th>
       `).join("")}
-
       <th>Total</th>
       <th>Grade</th>
     </tr>
@@ -122,42 +107,24 @@ function renderHeader() {
 function renderStats(data) {
   const count = data.length;
   const avg = count ? Math.round(data.reduce((a, c) => a + c.total, 0) / count) : 0;
-  const top = data.reduce((m, c) => c.total > (m?.total || -1) ? c : m, null);
+  const top = data[0];
 
-  document.getElementById("stats").innerHTML = `
-    <b>Students:</b> ${count} |
-    <b>Average:</b> ${avg} |
-    <b>Top:</b> ${top ? `${top.name} (${top.total})` : "-"}
+  stats.innerHTML = `
+    Students: ${count} |
+    Avg: ${avg} |
+    Top: ${top ? top.name + " (" + top.total + ")" : "-"}
   `;
 }
 
-// 🚀 INIT
-loadStudents();
-function toggleTheme(){
-  const b = document.body;
-  if (b.classList.contains("dark")){
-    b.classList.remove("dark"); b.classList.add("light");
-    localStorage.setItem("theme","light");
-  } else {
-    b.classList.remove("light"); b.classList.add("dark");
-    localStorage.setItem("theme","dark");
-  }
-}
-
-// default theme
-const saved = localStorage.getItem("theme");
-if (saved) document.body.classList.add(saved);
-else {
-  // admin → dark, user → light (you can set per page)
-  // e.g., in admin.js: document.body.classList.add("dark");
-  //       in user.js:  document.body.classList.add("light");
-}
+// 🎨 BADGE
 function getGradeBadge(grade) {
   if (grade === "A+") return `<span class="badge ap">A+</span>`;
   if (grade === "A") return `<span class="badge a">A</span>`;
   if (grade === "B") return `<span class="badge b">B</span>`;
   return `<span class="badge f">F</span>`;
 }
+
+// 📊 PROGRESS
 function progress(val) {
   return `
     <div class="progress-box">
@@ -167,58 +134,43 @@ function progress(val) {
   `;
 }
 
+// 📈 CHART
+let chartInstance;
 function renderChart(data) {
-  const names = data.map(s => s.name);
-  const totals = data.map(s => s.total);
+  if (chartInstance) chartInstance.destroy();
 
-  new Chart(document.getElementById("chart"), {
+  chartInstance = new Chart(document.getElementById("chart"), {
     type: "bar",
     data: {
-      labels: names,
+      labels: data.map(s => s.name),
       datasets: [{
         label: "Total Marks",
-        data: totals
+        data: data.map(s => s.total)
       }]
     }
   });
 }
+
+// 🧾 PDF
 function downloadPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
+  let y = 20;
   doc.text("Student Result", 20, 10);
 
-  let y = 20;
-
   students.forEach((s, i) => {
-    doc.text(
-      `${i+1}. ${s.name} | Total: ${s.total} | Grade: ${s.grade}`,
-      10,
-      y
-    );
+    doc.text(`${i+1}. ${s.name} (${s.total})`, 10, y);
     y += 10;
   });
 
   doc.save("result.pdf");
 }
 
-Object.entries(s.subjects).map(([sub, val]) => `
-  <td>${progress(val)}</td>
-`).join("")
+// 🚀 INIT
+loadStudents();
 
-function renderHeader(data) {
-  if (!data.length) return;
-
-  const subjects = Object.keys(data[0].subjects || {});
-
-  thead.innerHTML = `
-    <tr>
-      <th>Rank</th>
-      <th>ID</th>
-      <th>Name</th>
-      ${subjects.map(s => `<th>${s.toUpperCase()}</th>`).join("")}
-      <th>Total</th>
-      <th>Grade</th>
-    </tr>
-  `;
+// 🎨 THEME
+function toggleTheme(){
+  document.body.classList.toggle("light");
 }
