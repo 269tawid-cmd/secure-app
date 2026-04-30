@@ -1,74 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Madrasatur Rashid Al Islamia</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <title>Madrasatur Rashid Al Islamia</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="wrap">
+        <div class="brand">
+          <img src="logo.png" />
+          <h1>Student Result System</h1>
+        </div>
 
-<div class="header">
-  <div class="wrap">
-    <div class="brand">
-      <img src="logo.png">
-      <h1>Student Result System</h1>
+        <div class="actions">
+          <button class="btn ghost" onclick="toggleTheme()">Theme</button>
+          <button class="btn danger" onclick="logout()">Logout</button>
+        </div>
+      </div>
     </div>
 
-    <div class="actions">
-      <button class="btn ghost" onclick="toggleTheme()">Theme</button>
-      <button class="btn danger" onclick="logout()">Logout</button>
+    <div class="container">
+      <!-- 🔍 TOOLBAR -->
+      <div class="toolbar">
+        <div class="left">
+          <input
+            id="search"
+            placeholder="Search..."
+            onkeyup="onSearchInput()"
+          />
+
+          <select id="gradeFilter" class="select" onchange="applyAll()">
+            <option value="">All</option>
+            <option>A+</option>
+            <option>A</option>
+            <option>B</option>
+            <option>F</option>
+          </select>
+
+          <select id="sortOrder" class="select" onchange="applyAll()">
+            <option value="">Sort</option>
+            <option value="asc">Total ↑</option>
+            <option value="desc">Total ↓</option>
+          </select>
+        </div>
+
+        <div id="stats" class="stats"></div>
+      </div>
+
+      <!-- 📊 TABLE -->
+      <div class="table-wrap card">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Math</th>
+              <th>Eng</th>
+              <th>Sci</th>
+              <th>Prog</th>
+              <th>Total</th>
+              <th>Grade</th>
+            </tr>
+          </thead>
+          <tbody id="table"></tbody>
+        </table>
+      </div>
+
+      <!-- 📄 PAGINATION -->
+      <div id="pagination" class="pagination"></div>
     </div>
-  </div>
-</div>
 
-<div class="container">
-
-  <!-- 🔍 TOOLBAR -->
-  <div class="toolbar">
-    <div class="left">
-      <input id="search" placeholder="Search..." onkeyup="onSearchInput()">
-
-      <select id="gradeFilter" class="select" onchange="applyAll()">
-        <option value="">All</option>
-        <option>A+</option>
-        <option>A</option>
-        <option>B</option>
-        <option>F</option>
-      </select>
-
-      <select id="sortOrder" class="select" onchange="applyAll()">
-        <option value="">Sort</option>
-        <option value="asc">Total ↑</option>
-        <option value="desc">Total ↓</option>
-      </select>
-    </div>
-
-    <div id="stats" class="stats"></div>
-  </div>
-
-  <!-- 📊 TABLE -->
-  <div class="table-wrap card">
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Math</th>
-          <th>Eng</th>
-          <th>Sci</th>
-          <th>Prog</th>
-          <th>Total</th>
-          <th>Grade</th>
-        </tr>
-      </thead>
-      <tbody id="table"></tbody>
-    </table>
-  </div>
-
-  <!-- 📄 PAGINATION -->
-  <div id="pagination" class="pagination"></div>
-
-</div>
-
-<script src="user.js"></script>
-</body>
+    <script src="user.js"></script>
+  </body>
 </html>

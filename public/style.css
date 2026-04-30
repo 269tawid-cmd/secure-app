@@ -365,3 +365,34 @@ mark{ background:#00f7ff55; padding:0 3px; border-radius:4px }
   position: relative;
   z-index: 2;
 }
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* 🔥 A+ (gold premium) */
+.badge.ap {
+  background: linear-gradient(135deg, gold, orange);
+  color: black;
+  box-shadow: 0 0 8px gold;
+}
+
+/* 🔵 A */
+.badge.a {
+  background: #2563eb;
+  color: white;
+}
+
+/* 🟡 B */
+.badge.b {
+  background: #eab308;
+  color: black;
+}
+
+/* ❌ F */
+.badge.f {
+  background: #ef4444;
+  color: white;
+}

@@ -13,6 +13,8 @@ let debounceTimer = null;
 function loadStudents() {
   const tbody = document.getElementById("table");
   tbody.classList.add("loading");
+  students = data.sort((a, b) => b.total - a.total); // highest first
+render(students);
   // optional skeleton
   tbody.innerHTML = Array.from({length: 5}).map(() =>
     `<tr class="skeleton"><td colspan="8"></td></tr>`
@@ -61,24 +63,21 @@ function highlight(text, q) {
 }
 
 // 🖥️ RENDER (with animation + highlight)
-function render(data, q) {
-  const tbody = document.getElementById("table");
-
-  // slight fade out then replace
-  tbody.style.opacity = "0.6";
-
-  const html = data.map(s => `
+function render(data) {
+  table.innerHTML = data.map((s, i) => `
     <tr class="row-enter">
-      <td>${highlight(s.id, q)}</td>
-      <td>${highlight(s.name, q)}</td>
+      <td>${i + 1}</td> <!-- 🥇 rank -->
+      <td>${s.id}</td>
+      <td>${s.name}</td>
       <td>${s.math}</td>
       <td>${s.eng}</td>
       <td>${s.sci}</td>
       <td>${s.prog}</td>
       <td>${s.total}</td>
-      <td>${s.grade}</td>
+      <td>${getGradeBadge(s.grade)}</td>
     </tr>
   `).join("");
+
 
   // small delay for smoother feel
   setTimeout(() => {
@@ -120,4 +119,10 @@ else {
   // admin → dark, user → light (you can set per page)
   // e.g., in admin.js: document.body.classList.add("dark");
   //       in user.js:  document.body.classList.add("light");
+}
+function getGradeBadge(grade) {
+  if (grade === "A+") return `<span class="badge ap">A+</span>`;
+  if (grade === "A") return `<span class="badge a">A</span>`;
+  if (grade === "B") return `<span class="badge b">B</span>`;
+  return `<span class="badge f">F</span>`;
 }
