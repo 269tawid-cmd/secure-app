@@ -356,3 +356,115 @@ input{
 .header h1{
   color:#00f7ff;
 }
+
+/* ===== FINAL LOGIN POLISH ===== */
+
+.login-card{
+  animation:fadeIn .6s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:scale(.9)}
+  to{opacity:1}
+}
+
+.login-card button.loading{
+  opacity:.6;
+  pointer-events:none;
+}
+
+.shake{
+  animation:shake .3s;
+}
+
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  50%{transform:translateX(5px)}
+  75%{transform:translateX(-5px)}
+  100%{transform:translateX(0)}
+}
+
+/* floating improve */
+.floating-grades span{
+  font-weight:bold;
+  text-shadow:0 0 10px #00f7ff;
+}
+/* ===== ADMIN FINAL ===== */
+
+body.dark .card{
+  backdrop-filter:blur(12px);
+  background:rgba(17,24,39,.7);
+}
+
+.card h2{
+  color:#00f7ff;
+}
+
+/* form layout improve */
+.form-grid input{
+  transition:.3s;
+}
+
+.form-grid input:hover{
+  box-shadow:0 0 10px #00f7ff;
+}
+
+/* buttons */
+button{
+  box-shadow:0 0 8px #00f7ff55;
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+/* search bar */
+#search{
+  width:200px;
+}
+
+/* table */
+table{
+  border-radius:10px;
+  overflow:hidden;
+}
+/* ===== USER FINAL ===== */
+
+/* stats */
+.stats{
+  margin:10px 0;
+  font-weight:bold;
+}
+
+/* rank glow */
+.rank-1{
+  background:rgba(255,215,0,.2);
+  box-shadow:0 0 15px gold;
+}
+
+/* table hover */
+tr:hover{
+  transform:scale(1.01);
+  transition:.2s;
+}
+
+/* chart */
+canvas{
+  background:#111827;
+  border-radius:10px;
+  padding:10px;
+}
+/* ===== GLOBAL FLOATING ===== */
+
+.floating-grades span{
+  animation-duration:10s;
+  font-size:18px;
+}
+
+.floating-grades span:nth-child(odd){
+  color:#00f7ff55;
+}
+.floating-grades span:nth-child(even){
+  color:#00c3cc55;
+}
