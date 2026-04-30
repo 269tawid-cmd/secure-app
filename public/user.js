@@ -1,3 +1,9 @@
+const SUBJECT_CONFIG = [
+  { key: "math", label: "Mathematics", icon: "📐" },
+  { key: "eng",  label: "English",     icon: "📘" },
+  { key: "sci",  label: "Science",     icon: "🔬" },
+  { key: "prog", label: "Programming", icon: "💻" }
+];
 const token = localStorage.getItem("token");
 if (!token) location.href = "index.html";
 
@@ -63,29 +69,25 @@ function highlight(text, q) {
 
 // 🖥️ RENDER (with animation + highlight)
 function render(data) {
-  table.innerHTML = data.map((s, i) => {
+  renderHeader();
 
-    let rankClass = "";
-    if (i === 0) rankClass = "rank-1";
-    else if (i === 1) rankClass = "rank-2";
-    else if (i === 2) rankClass = "rank-3";
+  table.innerHTML = data.map((s, i) => `
+    <tr class="row-enter">
+      <td>${i + 1}</td>
+      <td>${s.id}</td>
+      <td>${s.name}</td>
 
-    return `
-      <tr class="row-enter ${rankClass}">
-        <td>${i + 1}</td>
-        <td>${s.id}</td>
-        <td>${s.name}</td>
+      ${SUBJECT_CONFIG.map(sub => {
+        const val = s.subjects?.[sub.key] ?? 0; // missing হলে 0
+        return `<td>${progress(val)}</td>`;
+      }).join("")}
 
-        <td>${progress(s.math)}</td>
-        <td>${progress(s.eng)}</td>
-        <td>${progress(s.sci)}</td>
-        <td>${progress(s.prog)}</td>
+      <td>${s.total}</td>
+      <td>${getGradeBadge(s.grade)}</td>
+    </tr>
+  `).join("");
 
-        <td>${s.total}</td>
-        <td>${getGradeBadge(s.grade)}</td>
-      </tr>
-    `;
-  }).join("");
+
 
 
 
@@ -94,6 +96,26 @@ function render(data) {
     tbody.innerHTML = html;
     tbody.style.opacity = "1";
   }, 60);
+}
+
+function renderHeader() {
+  thead.innerHTML = `
+    <tr>
+      <th>Rank</th>
+      <th>ID</th>
+      <th>Name</th>
+
+      ${SUBJECT_CONFIG.map(s => `
+        <th>
+          <span class="sub-icon">${s.icon}</span>
+          ${s.label}
+        </th>
+      `).join("")}
+
+      <th>Total</th>
+      <th>Grade</th>
+    </tr>
+  `;
 }
 
 // 📊 STATS
@@ -159,4 +181,44 @@ function renderChart(data) {
       }]
     }
   });
+}
+function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.text("Student Result", 20, 10);
+
+  let y = 20;
+
+  students.forEach((s, i) => {
+    doc.text(
+      `${i+1}. ${s.name} | Total: ${s.total} | Grade: ${s.grade}`,
+      10,
+      y
+    );
+    y += 10;
+  });
+
+  doc.save("result.pdf");
+}
+
+Object.entries(s.subjects).map(([sub, val]) => `
+  <td>${progress(val)}</td>
+`).join("")
+
+function renderHeader(data) {
+  if (!data.length) return;
+
+  const subjects = Object.keys(data[0].subjects || {});
+
+  thead.innerHTML = `
+    <tr>
+      <th>Rank</th>
+      <th>ID</th>
+      <th>Name</th>
+      ${subjects.map(s => `<th>${s.toUpperCase()}</th>`).join("")}
+      <th>Total</th>
+      <th>Grade</th>
+    </tr>
+  `;
 }

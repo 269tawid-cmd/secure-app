@@ -433,3 +433,46 @@ mark{ background:#00f7ff55; padding:0 3px; border-radius:4px }
   transform: translateX(-50%);
   font-size: 11px;
 }
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .btn, .toolbar {
+    display: none;
+  }
+
+  table {
+    width: 100%;
+    border: 1px solid black;
+  }
+}
+@media (max-width: 768px) {
+
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 6px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-box {
+    width: 95%;
+  }
+
+  .progress-box {
+    height: 14px;
+  }
+}
+
+.sub-icon {
+  margin-right: 6px;
+  font-size: 14px;
+}

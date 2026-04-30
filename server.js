@@ -141,3 +141,11 @@ app.delete("/delete/:id", auth, isAdmin, async (req, res) => {
   await Student.findOneAndDelete({ id: req.params.id });
   res.json({ success: true });
 });
+const studentSchema = new mongoose.Schema({
+  id: String,
+  name: String,
+  subjects: Object, // 🔥 dynamic
+  total: Number,
+  grade: String
+});
+s.total = Object.values(s.subjects).reduce((a,b)=>a+b,0);

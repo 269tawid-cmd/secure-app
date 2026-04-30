@@ -207,3 +207,13 @@ else {
   // e.g., in admin.js: document.body.classList.add("dark");
   //       in user.js:  document.body.classList.add("light");
 }
+body: JSON.stringify({
+  id: idVal,
+  name: nameVal,
+  subjects: {
+    math: +math.value,
+    eng: +eng.value,
+    sci: +sci.value,
+    prog: +prog.value
+  }
+})
