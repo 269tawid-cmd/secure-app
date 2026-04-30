@@ -76,7 +76,7 @@ function render(data, q="") {
         <td>${highlight(s.name, q)}</td>
 
         ${SUBJECT_CONFIG.map(sub => {
-          const val = s.subjects?.[sub.key] ?? 0;
+          const val = s.subjects?.[sub.key] ?? s[sub.key] ?? 0;
           return `<td>${progress(val)}</td>`;
         }).join("")}
 
