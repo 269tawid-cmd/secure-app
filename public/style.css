@@ -476,3 +476,10 @@ mark{ background:#00f7ff55; padding:0 3px; border-radius:4px }
   margin-right: 6px;
   font-size: 14px;
 }
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+input:invalid {
+  border: 1px solid red;
+}

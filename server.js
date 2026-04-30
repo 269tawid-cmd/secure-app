@@ -38,25 +38,26 @@ const Student = mongoose.model("Student", studentSchema);
 // ================== AUTH ROUTES ==================
 
 // REGISTER
-app.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+app.post("/add", auth, isAdmin, async (req, res) => {
+  const s = req.body;
 
-  if (!username || password.length < 4) {
-    return res.json({ success: false, message: "Invalid input" });
+  // 🔥 validate all subjects
+  for (let key in s.subjects) {
+    if (s.subjects[key] > 100) {
+      return res.json({ success: false, message: "Marks cannot exceed 100" });
+    }
   }
 
-  const exists = await User.findOne({ username });
-  if (exists) {
-    return res.json({ success: false, message: "User already exists" });
-  }
+  // total
+  s.total = Object.values(s.subjects).reduce((a,b)=>a+b,0);
 
-  const hashed = await bcrypt.hash(password, 10);
+  // grade
+  if (s.total >= 80) s.grade = "A+";
+  else if (s.total >= 60) s.grade = "A";
+  else if (s.total >= 40) s.grade = "B";
+  else s.grade = "F";
 
-  await User.create({
-    username,
-    password: hashed,
-    role: "user"
-  });
+  await Student.create(s);
 
   res.json({ success: true });
 });

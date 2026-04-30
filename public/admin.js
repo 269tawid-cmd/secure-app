@@ -16,25 +16,17 @@ let currentEditId = null;
 
 // ➕ ADD
 function addStudent() {
-  const idInput = document.getElementById("id");
-  const nameInput = document.getElementById("name");
-  const mathInput = document.getElementById("math");
-  const engInput = document.getElementById("eng");
-  const sciInput = document.getElementById("sci");
-  const progInput = document.getElementById("prog");
+  const subjects = {};
 
-  const idVal = idInput.value.trim();
-  const nameVal = nameInput.value.trim();
-  const mathVal = mathInput.value;
-  const engVal = engInput.value;
-  const sciVal = sciInput.value;
-  const progVal = progInput.value;
+  for (let sub of SUBJECT_CONFIG) {
+    const val = +document.getElementById(sub.key).value;
 
-  // 🔍 validation
-  if (!idVal || !nameVal || !mathVal || !engVal || !sciVal || !progVal) {
-    alert("Fill all fields!");
-    idInput.focus();
-    return;
+    if (val > 100) {
+      alert(`${sub.label} can't be more than 100`);
+      return;
+    }
+
+    subjects[sub.key] = val;
   }
 
   fetch("/add", {
@@ -44,18 +36,13 @@ function addStudent() {
       "Authorization": token
     },
     body: JSON.stringify({
-      id: idVal,
-      name: nameVal,
-      math: +mathVal,
-      eng: +engVal,
-      sci: +sciVal,
-      prog: +progVal
+      id: id.value,
+      name: name.value,
+      subjects
     })
-  })
-  .then(() => {
+  }).then(() => {
     clearForm();
     load();
-    idInput.focus(); // 🔥 focus
   });
 }
 
@@ -217,3 +204,33 @@ body: JSON.stringify({
     prog: +prog.value
   }
 })
+const SUBJECT_CONFIG = [
+  { key: "math", label: "Mathematics" },
+  { key: "eng",  label: "English" },
+  { key: "sci",  label: "Science" },
+  { key: "prog", label: "Programming" }
+];
+
+function renderSubjects() {
+  subjectsBox.innerHTML = SUBJECT_CONFIG.map(sub => `
+    <input 
+      type="number"
+      id="${sub.key}" 
+      placeholder="${sub.label} (0-100)" 
+      min="0" 
+      max="100"
+    >
+  `).join("");
+}
+
+renderSubjects();
+
+function addSubject() {
+  const name = prompt("Subject name?");
+  if (!name) return;
+
+  const key = name.toLowerCase().replace(/\s+/g, "_");
+
+  SUBJECT_CONFIG.push({ key, label: name });
+  renderSubjects();
+}

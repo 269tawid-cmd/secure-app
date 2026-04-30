@@ -22,6 +22,7 @@
   <!-- FORM CARD -->
   <div class="card">
     <h2>Add / Edit Student</h2>
+    
 
     <div class="form-grid mt-12">
       <input id="id" placeholder="ID">
@@ -32,10 +33,11 @@
       <input id="prog" placeholder="Programming">
     </div>
 
-    <div class="mt-12">
-      <button class="btn success" onclick="addStudent()">Add</button>
-      <button class="btn" onclick="updateStudent()">Update</button>
-    </div>
+    <div id="subjects-box" class="form-grid"></div>
+
+<button onclick="addSubject()">+ Add Subject</button>
+<button onclick="addStudent()">Add Student</button>
+<button onclick="updateStudent()">Update Student</button>
   </div>
 
   <!-- TOOLBAR -->
