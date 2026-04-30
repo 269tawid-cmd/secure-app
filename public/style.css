@@ -85,4 +85,17 @@ th {
 tr:hover {
   background: #0f172a;
 }           
+.fade {
+  animation: fadeIn 0.3s ease;
+}
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
