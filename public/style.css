@@ -20,323 +20,6 @@ body.light{
 /* ================= HEADER ================= */
 .header{
   padding:15px;
-  border-bottom:1px solid #00f7ff33;
-}
-
-.wrap{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.brand img{
-  height:40px;
-}
-
-/* ================= BUTTON ================= */
-.btn{
-  padding:8px 14px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.btn:hover{
-  opacity:.9;
-}
-
-.btn.ghost{
-  background:transparent;
-  border:1px solid #00f7ff;
-  color:#00f7ff;
-}
-
-.btn.danger{
-  background:#ef4444;
-  color:#fff;
-}
-
-/* ================= LOGIN (GLASS) ================= */
-.center-box{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-.login-card{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(12px);
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 0 20px #00f7ff22;
-  width:280px;
-}
-
-.login-card h2{
-  margin-bottom:15px;
-  color:#00f7ff;
-}
-
-.login-card input{
-  width:100%;
-  padding:10px;
-  margin:8px 0;
-  border:none;
-  border-bottom:2px solid #00f7ff;
-  background:transparent;
-  color:#fff;
-}
-
-.login-card button{
-  width:100%;
-  margin-top:10px;
-  background:#00f7ff;
-  color:#000;
-}
-
-/* ================= TOOLBAR ================= */
-.toolbar{
-  margin:15px;
-}
-
-.toolbar input, .toolbar select{
-  padding:8px;
-  margin:5px;
-}
-
-/* ================= TABLE ================= */
-table{
-  width:90%;
-  margin:auto;
-  border-collapse:collapse;
-}
-
-th,td{
-  padding:10px;
-  border:1px solid #00f7ff33;
-}
-
-th{
-  background:#001f2f;
-  color:#00f7ff;
-}
-
-body.light th{
-  background:#e5e7eb;
-  color:#000;
-}
-
-tr:hover{
-  background:#0f172a;
-}
-
-body.light tr:hover{
-  background:#e2e8f0;
-}
-
-/* ================= RANK ================= */
-.rank-1{
-  background:linear-gradient(90deg,#ffd70033,transparent);
-  box-shadow:0 0 10px gold;
-}
-
-.rank-2{
-  background:linear-gradient(90deg,#c0c0c033,transparent);
-}
-
-.rank-3{
-  background:linear-gradient(90deg,#cd7f3233,transparent);
-}
-
-/* ================= BADGE ================= */
-/* dynamic grade color + glow */
-.badge{
-  padding:4px 10px;
-  border-radius:20px;
-  font-weight:bold;
-  transition:0.3s;
-}
-
-/* A+ */
-.ap{
-  background:linear-gradient(135deg,#ffd700,#ff9800);
-  color:#000;
-  box-shadow:0 0 8px #ffd700;
-}
-
-/* A */
-.a{
-  background:linear-gradient(135deg,#3b82f6,#2563eb);
-  color:#fff;
-}
-
-/* B */
-.b{
-  background:linear-gradient(135deg,#facc15,#eab308);
-  color:#000;
-}
-
-/* F */
-.f{
-  background:linear-gradient(135deg,#ef4444,#dc2626);
-  color:#fff;
-}
-
-/* hover effect (smart shift) */
-.badge:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 12px #00f7ff;
-}
-
-/* ================= PROGRESS ================= */
-.progress-box{
-  position:relative;
-  height:16px;
-  background:#111827;
-  border-radius:8px;
-}
-
-.progress-bar{
-  height:100%;
-  background:linear-gradient(90deg,#00f7ff,#00c3cc);
-}
-
-.progress-box span{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:10px;
-}
-
-/* ================= HIGHLIGHT ================= */
-mark{
-  background:#00f7ff55;
-}
-
-/* ================= ANIMATION ================= */
-.row-enter{
-  animation:fade .3s;
-}
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(5px)}
-  to{opacity:1}
-}
-
-/* ================= FLOATING BG ================= */
-.floating-grades{
-  position:fixed;
-  width:100%;
-  height:100%;
-  z-index:0;
-  pointer-events:none;
-}
-
-.floating-grades span{
-  position:absolute;
-  color:rgba(0,247,255,0.25);
-  animation:float 15s linear infinite;
-}
-
-@keyframes float{
-  0%{transform:translateY(100vh);opacity:0}
-  50%{opacity:.4}
-  100%{transform:translateY(-10vh);opacity:0}
-}
-
-@media (max-width: 768px){
-
-  table, thead, tbody, th, td, tr{
-    display:block;
-    width:100%;
-  }
-
-  thead{
-    display:none;
-  }
-
-  tr{
-    background:#111827;
-    margin:10px 0;
-    border-radius:10px;
-    padding:10px;
-    box-shadow:0 0 10px #00f7ff22;
-  }
-
-  td{
-    display:flex;
-    justify-content:space-between;
-    padding:6px 10px;
-    border:none;
-  }
-
-  td::before{
-    font-weight:bold;
-    color:#00f7ff;
-  }
-
-  /* labels */
-  td:nth-child(1)::before{content:"#";}
-  td:nth-child(2)::before{content:"ID";}
-  td:nth-child(3)::before{content:"Name";}
-  td:nth-child(4)::before{content:"Math";}
-  td:nth-child(5)::before{content:"Eng";}
-  td:nth-child(6)::before{content:"Sci";}
-  td:nth-child(7)::before{content:"Prog";}
-  td:nth-child(8)::before{content:"Total";}
-  td:nth-child(9)::before{content:"Grade";}
-}
-
-@media (max-width:768px){
-  h2{
-    font-size:18px;
-  }
-
-  .toolbar input, .toolbar select{
-    width:90%;
-  }
-}
-.btn{
-  background: linear-gradient(135deg,#00f7ff,#00c3cc);
-  color:#000;
-  border:none;
-  padding:10px 16px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  transition:0.3s;
-  box-shadow:0 0 10px #00f7ff55;
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 0 20px #00f7ff;
-}
-
-button{
-  background: linear-gradient(135deg,#00f7ff,#00c3cc);
-  color:#000;
-  border:none;
-  padding:8px 14px;
-  border-radius:6px;
-  cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 0 8px #00f7ff55;
-}
-
-button:hover{
-  box-shadow:0 0 15px #00f7ff;
-}
-
-.header{
   background:#0a0f1c;
   border-bottom:1px solid #00f7ff33;
   box-shadow:0 0 15px #00f7ff22;
@@ -347,36 +30,43 @@ button:hover{
   text-shadow:0 0 8px #00f7ff;
 }
 
-.table-wrap{
-  background:#0f172a;
-  border-radius:12px;
-  box-shadow:0 0 15px #00f7ff22;
-  padding:10px;
+.wrap{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-input{
-  background:#0a0f1c;
-  color:#fff;
-  border:1px solid #00f7ff44;
-  border-radius:6px;
+/* ================= CONTAINER ================= */
+.container{
+  width:90%;
+  margin:auto;
 }
 
-input:focus{
-  border-color:#00f7ff;
-  box-shadow:0 0 8px #00f7ff;
+/* ================= CARD ================= */
+.card{
+  background:#111827;
+  padding:12px;
+  margin:15px 0;
+  border-radius:10px;
+  box-shadow:0 0 10px #00f7ff22;
 }
 
-tr.top1{
-  background:rgba(255,215,0,0.15);
-  box-shadow:0 0 10px gold;
-}
+/* ================= BUTTON ================= */
 .btn{
+  background:linear-gradient(135deg,#00f7ff,#00c3cc);
+  color:#000;
   padding:8px 14px;
   border:none;
   border-radius:6px;
   cursor:pointer;
   font-weight:bold;
   transition:0.3s;
+  box-shadow:0 0 10px #00f7ff55;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 20px #00f7ff;
 }
 
 .btn.ghost{
@@ -390,73 +80,28 @@ tr.top1{
   box-shadow:0 0 8px #ef4444;
 }
 
-.btn:hover{
-  transform:scale(1.05);
-}
-
-/* LAYOUT */
-.header{
+/* ================= INPUT ================= */
+input, select{
+  padding:8px;
+  border-radius:6px;
+  border:1px solid #00f7ff44;
   background:#0a0f1c;
-  padding:15px;
-  box-shadow:0 0 15px #00f7ff22;
+  color:#fff;
 }
 
-.wrap{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+input:focus{
+  border-color:#00f7ff;
+  box-shadow:0 0 8px #00f7ff;
 }
 
-.container{
-  width:90%;
-  margin:auto;
-}
-
-/* CARD */
-.card{
-  background:#111827;
-  padding:12px;
-  margin:15px 0;
-  border-radius:10px;
-  box-shadow:0 0 10px #00f7ff22;
-}
-
-/* TOOLBAR */
+/* ================= TOOLBAR ================= */
 .toolbar{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
 }
 
-/* INPUT */
-input{
-  background:#0a0f1c;
-  color:#fff;
-  border:1px solid #00f7ff44;
-  padding:8px;
-  border-radius:6px;
-}
-
-/* BUTTON */
-.btn{
-  background:linear-gradient(135deg,#00f7ff,#00c3cc);
-  border:none;
-  padding:8px 12px;
-  border-radius:6px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.btn:hover{
-  box-shadow:0 0 15px #00f7ff;
-}
-
-.btn.danger{
-  background:#ef4444;
-  color:#fff;
-}
-
-/* TABLE */
+/* ================= TABLE ================= */
 .table-wrap{
   overflow-x:auto;
 }
@@ -475,23 +120,60 @@ th{
 td{
   padding:10px;
   text-align:center;
-}
-
-tr{
   border-bottom:1px solid #333;
 }
 
-/* TOP RANK */
-.rank-1{
-  background:rgba(255,215,0,0.2);
+tr:hover{
+  background:#0f172a;
 }
 
-/* PROGRESS */
+/* ================= RANK ================= */
+.rank-1{
+  background:rgba(255,215,0,0.2);
+  box-shadow:0 0 10px gold;
+}
+
+.rank-2{
+  background:rgba(192,192,192,0.2);
+}
+
+.rank-3{
+  background:rgba(205,127,50,0.2);
+}
+
+/* ================= BADGE ================= */
+.badge{
+  padding:4px 10px;
+  border-radius:20px;
+  font-weight:bold;
+}
+
+.ap{
+  background:linear-gradient(135deg,#ffd700,#ff9800);
+  color:#000;
+}
+
+.a{
+  background:#3b82f6;
+  color:#fff;
+}
+
+.b{
+  background:#facc15;
+  color:#000;
+}
+
+.f{
+  background:#ef4444;
+  color:#fff;
+}
+
+/* ================= PROGRESS ================= */
 .progress-box{
+  position:relative;
+  height:16px;
   background:#222;
   border-radius:20px;
-  height:16px;
-  position:relative;
 }
 
 .progress-bar{
@@ -502,18 +184,53 @@ tr{
 .progress-box span{
   position:absolute;
   width:100%;
+  text-align:center;
   font-size:11px;
-  color:#fff;
 }
 
-/* BADGE */
-.badge{
-  padding:4px 10px;
-  border-radius:20px;
-  font-weight:bold;
+/* ================= HIGHLIGHT ================= */
+mark{
+  background:#00f7ff55;
 }
 
-.ap{background:gold;color:#000;}
-.a{background:#3b82f6;color:#fff;}
-.b{background:#facc15;color:#000;}
-.f{background:#ef4444;color:#fff;}
+/* ================= ANIMATION ================= */
+.row-enter{
+  animation:fade .3s;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1}
+}
+
+/* ================= MOBILE ================= */
+@media (max-width:768px){
+
+  table, thead, tbody, th, td, tr{
+    display:block;
+    width:100%;
+  }
+
+  thead{
+    display:none;
+  }
+
+  tr{
+    background:#111827;
+    margin:10px 0;
+    border-radius:10px;
+    padding:10px;
+  }
+
+  td{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 10px;
+    border:none;
+  }
+
+  td::before{
+    font-weight:bold;
+    color:#00f7ff;
+  }
+}
