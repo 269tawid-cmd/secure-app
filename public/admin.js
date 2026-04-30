@@ -1,3 +1,25 @@
+let SUBJECTS = ["math","eng","sci","prog"];
+
+function renderSubjects(){
+  const box = document.getElementById("subjects-box");
+
+  if(!box) return; // safety
+
+  box.innerHTML = SUBJECTS.map(s => `
+    <input id="${s}" placeholder="${s.toUpperCase()}">
+  `).join("");
+}
+
+function addSubject(){
+  const name = prompt("Subject name?");
+  if(!name) return;
+
+  SUBJECTS.push(name.toLowerCase());
+  renderSubjects();
+}
+
+// 🔥 VERY IMPORTANT
+window.onload = renderSubjects;
 const token = localStorage.getItem("token");
 if(!token) location.href="index.html";
 
