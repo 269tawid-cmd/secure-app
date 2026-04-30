@@ -19,18 +19,32 @@ renderSubjects();
 
 // ➕ ADD
 function addStudent(){
-  const subjects = {};
-  for (let s of SUBJECTS){
-    const v = +document.getElementById(s).value;
-    if (v>100) return alert("Max 100");
-    subjects[s]=v;
-  }
+  const idVal = id.value;
+  const nameVal = name.value;
+
+  let subjects = {};
+
+  SUBJECTS.forEach(s=>{
+    subjects[s] = +document.getElementById(s).value || 0;
+  });
 
   fetch("/add",{
     method:"POST",
-    headers:{ "Content-Type":"application/json","Authorization":token },
-    body:JSON.stringify({ id:id.value, name:name.value, subjects })
-  }).then(load);
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization":token
+    },
+    body:JSON.stringify({
+      id:idVal,
+      name:nameVal,
+      subjects
+    })
+  })
+  .then(res=>res.json())
+  .then(()=>{
+    clearForm();
+    load();
+  });
 }
 
 // ✏️ UPDATE
@@ -99,3 +113,10 @@ function logout(){ localStorage.clear(); location.href="index.html"; }
 function toggleTheme(){ document.body.classList.toggle("light"); }
 
 load();
+function clearForm(){
+  id.value="";
+  name.value="";
+  SUBJECTS.forEach(s=>{
+    document.getElementById(s).value="";
+  });
+}

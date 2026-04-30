@@ -319,3 +319,40 @@ mark{
 .login-card a{
   color:#00f7ff;
 }
+/* ===== ADMIN FIX ===== */
+
+/* form grid visible */
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
+  margin-top:10px;
+}
+
+/* subject dynamic inputs */
+#subjects-box input{
+  width:100%;
+}
+
+/* admin buttons spacing */
+.card button{
+  margin:5px;
+}
+
+/* admin card glow back */
+.card{
+  background:#111827;
+  border:1px solid #00f7ff22;
+  box-shadow:0 0 15px #00f7ff22;
+}
+
+/* input visibility fix */
+input{
+  background:#0a0f1c;
+  color:#fff;
+}
+
+/* header fix */
+.header h1{
+  color:#00f7ff;
+}
