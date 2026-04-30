@@ -520,3 +520,6 @@ canvas{
     opacity:0;
   }
 }
+#subjects-box input{
+  width:100%;
+}
