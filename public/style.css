@@ -301,3 +301,43 @@ mark{ background:#00f7ff55; padding:0 3px; border-radius:4px }
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
+
+/* floating grades background */
+.floating-grades {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.floating-grades span {
+  position: absolute;
+  color: rgba(0, 247, 255, 0.15);
+  font-size: 40px;
+  font-weight: bold;
+  animation: floatGrade 12s linear infinite;
+}
+
+/* positions */
+.floating-grades span:nth-child(1){ left:10%; animation-duration:12s;}
+.floating-grades span:nth-child(2){ left:25%; animation-duration:15s;}
+.floating-grades span:nth-child(3){ left:40%; animation-duration:18s;}
+.floating-grades span:nth-child(4){ left:60%; animation-duration:14s;}
+.floating-grades span:nth-child(5){ left:75%; animation-duration:16s;}
+.floating-grades span:nth-child(6){ left:90%; animation-duration:20s;}
+
+@keyframes floatGrade {
+  0% { transform: translateY(100vh); opacity:0; }
+  50% { opacity:0.3; }
+  100% { transform: translateY(-10vh); opacity:0; }
+}
+
+/* make sure card stays on top */
+.login-card {
+  position: relative;
+  z-index: 2;
+}
