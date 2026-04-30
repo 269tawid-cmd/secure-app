@@ -234,3 +234,88 @@ mark{
     color:#00f7ff;
   }
 }
+
+/* ===== LOGIN SPECIAL STYLE (ADD BACK) ===== */
+
+.center-box{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.login-card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 0 25px #00f7ff33;
+  width:280px;
+  position:relative;
+  z-index:2;
+}
+
+.login-card h2{
+  text-align:center;
+  margin-bottom:15px;
+  color:#00f7ff;
+}
+
+/* input neon style */
+.login-card input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:none;
+  border-bottom:2px solid #00f7ff;
+  background:transparent;
+  color:#fff;
+}
+
+.login-card input:focus{
+  outline:none;
+  box-shadow:0 0 8px #00f7ff;
+}
+
+/* login button glow */
+.login-card button{
+  width:100%;
+  margin-top:10px;
+  background:linear-gradient(135deg,#00f7ff,#00c3cc);
+  color:#000;
+  font-weight:bold;
+  box-shadow:0 0 15px #00f7ff;
+}
+
+/* floating grades */
+.floating-grades{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+
+.floating-grades span{
+  position:absolute;
+  font-size:20px;
+  color:rgba(0,247,255,0.25);
+  animation:float 12s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0}
+  50%{opacity:.5}
+  100%{transform:translateY(-10vh);opacity:0}
+}
+
+/* register text fix */
+.login-card p{
+  margin-top:10px;
+  text-align:center;
+  font-weight:bold;
+}
+
+.login-card a{
+  color:#00f7ff;
+}
