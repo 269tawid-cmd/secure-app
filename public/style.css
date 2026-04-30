@@ -203,3 +203,48 @@ mark{ background:#00f7ff55; padding:0 3px; border-radius:4px }
 /* ========= HELPERS ========= */
 .mt-12{ margin-top:12px }
 .hidden{ display:none }
+/* center layout */
+.center-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* login card */
+.login-card {
+  width: 320px;
+  padding: 25px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  background: rgba(17, 24, 39, 0.8);
+  box-shadow: 0 0 25px #00f7ff33;
+  text-align: center;
+}
+
+/* title */
+.login-card h2 {
+  color: #00f7ff;
+  margin-bottom: 15px;
+}
+
+/* inputs */
+.login-card input {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* button */
+.login-card button {
+  width: 100%;
+}
+
+/* link */
+.login-card a {
+  color: #00f7ff;
+  text-decoration: none;
+}
+
+.login-card a:hover {
+  text-decoration: underline;
+}

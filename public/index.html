@@ -4,21 +4,25 @@
   <title>Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-<div class="form-box">
-  <h2>Login</h2>
+<body class="dark">
 
-  <input id="username" placeholder="Username">
-  <input id="password" type="password" placeholder="Password">
+<div class="center-box">
 
-  <button onclick="login()">Login</button>
+  <div class="login-card">
+    <h2>Login</h2>
 
-  <!-- ✅ FIX -->
-  <p style="margin-top:10px;">
-    Don't have an account? 
-    <a href="register.html" style="color:#00f7ff;">Register here</a>
-  </p>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p>
+      Don't have an account? 
+      <a href="register.html">Register here</a>
+    </p>
+  </div>
+
 </div>
 
 <script src="login.js"></script>
