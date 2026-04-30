@@ -20,14 +20,11 @@ function loadStudents() {
   .then(data => {
     students = data.sort((a, b) => b.total - a.total);
     applyAll();
-
-    if (typeof renderChart === "function") {
-      renderChart(students);
-    }
+    if (typeof renderChart === "function") renderChart(students);
   });
 }
 
-// 🔍 SEARCH (debounce)
+// 🔍 SEARCH
 function onSearchInput() {
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(applyAll, 200);
@@ -64,10 +61,11 @@ function render(data, q="") {
   renderHeader();
 
   table.innerHTML = data.map((s, i) => {
-    let rankClass = "";
-    if (i === 0) rankClass = "rank-1";
-    else if (i === 1) rankClass = "rank-2";
-    else if (i === 2) rankClass = "rank-3";
+
+    const rankClass =
+      i === 0 ? "rank-1" :
+      i === 1 ? "rank-2" :
+      i === 2 ? "rank-3" : "";
 
     return `
       <tr class="row-enter ${rankClass}">
@@ -167,10 +165,16 @@ function downloadPDF() {
   doc.save("result.pdf");
 }
 
-// 🚀 INIT
-loadStudents();
+// 🔐 LOGOUT
+function logout() {
+  localStorage.clear();
+  location.href = "index.html";
+}
 
 // 🎨 THEME
 function toggleTheme(){
   document.body.classList.toggle("light");
 }
+
+// 🚀 INIT
+loadStudents();

@@ -304,3 +304,92 @@ mark{
     width:90%;
   }
 }
+.btn{
+  background: linear-gradient(135deg,#00f7ff,#00c3cc);
+  color:#000;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+  box-shadow:0 0 10px #00f7ff55;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 20px #00f7ff;
+}
+
+button{
+  background: linear-gradient(135deg,#00f7ff,#00c3cc);
+  color:#000;
+  border:none;
+  padding:8px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 8px #00f7ff55;
+}
+
+button:hover{
+  box-shadow:0 0 15px #00f7ff;
+}
+
+.header{
+  background:#0a0f1c;
+  border-bottom:1px solid #00f7ff33;
+  box-shadow:0 0 15px #00f7ff22;
+}
+
+.header h2{
+  color:#00f7ff;
+  text-shadow:0 0 8px #00f7ff;
+}
+
+.table-wrap{
+  background:#0f172a;
+  border-radius:12px;
+  box-shadow:0 0 15px #00f7ff22;
+  padding:10px;
+}
+
+input{
+  background:#0a0f1c;
+  color:#fff;
+  border:1px solid #00f7ff44;
+  border-radius:6px;
+}
+
+input:focus{
+  border-color:#00f7ff;
+  box-shadow:0 0 8px #00f7ff;
+}
+
+tr.top1{
+  background:rgba(255,215,0,0.15);
+  box-shadow:0 0 10px gold;
+}
+.btn{
+  padding:8px 14px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.btn.ghost{
+  background:#1f2937;
+  color:#00f7ff;
+}
+
+.btn.danger{
+  background:#ef4444;
+  color:#fff;
+  box-shadow:0 0 8px #ef4444;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
