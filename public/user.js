@@ -26,6 +26,7 @@ function loadStudents() {
       tbody.classList.remove("loading");
     });
 }
+document.body.classList.add("light");
 
 // 🧠 APPLY (debounced)
 function onSearchInput() {
@@ -101,3 +102,22 @@ function renderStats(data) {
 
 // 🚀 INIT
 loadStudents();
+function toggleTheme(){
+  const b = document.body;
+  if (b.classList.contains("dark")){
+    b.classList.remove("dark"); b.classList.add("light");
+    localStorage.setItem("theme","light");
+  } else {
+    b.classList.remove("light"); b.classList.add("dark");
+    localStorage.setItem("theme","dark");
+  }
+}
+
+// default theme
+const saved = localStorage.getItem("theme");
+if (saved) document.body.classList.add(saved);
+else {
+  // admin → dark, user → light (you can set per page)
+  // e.g., in admin.js: document.body.classList.add("dark");
+  //       in user.js:  document.body.classList.add("light");
+}
