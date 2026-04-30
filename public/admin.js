@@ -12,18 +12,28 @@ function logout() {
 }
 
 let students = [];
+let currentEditId = null;
 
 // ➕ ADD
 function addStudent() {
-  const idVal = document.getElementById("id").value;
-  const nameVal = document.getElementById("name").value;
-  const mathVal = document.getElementById("math").value;
-  const engVal = document.getElementById("eng").value;
-  const sciVal = document.getElementById("sci").value;
-  const progVal = document.getElementById("prog").value;
+  const idInput = document.getElementById("id");
+  const nameInput = document.getElementById("name");
+  const mathInput = document.getElementById("math");
+  const engInput = document.getElementById("eng");
+  const sciInput = document.getElementById("sci");
+  const progInput = document.getElementById("prog");
 
-  if (!idVal || !nameVal) {
+  const idVal = idInput.value.trim();
+  const nameVal = nameInput.value.trim();
+  const mathVal = mathInput.value;
+  const engVal = engInput.value;
+  const sciVal = sciInput.value;
+  const progVal = progInput.value;
+
+  // 🔍 validation
+  if (!idVal || !nameVal || !mathVal || !engVal || !sciVal || !progVal) {
     alert("Fill all fields!");
+    idInput.focus();
     return;
   }
 
@@ -35,13 +45,18 @@ function addStudent() {
     },
     body: JSON.stringify({
       id: idVal,
-      name: nameVal,   // 🔥 fix এখানে
+      name: nameVal,
       math: +mathVal,
       eng: +engVal,
       sci: +sciVal,
       prog: +progVal
     })
-  }).then(load);
+  })
+  .then(() => {
+    clearForm();
+    load();
+    idInput.focus(); // 🔥 focus
+  });
 }
 
 // 🔄 LOAD
@@ -75,6 +90,7 @@ function render(data) {
     </tr>
   `).join("");
 }
+
 // ❌ DELETE
 function deleteStudent(id) {
   if (!confirm("Delete this student?")) return;
@@ -85,7 +101,7 @@ function deleteStudent(id) {
   }).then(load);
 }
 
-// ✏️ EDIT (fill form)
+// ✏️ EDIT
 function editStudent(id) {
   const s = students.find(x => x.id == id);
 
@@ -96,11 +112,23 @@ function editStudent(id) {
   document.getElementById("sci").value = s.sci;
   document.getElementById("prog").value = s.prog;
 
-  window.currentEditId = id;
+  currentEditId = id;
 }
 
 // 💾 UPDATE
 function updateStudent() {
+  if (!currentEditId) {
+    alert("Select student first!");
+    return;
+  }
+
+  const idVal = document.getElementById("id").value;
+  const nameVal = document.getElementById("name").value;
+  const mathVal = document.getElementById("math").value;
+  const engVal = document.getElementById("eng").value;
+  const sciVal = document.getElementById("sci").value;
+  const progVal = document.getElementById("prog").value;
+
   fetch("/update/" + currentEditId, {
     method: "PUT",
     headers: {
@@ -108,14 +136,15 @@ function updateStudent() {
       "Authorization": token
     },
     body: JSON.stringify({
-      id: id.value,
-      name: name.value,
-      math: +math.value,
-      eng: +eng.value,
-      sci: +sci.value,
-      prog: +prog.value
+      id: idVal,
+      name: nameVal,
+      math: +mathVal,
+      eng: +engVal,
+      sci: +sciVal,
+      prog: +progVal
     })
-  }).then(() => {
+  })
+  .then(() => {
     currentEditId = null;
     clearForm();
     load();
@@ -124,17 +153,17 @@ function updateStudent() {
 
 // 🧹 CLEAR
 function clearForm() {
-  id.value = "";
-  name.value = "";
-  math.value = "";
-  eng.value = "";
-  sci.value = "";
-  prog.value = "";
+  document.getElementById("id").value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("math").value = "";
+  document.getElementById("eng").value = "";
+  document.getElementById("sci").value = "";
+  document.getElementById("prog").value = "";
 }
 
 // 🔍 SEARCH
 function searchStudent() {
-  const val = search.value.toLowerCase();
+  const val = document.getElementById("search").value.toLowerCase();
 
   const filtered = students.filter(s =>
     s.name.toLowerCase().includes(val)
@@ -144,3 +173,17 @@ function searchStudent() {
 }
 
 load();
+
+// 🔥 ENTER KEY SUPPORT
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault(); // ❌ page reload বন্ধ
+
+    // যদি edit mode থাকে → update
+    if (currentEditId) {
+      updateStudent();
+    } else {
+      addStudent();
+    }
+  }
+});
