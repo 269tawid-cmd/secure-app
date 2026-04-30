@@ -28,6 +28,7 @@ render(students);
       tbody.classList.remove("loading");
     });
 }
+renderChart(students);
 document.body.classList.add("light");
 
 // 🧠 APPLY (debounced)
@@ -64,19 +65,30 @@ function highlight(text, q) {
 
 // 🖥️ RENDER (with animation + highlight)
 function render(data) {
-  table.innerHTML = data.map((s, i) => `
-    <tr class="row-enter">
-      <td>${i + 1}</td> <!-- 🥇 rank -->
-      <td>${s.id}</td>
-      <td>${s.name}</td>
-      <td>${s.math}</td>
-      <td>${s.eng}</td>
-      <td>${s.sci}</td>
-      <td>${s.prog}</td>
-      <td>${s.total}</td>
-      <td>${getGradeBadge(s.grade)}</td>
-    </tr>
-  `).join("");
+  table.innerHTML = data.map((s, i) => {
+
+    let rankClass = "";
+    if (i === 0) rankClass = "rank-1";
+    else if (i === 1) rankClass = "rank-2";
+    else if (i === 2) rankClass = "rank-3";
+
+    return `
+      <tr class="row-enter ${rankClass}">
+        <td>${i + 1}</td>
+        <td>${s.id}</td>
+        <td>${s.name}</td>
+
+        <td>${progress(s.math)}</td>
+        <td>${progress(s.eng)}</td>
+        <td>${progress(s.sci)}</td>
+        <td>${progress(s.prog)}</td>
+
+        <td>${s.total}</td>
+        <td>${getGradeBadge(s.grade)}</td>
+      </tr>
+    `;
+  }).join("");
+
 
 
   // small delay for smoother feel
@@ -125,4 +137,28 @@ function getGradeBadge(grade) {
   if (grade === "A") return `<span class="badge a">A</span>`;
   if (grade === "B") return `<span class="badge b">B</span>`;
   return `<span class="badge f">F</span>`;
+}
+function progress(val) {
+  return `
+    <div class="progress-box">
+      <div class="progress-bar" style="width:${val}%"></div>
+      <span>${val}</span>
+    </div>
+  `;
+}
+
+function renderChart(data) {
+  const names = data.map(s => s.name);
+  const totals = data.map(s => s.total);
+
+  new Chart(document.getElementById("chart"), {
+    type: "bar",
+    data: {
+      labels: names,
+      datasets: [{
+        label: "Total Marks",
+        data: totals
+      }]
+    }
+  });
 }

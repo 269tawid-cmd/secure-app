@@ -396,3 +396,40 @@ mark{ background:#00f7ff55; padding:0 3px; border-radius:4px }
   background: #ef4444;
   color: white;
 }
+/* 🥇 Top 1 */
+.rank-1 {
+  background: linear-gradient(90deg, #ffd70033, transparent);
+  box-shadow: 0 0 10px gold;
+}
+
+/* 🥈 2nd */
+.rank-2 {
+  background: linear-gradient(90deg, #c0c0c033, transparent);
+}
+
+/* 🥉 3rd */
+.rank-3 {
+  background: linear-gradient(90deg, #cd7f3233, transparent);
+}
+
+/* progress */
+.progress-box {
+  position: relative;
+  height: 18px;
+  background: #111827;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00f7ff, #00c3cc);
+}
+
+.progress-box span {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  font-size: 11px;
+}
