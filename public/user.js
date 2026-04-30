@@ -183,4 +183,9 @@ window.onload = ()=>{
   document.body.style.transition="0.5s";
   document.body.style.opacity = 1;
 };
+function logout(){
+  localStorage.removeItem("token");
+  localStorage.removeItem("role");
+  location.href = "index.html"; // public/index.html
+} 
 loadStudents();

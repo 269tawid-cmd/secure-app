@@ -88,3 +88,8 @@ function render(data){
 
 renderSubjects();
 load();
+function logout(){
+  localStorage.removeItem("token");
+  localStorage.removeItem("role");
+  location.href = "index.html"; // public/index.html
+}
