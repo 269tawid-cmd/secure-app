@@ -11,25 +11,23 @@ let debounceTimer = null;
 
 // 🔄 LOAD
 function loadStudents() {
-  const tbody = document.getElementById("table");
-  tbody.classList.add("loading");
-  students = data.sort((a, b) => b.total - a.total); // highest first
-render(students);
-  // optional skeleton
-  tbody.innerHTML = Array.from({length: 5}).map(() =>
-    `<tr class="skeleton"><td colspan="8"></td></tr>`
-  ).join("");
+  fetch("/students", {
+    headers: { Authorization: token }
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("DATA:", data); // 🔍 check
 
-  fetch("/students", { headers: { Authorization: token } })
-    .then(res => res.json())
-    .then(data => {
-      students = data;
-      applyAll(); // initial render
-      tbody.classList.remove("loading");
-    });
+    students = data.sort((a, b) => b.total - a.total);
+
+    render(students);
+
+    // chart থাকলে
+    if (typeof renderChart === "function") {
+      renderChart(students);
+    }
+  });
 }
-renderChart(students);
-document.body.classList.add("light");
 
 // 🧠 APPLY (debounced)
 function onSearchInput() {
