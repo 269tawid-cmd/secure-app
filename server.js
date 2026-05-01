@@ -110,3 +110,4 @@ app.delete("/delete/:id", auth, isAdmin, async(req,res)=>{
 });
 
 app.listen(3000,()=>console.log("Server running"));
+
