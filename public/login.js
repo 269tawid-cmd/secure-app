@@ -35,12 +35,12 @@ function login(){
 
 
 // already logged in হলে redirect
-if(localStorage.getItem("token")){
-  const r = localStorage.getItem("role");
-  location.href = r==="admin"
-    ? "admin.html"
-    : "user.html";
-}
+//if(localStorage.getItem("token")){
+ // const r = localStorage.getItem("role");
+ // location.href = r==="admin"
+ //   ? "admin.html"
+ //   : "user.html";
+//}
 
 
 // password show/hide
