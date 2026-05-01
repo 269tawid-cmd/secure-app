@@ -17,3 +17,13 @@ if(localStorage.getItem("token")){
   const r=localStorage.getItem("role");
   location.href=r==="admin"?"admin.html":"user.html";
 }
+
+function togglePassword() {
+  const password = document.getElementById("password");
+
+  if (password.type === "password") {
+    password.type = "text";
+  } else {
+    password.type = "password";
+  }
+}
