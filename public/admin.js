@@ -1,15 +1,23 @@
-let SUBJECTS = ["math","eng","sci","prog"];
+// 🔐 auth guard
+const token = localStorage.getItem("token");
+if(!token){
+  location.href = "index.html";
+}
 
+// subjects
+let SUBJECTS = ["math","eng","sci","prog"];
+let students = [];
+
+// render subject inputs
 function renderSubjects(){
   const box = document.getElementById("subjects-box");
 
-  if(!box) return; // safety
-
-  box.innerHTML = SUBJECTS.map(s => `
-    <input id="${s}" placeholder="${s.toUpperCase()}">
-  `).join("");
+  box.innerHTML = SUBJECTS.map(s =>
+    `<input id="${s}" placeholder="${s.toUpperCase()}">`
+  ).join("");
 }
 
+// add subject
 function addSubject(){
   const name = prompt("Subject name?");
   if(!name) return;
@@ -18,33 +26,12 @@ function addSubject(){
   renderSubjects();
 }
 
-// 🔥 VERY IMPORTANT
-window.onload = renderSubjects;
-const token = localStorage.getItem("token");
-if(!token) location.href="index.html";
-
-let SUBJECTS = ["math","eng","sci","prog"];
-let students = [];
-
-// render inputs
-function renderSubjects(){
-  subjectsBox.innerHTML = SUBJECTS.map(s=>
-    `<input id="${s}" placeholder="${s.toUpperCase()}">`
-  ).join("");
-}
-
-// add subject
-function addSubject(){
-  const name = prompt("Subject?");
-  if(!name) return;
-
-  SUBJECTS.push(name.toLowerCase());
-  renderSubjects();
-}
-
 // add student
 function addStudent(){
-  let subjects={};
+  const id = document.getElementById("id").value;
+  const name = document.getElementById("name").value;
+
+  let subjects = {};
 
   SUBJECTS.forEach(s=>{
     subjects[s] = +document.getElementById(s).value || 0;
@@ -54,28 +41,36 @@ function addStudent(){
     method:"POST",
     headers:{
       "Content-Type":"application/json",
-      Authorization:token
+      "Authorization": token
     },
-    body:JSON.stringify({
-      id:id.value,
-      name:name.value,
-      subjects
-    })
-  }).then(()=>load());
-}
-
-// load
-function load(){
-  fetch("/students",{headers:{Authorization:token}})
+    body:JSON.stringify({ id, name, subjects })
+  })
   .then(r=>r.json())
   .then(d=>{
-    students=d;
-    render(d);
+    if(d.success){
+      load();
+    }else{
+      alert(d.message || "Error");
+    }
+  });
+}
+
+// load students
+function load(){
+  fetch("/students",{
+    headers:{ "Authorization": token }
+  })
+  .then(r=>r.json())
+  .then(data=>{
+    students = data;
+    render(data);
   });
 }
 
 // render table
 function render(data){
+  const table = document.getElementById("table");
+
   table.innerHTML = data.map(s=>`
     <tr>
       <td>${s.id}</td>
@@ -86,10 +81,13 @@ function render(data){
   `).join("");
 }
 
-renderSubjects();
-load();
+// logout
 function logout(){
   localStorage.removeItem("token");
   localStorage.removeItem("role");
-  location.href = "index.html"; // public/index.html
+  location.href = "index.html";
 }
+
+// init
+renderSubjects();
+load();

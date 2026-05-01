@@ -2,16 +2,10 @@
 <html>
 <head>
   <title>Admin</title>
-
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark">
 
-  <div class="floating-grades">
-  <span>A+</span><span>A</span><span>B</span><span>F</span>
-  <span>A+</span><span>B</span><span>A</span><span>A+</span>
-  <span>B</span><span>A</span><span>F</span><span>A+</span>
-</div>
+<body class="dark">
 
 <div class="header">
   <div class="wrap">
@@ -35,37 +29,23 @@
       <input id="name" placeholder="Name">
     </div>
 
-    <div id="subjects-box" class="form-grid"></div>
-
-<button onclick="addSubject()" class="btn">+ Add Subject</button>
-
+    <!-- ONLY ONE -->
     <div id="subjects-box" class="form-grid mt-12"></div>
+
+    <button onclick="addSubject()" class="btn">+ Add Subject</button>
 
     <div class="mt-12">
       <button class="btn" onclick="addStudent()">Add</button>
-      <button class="btn" onclick="updateStudent()">Update</button>
     </div>
   </div>
 
   <div class="table-wrap card">
     <table>
-      <thead id="thead"></thead>
       <tbody id="table"></tbody>
     </table>
   </div>
 </div>
-  <style>
-  * {
-    pointer-events: auto !important;
-    z-index: auto !important;
-  }
-</style>
 
 <script src="admin.js"></script>
 </body>
 </html>
-
-
-
-
-
