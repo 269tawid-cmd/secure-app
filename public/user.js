@@ -197,3 +197,29 @@ function toggleTheme(){
   const saved = localStorage.getItem("theme") || "light";
   applyTheme(saved);
 })();
+
+const themeBtn = document.querySelector(".btn.ghost");
+
+function updateThemeBtn(){
+  if(!themeBtn) return;
+  themeBtn.innerText =
+    document.body.classList.contains("dark")
+    ? "Light"
+    : "Dark";
+}
+
+// update after toggle
+function toggleTheme(){
+  const isDark = document.body.classList.contains("dark");
+  const next = isDark ? "light" : "dark";
+  applyTheme(next);
+  localStorage.setItem("theme", next);
+  updateThemeBtn();
+}
+
+// on load
+(function initTheme(){
+  const saved = localStorage.getItem("theme") || "light";
+  applyTheme(saved);
+  updateThemeBtn();
+})();
