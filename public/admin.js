@@ -26,16 +26,27 @@ function addSubject(){
   renderSubjects();
 }
 
-// add student
 function addStudent(){
-  const id = document.getElementById("id").value;
-  const name = document.getElementById("name").value;
+  const id = document.getElementById("id").value.trim();
+  const name = document.getElementById("name").value.trim();
+
+  // ✅ validation
+  if(!id || !name){
+    return alert("ID & Name required");
+  }
 
   let subjects = {};
 
-  SUBJECTS.forEach(s=>{
-    subjects[s] = +document.getElementById(s).value || 0;
-  });
+  for(let s of SUBJECTS){
+    const val = +document.getElementById(s).value || 0;
+
+    // ❌ mark validation
+    if(val > 100){
+      return alert(`${s.toUpperCase()} max 100`);
+    }
+
+    subjects[s] = val;
+  }
 
   fetch("/add",{
     method:"POST",
@@ -45,13 +56,26 @@ function addStudent(){
     },
     body:JSON.stringify({ id, name, subjects })
   })
-  .then(r=>r.json())
+  .then(async r=>{
+    const data = await r.json();
+
+    // ❌ server error (401, 500)
+    if(!r.ok){
+      throw new Error(data.error || "Server error");
+    }
+
+    return data;
+  })
   .then(d=>{
     if(d.success){
+      alert("Added ✅");
       load();
     }else{
-      alert(d.message || "Error");
+      alert(d.message || "Failed to add");
     }
+  })
+  .catch(err=>{
+    alert(err.message || "Network error");
   });
 }
 
