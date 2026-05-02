@@ -43,3 +43,26 @@ function register(){
     alert("Server error");
   });
 }
+
+function togglePassword(id){
+  const input = document.getElementById(id);
+  input.type = input.type === "password" ? "text" : "password";
+}
+
+function setLoading(state){
+  const btn = document.getElementById("regBtn");
+  btn.innerText = state ? "Loading..." : "Register";
+  btn.disabled = state;
+}
+
+function shakeForm(){
+  const box = document.querySelector(".register-box");
+  box.classList.add("shake");
+  setTimeout(()=>box.classList.remove("shake"),300);
+}
+
+function isStrongPassword(pw){
+  return pw.length >= 6 &&
+         /[A-Z]/.test(pw) &&
+         /[0-9]/.test(pw);
+}
