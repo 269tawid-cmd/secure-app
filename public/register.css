@@ -37,3 +37,24 @@
   75%{transform:translateX(-5px)}
   100%{transform:translateX(0)}
 }
+
+.auth-page .floating-grades{
+  display:block;
+}
+
+.user-page .floating-grades{
+  display:none;
+}
+
+.admin-page .floating-grades{
+  display:none; /* চাইলে small version রাখবি */
+}
+
+.auth-page::before{
+  content:"";
+  position:fixed;
+  width:200%;
+  height:200%;
+  background: radial-gradient(circle, #00f7ff22, transparent);
+  animation: flowBg 20s linear infinite;
+}

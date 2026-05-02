@@ -35,3 +35,15 @@ body{
   right:10px;
   top:10px;
 }
+
+.auth-page .floating-grades{
+  display:block;
+}
+
+.user-page .floating-grades{
+  display:none;
+}
+
+.admin-page .floating-grades{
+  display:none; /* চাইলে small version রাখবি */
+}

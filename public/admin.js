@@ -118,3 +118,4 @@ for(let i = 0; i < 40; i++){  // 👈 number change করতে পারিস
 
   container.appendChild(span);
 }
+ /* only 10 */
