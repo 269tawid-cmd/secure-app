@@ -1,3 +1,4 @@
+/* ===== BASE ===== */
 .container{
   width:90%;
   margin:auto;
@@ -12,7 +13,8 @@
 
 .stats{
   text-align:center;
-  margin:10px 0;
+  margin:15px 0;
+  font-weight:500;
 }
 
 canvas{
@@ -24,50 +26,103 @@ canvas{
   overflow-x:auto;
 }
 
-/* ===== GLASS FLOW BACKGROUND ===== */
-body.dark{
-  background: radial-gradient(1200px 800px at 20% 10%, #0b1a2a, #050912);
-  overflow-x:hidden;
+/* ========================= */
+/* 🌞 LIGHT THEME (DEFAULT) */
+/* ========================= */
+
+body{
+  background:#f5f7fb;
+  color:#111;
 }
 
-
-body.dark{
-  background:#0a0f1c;
+/* header */
+.header{
+  background:#ffffff;
+  border-bottom:1px solid #e5e7eb;
 }
 
-@keyframes flowBg{
-  0%{transform:rotate(0deg)}
-  100%{transform:rotate(360deg)}
-}
-
-/* ===== GLASS CARD ===== */
+/* card */
 .card{
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(0,247,255,0.15);
-  box-shadow: 0 0 10px rgba(0,247,255,0.1);
+  background:#ffffff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.06);
+  transition:0.2s;
 }
-
 
 .card:hover{
-  box-shadow:0 0 50px #00f7ff55;
-  transform:translateY(-3px);
-  transition:0.3s;
-}
-tbody tr:hover{
-  background:rgba(0,247,255,0.08);
-  transform:none;
-}
-.progress-box{
-  height:16px;
-  background:#111;
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
 }
 
-.progress-bar{
+/* table */
+thead{
   background:#00c3cc;
 }
 
-.header{
+th{
+  color:#fff;
+  font-size:13px;
+}
+
+td{
+  border-bottom:1px solid #eee;
+}
+
+/* hover row */
+tbody tr:hover{
+  background:#f0f9ff;
+}
+
+/* progress */
+.progress-box{
+  height:18px;
+  background:#eee;
+  border-radius:20px;
+}
+
+.progress-bar{
+  background:linear-gradient(90deg,#00c3cc,#00f7ff);
+}
+
+/* input */
+input, select{
+  background:#fff;
+  color:#111;
+  border:1px solid #ccc;
+}
+
+/* ========================= */
+/* 🌙 DARK THEME (OPTIONAL) */
+/* ========================= */
+
+body.dark{
+  background:#0a0f1c;
+  color:#fff;
+}
+
+body.dark .header{
   background:#0a0f1c;
   border-bottom:1px solid #1e293b;
+}
+
+body.dark .card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(0,247,255,0.15);
+  box-shadow:none;
+}
+
+body.dark tbody tr:hover{
+  background:rgba(0,247,255,0.08);
+}
+
+body.dark .progress-box{
+  background:#111;
+}
+
+body.dark input,
+body.dark select{
+  background:#0a0f1c;
+  color:#fff;
+  border:1px solid #00f7ff44;
 }
