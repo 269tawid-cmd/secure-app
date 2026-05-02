@@ -68,3 +68,90 @@ input,select{
   background:#0a0f1c;
   color:#fff;
 }
+
+/* ===== MODERN TABLE ===== */
+
+.table-wrap{
+  overflow-x:auto;
+  border-radius:12px;
+}
+
+/* table */
+table{
+  width:100%;
+  border-collapse:collapse;
+  overflow:hidden;
+  border-radius:12px;
+}
+
+/* header */
+thead{
+  background:linear-gradient(135deg,#00f7ff,#00c3cc);
+  position:sticky;
+  top:0;
+}
+
+th{
+  padding:12px;
+  font-size:14px;
+  text-transform:uppercase;
+  color:#000;
+}
+
+/* body */
+td{
+  padding:10px;
+  text-align:center;
+  border-bottom:1px solid #222;
+}
+
+/* zebra */
+tbody tr:nth-child(even){
+  background:rgba(255,255,255,0.03);
+}
+
+/* hover */
+tbody tr:hover{
+  background:rgba(0,247,255,0.1);
+  transform:scale(1.01);
+  transition:.2s;
+}
+
+/* ===== PROGRESS BAR ===== */
+
+.progress-box{
+  position:relative;
+  height:18px;
+  border-radius:20px;
+  background:#222;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  background:linear-gradient(90deg,#00f7ff,#00c3cc);
+  border-radius:20px;
+  transition:.5s;
+}
+
+.progress-box span{
+  position:absolute;
+  width:100%;
+  font-size:11px;
+  top:0;
+  color:#fff;
+}
+
+/* top 3 */
+.rank-1{
+  background:rgba(255,215,0,.15);
+  box-shadow:0 0 10px gold;
+}
+
+.rank-2{
+  background:rgba(192,192,192,.1);
+}
+
+.rank-3{
+  background:rgba(205,127,50,.1);
+}
