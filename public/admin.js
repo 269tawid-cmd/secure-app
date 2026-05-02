@@ -71,12 +71,19 @@ function load(){
 function render(data){
   const table = document.getElementById("table");
 
-  table.innerHTML = data.map(s=>`
+  table.innerHTML = `
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Total</th>
+      <th>Grade</th>
+    </tr>
+  ` + data.map(s=>`
     <tr>
       <td>${s.id}</td>
       <td>${s.name}</td>
       <td>${s.total}</td>
-      <td>${s.grade}</td>
+      <td><span class="badge">${s.grade}</span></td>
     </tr>
   `).join("");
 }

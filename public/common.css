@@ -155,3 +155,12 @@ tbody tr:hover{
 .rank-3{
   background:rgba(205,127,50,.1);
 }
+
+td{
+  padding:12px;
+}
+
+.progress-box{
+  height:20px;
+}
+

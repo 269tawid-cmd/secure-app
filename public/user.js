@@ -66,6 +66,7 @@ function highlight(text, q) {
   return String(text).replace(new RegExp(q, "gi"), m => `<mark>${m}</mark>`);
 }
 
+
 // 🖥️ RENDER
 function render(data, q="") {
   renderHeader();
@@ -78,7 +79,9 @@ function render(data, q="") {
         <td>${highlight(s.name, q)}</td>
 
         ${SUBJECT_CONFIG.map(sub => {
-          const val = s.subjects?.[sub.key] ?? 0;
+          // ✅ FIXED LINE
+          const val = s.subjects?.[sub.key] ?? s[sub.key] ?? 0;
+
           return `<td>${progress(val)}</td>`;
         }).join("")}
 
