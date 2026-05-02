@@ -3,6 +3,9 @@
 <head>
   <title>Student Result System</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- 🔥 jsPDF (PDF কাজ করতে চাইলে দরকার) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body class="dark">
@@ -10,7 +13,7 @@
 <!-- HEADER -->
 <div class="header">
   <div class="wrap">
-    <h2>📊 Student Result</h2>
+    <h2>Student Result</h2>
 
     <div class="actions">
       <button class="btn ghost" onclick="toggleTheme()">Theme</button>
@@ -55,11 +58,16 @@
   </div>
 
   <!-- CHART -->
-  <canvas id="chart"></canvas>
+  <div class="card">
+    <canvas id="chart"></canvas>
+  </div>
 
 </div>
 
+<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Your JS -->
 <script src="user.js"></script>
 
 </body>
