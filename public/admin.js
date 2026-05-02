@@ -91,3 +91,30 @@ function logout(){
 // init
 renderSubjects();
 load();
+
+const grades = ["A+", "A", "B", "F"];
+const container = document.getElementById("grades");
+
+for(let i = 0; i < 40; i++){  // 👈 number change করতে পারিস
+  const span = document.createElement("span");
+
+  const g = grades[Math.floor(Math.random() * grades.length)];
+  span.innerText = g;
+
+  // random position
+  span.style.left = Math.random() * 100 + "%";
+
+  // random delay
+  span.style.animationDelay = Math.random() * 10 + "s";
+
+  // random size
+  span.style.fontSize = (14 + Math.random() * 20) + "px";
+
+  // color assign
+  if(g === "A+") span.className = "grade-ap";
+  else if(g === "A") span.className = "grade-a";
+  else if(g === "B") span.className = "grade-b";
+  else span.className = "grade-f";
+
+  container.appendChild(span);
+}
