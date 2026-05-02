@@ -1,0 +1,32 @@
+.container{
+  width:90%;
+  margin:auto;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
+}
+
+#subjects-box input{
+  width:100%;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+td,th{
+  padding:10px;
+  text-align:center;
+}
+
+tr:hover{
+  background:#0f172a;
+}

@@ -1,0 +1,37 @@
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+}
+
+.login-box{
+  width:320px;
+  padding:40px;
+  border-radius:15px;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 25px rgba(0,255,255,0.2);
+  text-align:center;
+}
+
+.input-box{
+  position:relative;
+  margin:20px 0;
+}
+
+.input-box input{
+  width:100%;
+  padding:10px;
+  border:1px solid #00ffff;
+  border-radius:8px;
+  background:transparent;
+  color:#fff;
+}
+
+.toggle{
+  position:absolute;
+  right:10px;
+  top:10px;
+}
