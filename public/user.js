@@ -179,3 +179,21 @@ window.onload = () => {
   loadStudents();
 };
 
+// ===== THEME =====
+function applyTheme(theme){
+  document.body.classList.remove("light","dark");
+  document.body.classList.add(theme);
+}
+
+function toggleTheme(){
+  const isDark = document.body.classList.contains("dark");
+  const next = isDark ? "light" : "dark";
+  applyTheme(next);
+  localStorage.setItem("theme", next);
+}
+
+// on load
+(function initTheme(){
+  const saved = localStorage.getItem("theme") || "light";
+  applyTheme(saved);
+})();
