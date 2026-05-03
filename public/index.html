@@ -57,18 +57,21 @@
 <nav class="nav">
   <div class="wrap">
     <div class="brand">
-      <div style="background: var(--accent-color); padding: 8px; border-radius: 8px;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
+      <img src="logo.png" alt="Madrashatur Rashid Logo" style="height: 40px; width: auto; border-radius: 4px;">
       <h1 style="font-size: 1rem;">Madrashatur Rashid</h1>
     </div>
     <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="academics.html">Academics</a>
-      <a href="admissions.html">Admissions</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Portal</a>
+      <select id="lang-switcher" class="lang-select">
+        <option value="en">EN</option>
+        <option value="bn">BN</option>
+        <option value="ar">AR</option>
+      </select>
+      <a href="index.html" class="active" data-i18n="home">Home</a>
+      <a href="about.html" data-i18n="about">About</a>
+      <a href="academics.html" data-i18n="academics">Academics</a>
+      <a href="admissions.html" data-i18n="admissions">Admissions</a>
+      <a href="contact.html" data-i18n="contact">Contact</a>
+      <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;" data-i18n="portal">Portal</a>
     </div>
   </div>
 </nav>
@@ -78,32 +81,32 @@
   <div class="blob" style="bottom: -10%; right: -10%;"></div>
   
   <div class="reveal" style="z-index: 10;">
-    <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.9rem;">Welcome to excellence</span>
-    <h1>Madrashatur Rashid Al Islamia</h1>
-    <p>Nurturing the next generation of scholars with authentic Islamic knowledge and modern academic wisdom.</p>
+    <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.9rem;" data-i18n="welcome_excellence">Welcome to excellence</span>
+    <h1 data-i18n="school_name">Madrashatur Rashid Al Islamia</h1>
+    <p data-i18n="hero_p">Nurturing the next generation of scholars with authentic Islamic knowledge and modern academic wisdom.</p>
     <div style="display: flex; gap: 1.5rem; justify-content: center;">
-      <a href="admissions.html" class="btn btn-primary pulse" style="padding: 1rem 2.5rem; font-size: 1rem; text-decoration: none;">Apply Now</a>
-      <a href="about.html" class="btn btn-ghost" style="padding: 1rem 2.5rem; font-size: 1rem; text-decoration: none;">Our Philosophy</a>
+      <a href="admissions.html" class="btn btn-primary pulse" style="padding: 1rem 2.5rem; font-size: 1rem; text-decoration: none;" data-i18n="apply_now">Apply Now</a>
+      <a href="about.html" class="btn btn-ghost" style="padding: 1rem 2.5rem; font-size: 1rem; text-decoration: none;" data-i18n="our_philosophy">Our Philosophy</a>
     </div>
   </div>
 </section>
 
 <div class="stats-strip">
   <div class="stat-item reveal">
-    <h2>500+</h2>
-    <p>Students</p>
+    <h2 data-i18n="students_count">500+</h2>
+    <p data-i18n="students_label">Students</p>
   </div>
   <div class="stat-item reveal" style="animation-delay: 0.1s;">
-    <h2>20+</h2>
-    <p>Expert Scholars</p>
+    <h2 data-i18n="scholars_count">20+</h2>
+    <p data-i18n="scholars_label">Expert Scholars</p>
   </div>
   <div class="stat-item reveal" style="animation-delay: 0.2s;">
-    <h2>100%</h2>
-    <p>Success Rate</p>
+    <h2 data-i18n="success_rate">100%</h2>
+    <p data-i18n="success_label">Success Rate</p>
   </div>
   <div class="stat-item reveal" style="animation-delay: 0.3s;">
-    <h2>15+</h2>
-    <p>Years Legacy</p>
+    <h2 data-i18n="legacy_count">15+</h2>
+    <p data-i18n="legacy_label">Years Legacy</p>
   </div>
 </div>
 
@@ -111,16 +114,16 @@
   <section style="padding: 5rem 0;">
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
       <div class="reveal">
-        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">A Sacred Environment for Learning</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Our campus is designed to provide a tranquil and focused environment where students can immerse themselves in the study of Quran, Hadith, and modern sciences.</p>
+        <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;" data-i18n="sacred_environment">A Sacred Environment for Learning</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="environment_p">Our campus is designed to provide a tranquil and focused environment where students can immerse themselves in the study of Quran, Hadith, and modern sciences.</p>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
           <div class="card" style="padding: 1.5rem;">
-            <h4 style="color: var(--accent-color);">Hifz Program</h4>
-            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-secondary);">Memorization of the Holy Quran with Tajweed excellence.</p>
+            <h4 style="color: var(--accent-color);" data-i18n="hifz_program">Hifz Program</h4>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-secondary);" data-i18n="hifz_p">Memorization of the Holy Quran with Tajweed excellence.</p>
           </div>
           <div class="card" style="padding: 1.5rem;">
-            <h4 style="color: var(--accent-color);">Alim Course</h4>
-            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-secondary);">Deep study of Shariah and Islamic jurisprudence.</p>
+            <h4 style="color: var(--accent-color);" data-i18n="alim_course">Alim Course</h4>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-secondary);" data-i18n="alim_p">Deep study of Shariah and Islamic jurisprudence.</p>
           </div>
         </div>
       </div>
@@ -132,30 +135,32 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-col">
-      <h4>Madrashatur Rashid</h4>
-      <p>Nurturing faith, knowledge, and character for a better tomorrow.</p>
+      <h4 data-i18n="school_name">Madrashatur Rashid</h4>
+      <p data-i18n="nurturing_faith">Nurturing faith, knowledge, and character for a better tomorrow.</p>
     </div>
     <div class="footer-col">
-      <h4>Information</h4>
-      <a href="about.html">Our Vision</a>
-      <a href="academics.html">Courses</a>
-      <a href="admissions.html">How to Apply</a>
+      <h4 data-i18n="information">Information</h4>
+      <a href="about.html" data-i18n="our_vision">Our Vision</a>
+      <a href="academics.html" data-i18n="courses">Courses</a>
+      <a href="admissions.html" data-i18n="how_to_apply">How to Apply</a>
     </div>
     <div class="footer-col">
-      <h4>Campus Access</h4>
-      <a href="login.html">Student Portal</a>
-      <a href="login.html">Admin Dashboard</a>
+      <h4 data-i18n="campus_access">Campus Access</h4>
+      <a href="login.html" data-i18n="student_portal">Student Portal</a>
+      <a href="login.html" data-i18n="admin_dashboard">Admin Dashboard</a>
     </div>
     <div class="footer-col">
-      <h4>Location</h4>
-      <p>123 Education Lane, Dhaka</p>
+      <h4 data-i18n="location">Location</h4>
+      <p data-i18n="address">123 Education Lane, Dhaka</p>
       <p>+880 1234 567890</p>
     </div>
   </div>
   <div class="text-center" style="margin-top: 4rem; color: var(--text-secondary); font-size: 0.8rem;">
-    &copy; 2026 Madrashatur Rashid Al Islamia. All Rights Reserved.
+    &copy; 2026 <span data-i18n="school_name">Madrashatur Rashid Al Islamia</span>. <span data-i18n="rights_reserved">All Rights Reserved.</span>
   </div>
 </footer>
 
+<script src="languages.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>

@@ -33,7 +33,7 @@
       <p style="color: var(--text-secondary); font-size: 0.875rem;">Manage academic records</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem;" class="form-grid">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;" class="form-grid">
       <div class="input-group">
         <label>Student ID</label>
         <input id="id" placeholder="e.g. STU001">
@@ -41,6 +41,20 @@
       <div class="input-group">
         <label>Full Name</label>
         <input id="name" placeholder="e.g. Tawhid Chowdhury">
+      </div>
+      <div class="input-group">
+        <label>Class</label>
+        <select id="class-select" onchange="onClassChange()">
+          <option value="">Select Class</option>
+          <option>Nazera</option>
+          <option>Hifz</option>
+          <option>Taisir</option>
+          <option>Mijan</option>
+          <option>Nahbemir</option>
+          <option>Kafia</option>
+          <option>Sharhe Bekaya</option>
+          <option>Mutafarreka</option>
+        </select>
       </div>
     </div>
 

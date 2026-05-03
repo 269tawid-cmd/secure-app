@@ -25,27 +25,30 @@
 <nav class="nav">
   <div class="wrap">
     <div class="brand">
-      <div style="background: var(--accent-color); padding: 8px; border-radius: 8px;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
+      <img src="logo.png" alt="Madrashatur Rashid Logo" style="height: 40px; width: auto; border-radius: 4px;">
       <h1 style="font-size: 1rem;">Madrashatur Rashid</h1>
     </div>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
-      <a href="academics.html">Academics</a>
-      <a href="admissions.html">Admissions</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Portal</a>
+      <select id="lang-switcher" class="lang-select">
+        <option value="en">EN</option>
+        <option value="bn">BN</option>
+        <option value="ar">AR</option>
+      </select>
+      <a href="index.html" data-i18n="home">Home</a>
+      <a href="about.html" class="active" data-i18n="about">About</a>
+      <a href="academics.html" data-i18n="academics">Academics</a>
+      <a href="admissions.html" data-i18n="admissions">Admissions</a>
+      <a href="contact.html" data-i18n="contact">Contact</a>
+      <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;" data-i18n="portal">Portal</a>
     </div>
   </div>
 </nav>
 
 <header class="section-hero">
   <div class="container reveal">
-    <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Our Story</span>
-    <h1 style="font-size: 3rem; margin-top: 1rem;">A Legacy of Islamic Excellence</h1>
-    <p style="max-width: 700px; margin: 1.5rem auto; color: var(--text-secondary);">Madrashatur Rashid Al Islamia is dedicated to nurturing souls with divine knowledge and character.</p>
+    <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;" data-i18n="our_story">Our Story</span>
+    <h1 style="font-size: 3rem; margin-top: 1rem;" data-i18n="legacy_excellence">A Legacy of Islamic Excellence</h1>
+    <p style="max-width: 700px; margin: 1.5rem auto; color: var(--text-secondary);" data-i18n="about_hero_p">Madrashatur Rashid Al Islamia is dedicated to nurturing souls with divine knowledge and character.</p>
   </div>
 </header>
 
@@ -53,11 +56,11 @@
   <section class="content-section">
     <div class="vision-grid">
       <div class="reveal">
-        <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Our Vision & Mission</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">To be a leading center of Islamic learning that produces scholars grounded in tradition and capable of leading the modern world with wisdom and integrity.</p>
+        <h2 style="font-size: 2rem; margin-bottom: 1.5rem;" data-i18n="vision_mission">Our Vision & Mission</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;" data-i18n="vision_p">To be a leading center of Islamic learning that produces scholars grounded in tradition and capable of leading the modern world with wisdom and integrity.</p>
         <div class="card" style="background: rgba(59, 130, 246, 0.05);">
-          <h4 style="color: var(--accent-color);">Commitment to Character</h4>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem;">We believe in education that transforms not just the mind, but the heart and actions of every student.</p>
+          <h4 style="color: var(--accent-color);" data-i18n="commitment_character">Commitment to Character</h4>
+          <p style="font-size: 0.9rem; margin-top: 0.5rem;" data-i18n="character_p">We believe in education that transforms not just the mind, but the heart and actions of every student.</p>
         </div>
       </div>
       <div class="card reveal" style="padding: 3rem;">
@@ -70,22 +73,24 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-col">
-      <h4>Madrashatur Rashid</h4>
-      <p>Providing authentic Islamic education since 2005.</p>
+      <h4 data-i18n="school_name">Madrashatur Rashid</h4>
+      <p data-i18n="nurturing_faith">Providing authentic Islamic education since 2005.</p>
     </div>
     <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="about.html">About Us</a>
-      <a href="academics.html">Academics</a>
-      <a href="admissions.html">Admissions</a>
+      <h4 data-i18n="information">Quick Links</h4>
+      <a href="about.html" data-i18n="about">About Us</a>
+      <a href="academics.html" data-i18n="academics">Academics</a>
+      <a href="admissions.html" data-i18n="admissions">Admissions</a>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
-      <p>Main Campus, Dhaka, Bangladesh</p>
+      <h4 data-i18n="contact">Contact</h4>
+      <p data-i18n="location">Main Campus, Dhaka, Bangladesh</p>
       <p>info@rashid-islamia.edu</p>
     </div>
   </div>
 </footer>
 
+<script src="languages.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>

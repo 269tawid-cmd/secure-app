@@ -10,6 +10,11 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: [true, "Student name is required"],
   },
+  class: {
+    type: String,
+    required: [true, "Class is required"],
+    enum: ["Nazera", "Hifz", "Taisir", "Mijan", "Nahbemir", "Kafia", "Sharhe Bekaya", "Mutafarreka"],
+  },
   subjects: {
     type: Map,
     of: Number,

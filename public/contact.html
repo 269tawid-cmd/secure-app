@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Madrashatur Rashid Al Islamia</title>
+  <link rel="stylesheet" href="common.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <img src="logo.png" alt="Madrashatur Rashid Logo" style="height: 40px; width: auto; border-radius: 4px;">
+      <h1 style="font-size: 1rem;">Madrashatur Rashid</h1>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academics.html">Academics</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Portal</a>
+    </div>
+  </div>
+</nav>
+
+<header style="padding: 10rem 2rem 5rem; text-align: center; background: radial-gradient(circle at top, #1e293b, #0f172a);">
+  <div class="container reveal">
+    <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Get in Touch</span>
+    <h1 style="font-size: 3rem; margin-top: 1rem;">Contact Our Office</h1>
+    <p style="max-width: 600px; margin: 1.5rem auto; color: var(--text-secondary);">We are here to answer your questions and welcome you to our community.</p>
+  </div>
+</header>
+
+<main class="container">
+  <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; margin-top: 2rem;">
+    <div class="reveal">
+      <div class="card mb-12">
+        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Address</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">123 Education Lane, Dhaka, Bangladesh</p>
+      </div>
+      <div class="card mb-12">
+        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Email & Phone</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">info@rashid-islamia.edu</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">+880 1234 567890</p>
+      </div>
+      <div class="card">
+        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Office Hours</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">Sat - Thu: 8:00 AM - 5:00 PM</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">Friday: Closed</p>
+      </div>
+    </div>
+
+    <div class="card reveal" style="animation-delay: 0.2s;">
+      <h3 style="margin-bottom: 2rem;">Send a Message</h3>
+      <form onsubmit="event.preventDefault(); alert('Message sent! We will get back to you soon.')">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <div class="input-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="John Doe" required class="glass-input">
+          </div>
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="john@example.com" required class="glass-input">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Subject</label>
+          <input type="text" placeholder="Admission inquiry" required class="glass-input">
+        </div>
+        <div class="input-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="How can we help you?" required class="glass-input" style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); color: white; width: 100%; border-radius: 0.5rem; padding: 1rem;"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary pulse" style="width: 100%; margin-top: 1rem;">Send Message</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Madrashatur Rashid</h4>
+      <p>Building a brighter future through faith and knowledge.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academics.html">Academics</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <p>Facebook</p>
+      <p>YouTube</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

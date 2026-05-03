@@ -4,23 +4,120 @@ if(!token){
   location.href = "login.html";
 }
 
-// subjects
-let SUBJECTS = ["math","eng","sci","prog"];
+let currentSubjects = []; // This will store the list of subjects added by the admin
 let students = [];
 
-// render subject inputs
+// Function to add a new subject field dynamically
+function addSubject(){
+  const name = prompt("Enter Subject Name (e.g., Quran, Math, Fiqh):");
+  if(!name) return;
+
+  const subjectName = name.trim();
+  if(currentSubjects.includes(subjectName)) {
+    return alert("Subject already added!");
+  }
+
+  currentSubjects.push(subjectName);
+  renderSubjects();
+}
+
+// Function to clear subjects when class changes (optional, but keeps things clean)
+function onClassChange() {
+  currentSubjects = [];
+  renderSubjects();
+}
+
+// Render the dynamically added subject inputs
 function renderSubjects(){
   const box = document.getElementById("subjects-box");
 
-  box.innerHTML = SUBJECTS.map(s => `
-    <div class="input-group">
+  if (currentSubjects.length === 0) {
+    box.innerHTML = `<p style="color: var(--text-secondary); font-size: 0.8rem;">No subjects added yet. Click 'Add Subject' to begin.</p>`;
+    return;
+  }
+
+  box.innerHTML = currentSubjects.map(s => `
+    <div class="input-group reveal">
       <label>${s.toUpperCase()}</label>
-      <input type="number" id="${s}" placeholder="0-100" min="0" max="100">
+      <input type="number" id="sub-${s}" placeholder="0-100" min="0" max="100">
+      <button onclick="removeSubject('${s}')" style="background: none; border: none; color: var(--danger-color); cursor: pointer; font-size: 0.7rem; margin-top: 5px;">Remove</button>
     </div>
   `).join("");
 }
 
-// ... existing code ...
+function removeSubject(name) {
+  currentSubjects = currentSubjects.filter(s => s !== name);
+  renderSubjects();
+}
+
+function addStudent(){
+  const id = document.getElementById("id").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const selectedClass = document.getElementById("class-select").value;
+
+  if(!id || !name || !selectedClass){
+    return alert("ID, Name & Class required");
+  }
+
+  if(currentSubjects.length === 0) {
+    return alert("Please add at least one subject and score.");
+  }
+
+  let subjects = {};
+  for(let s of currentSubjects){
+    const val = +document.getElementById(`sub-${s}`).value || 0;
+
+    if(val > 100){
+      return alert(`${s.toUpperCase()} max 100`);
+    }
+
+    subjects[s] = val;
+  }
+
+  fetch("/add",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization": token
+    },
+    body:JSON.stringify({ id, name, class: selectedClass, subjects })
+  })
+  .then(async r=>{
+    const data = await r.json();
+    if(!r.ok){
+      throw new Error(data.error || "Server error");
+    }
+    return data;
+  })
+  .then(d=>{
+    if(d.success){
+      alert("Student Record Saved ✅");
+      // Reset form
+      document.getElementById("id").value = "";
+      document.getElementById("name").value = "";
+      currentSubjects = [];
+      renderSubjects();
+      load();
+    }else{
+      alert(d.message || "Failed to add");
+    }
+  })
+  .catch(err=>{
+    alert(err.message || "Network error");
+  });
+}
+
+// load students
+function load(){
+  fetch("/students",{
+    headers:{ "Authorization": token }
+  })
+  .then(r=>r.json())
+  .then(data=>{
+    students = data;
+    render(data);
+  });
+}
 
 // render table
 function render(data){
@@ -34,7 +131,10 @@ function render(data){
   table.innerHTML = data.map(s=>`
     <tr>
       <td style="font-weight: 600; color: var(--accent-color);">${s.id}</td>
-      <td style="font-weight: 500;">${s.name}</td>
+      <td style="font-weight: 500;">
+        ${s.name}<br>
+        <span class="madrasha-class-tag">${s.class}</span>
+      </td>
       <td>
         <div style="font-size: 0.75rem; color: var(--text-secondary);">
           ${Object.entries(s.subjects || {}).map(([name, score]) => `${name}: ${score}`).join(" | ")}
@@ -80,7 +180,6 @@ function deleteStudent(id) {
   });
 }
 
-// logout
 function logout(){
   localStorage.removeItem("token");
   localStorage.removeItem("role");
@@ -90,31 +189,3 @@ function logout(){
 // init
 renderSubjects();
 load();
-
-const grades = ["A+", "A", "B", "F"];
-const container = document.getElementById("grades");
-
-for(let i = 0; i < 40; i++){  // 👈 number change করতে পারিস
-  const span = document.createElement("span");
-
-  const g = grades[Math.floor(Math.random() * grades.length)];
-  span.innerText = g;
-
-  // random position
-  span.style.left = Math.random() * 100 + "%";
-
-  // random delay
-  span.style.animationDelay = Math.random() * 10 + "s";
-
-  // random size
-  span.style.fontSize = (14 + Math.random() * 20) + "px";
-
-  // color assign
-  if(g === "A+") span.className = "grade-ap";
-  else if(g === "A") span.className = "grade-a";
-  else if(g === "B") span.className = "grade-b";
-  else span.className = "grade-f";
-
-  container.appendChild(span);
-}
- /* only 10 */

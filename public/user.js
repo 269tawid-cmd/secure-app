@@ -12,11 +12,16 @@ const stats = document.getElementById("stats");
 
 // subjects config
 const SUBJECT_CONFIG = [
-  { key: "math", label: "Mathematics", icon: "📐" },
-  { key: "eng",  label: "English",     icon: "📘" },
-  { key: "sci",  label: "Science",     icon: "🔬" },
-  { key: "prog", label: "Programming", icon: "💻" }
+  { key: "nazera", label: "Nazera", icon: "📖" },
+  { key: "hifz", label: "Hifz", icon: "🕋" },
+  { key: "taisir", label: "Taisir", icon: "✍️" },
+  { key: "mijan", label: "Mijan", icon: "⚖️" },
+  { key: "nahbemir", label: "Nahbemir", icon: "📜" },
+  { key: "kafia", label: "Kafia", icon: "🎓" },
+  { key: "sharhe bekaya", label: "Sharhe Bekaya", icon: "🖋️" },
+  { key: "mutafarreka", label: "Mutafarreka", icon: "🌟" }
 ];
+
 
 let students = [];
 let debounceTimer = null;
@@ -70,17 +75,23 @@ function highlight(text, q) {
 // 🖥️ RENDER
 function render(data, q="") {
   table.innerHTML = data.map((s, i) => {
+    // Dynamically get subject names based on what's in the student object
+    const studentSubjects = Object.keys(s.subjects || {});
+    
     return `
       <tr>
         <td style="font-weight: 600; color: var(--accent-color);">${highlight(s.id, q)}</td>
-        <td style="font-weight: 500;">${highlight(s.name, q)}</td>
+        <td style="font-weight: 500;">
+          ${highlight(s.name, q)}<br>
+          <span class="madrasha-class-tag" style="margin-top: 5px;">${s.class}</span>
+        </td>
         <td style="width: 300px;">
           <div style="display: flex; flex-direction: column; gap: 4px;">
-            ${SUBJECT_CONFIG.map(sub => {
-              const val = s.subjects?.[sub.key] ?? s[sub.key] ?? 0;
+            ${studentSubjects.map(subKey => {
+              const val = s.subjects[subKey] || 0;
               return `
                 <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem;">
-                  <span style="color: var(--text-secondary);">${sub.label}</span>
+                  <span style="color: var(--text-secondary); text-transform: capitalize;">${subKey}</span>
                   <span style="font-weight: 600;">${val}</span>
                 </div>
                 <div class="progress-container" style="height: 4px;">
