@@ -25,7 +25,7 @@ function login(){
     localStorage.setItem("role",d.role);
 
     location.href = d.role==="admin"
-      ? "admin.html"
+      ? "dashboard.html"
       : "user.html";
   })
   .catch(()=>{

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admissions | Madrashatur Rashid Al Islamia</title>
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .section-hero {
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      background: radial-gradient(circle at top, #1e293b, #0f172a);
+    }
+    .admission-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+    .step-card {
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .step-number {
+      background: var(--accent-color);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 0 auto 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <div style="background: var(--accent-color); padding: 8px; border-radius: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h1 style="font-size: 1rem;">Madrashatur Rashid</h1>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academics.html">Academics</a>
+      <a href="admissions.html" class="active">Admissions</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Portal</a>
+    </div>
+  </div>
+</nav>
+
+<header class="section-hero">
+  <div class="container reveal">
+    <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Join Our Community</span>
+    <h1 style="font-size: 3rem; margin-top: 1rem;">Admissions Open</h1>
+    <p style="max-width: 700px; margin: 1.5rem auto; color: var(--text-secondary);">Start your journey towards becoming a scholar. Follow our simple enrollment process below.</p>
+  </div>
+</header>
+
+<main class="container">
+  <section class="admission-steps">
+    <div class="card step-card reveal">
+      <div class="step-number">1</div>
+      <h4>Inquiry</h4>
+      <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 1rem;">Submit an online inquiry or visit our campus for a consultation.</p>
+    </div>
+    <div class="card step-card reveal" style="animation-delay: 0.1s;">
+      <div class="step-number">2</div>
+      <h4>Assessment</h4>
+      <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 1rem;">Student undergoes a basic academic and character assessment.</p>
+    </div>
+    <div class="card step-card reveal" style="animation-delay: 0.2s;">
+      <div class="step-number">3</div>
+      <h4>Interview</h4>
+      <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 1rem;">A meeting with the parents and the prospective student.</p>
+    </div>
+    <div class="card step-card reveal" style="animation-delay: 0.3s;">
+      <div class="step-number">4</div>
+      <h4>Enrollment</h4>
+      <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 1rem;">Final documentation and fee payment to secure the seat.</p>
+    </div>
+  </section>
+
+  <section style="max-width: 600px; margin: 5rem auto;" class="reveal">
+    <div class="card">
+      <h3 style="margin-bottom: 2rem; text-align: center;">Admission Inquiry Form</h3>
+      <form id="admission-form">
+        <div class="input-group">
+          <label>Student Name</label>
+          <input type="text" placeholder="Full name of student">
+        </div>
+        <div class="input-group">
+          <label>Desired Course</label>
+          <select>
+            <option>Hifz Program</option>
+            <option>Alim Course</option>
+            <option>Modern Academics Only</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Parent/Guardian Email</label>
+          <input type="email" placeholder="email@example.com">
+        </div>
+        <button type="button" class="btn btn-primary" style="width: 100%;" onclick="alert('Inquiry sent successfully! We will contact you soon.')">Submit Inquiry</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Madrashatur Rashid</h4>
+      <p>Nurturing faith and knowledge since 2005.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Downloads</h4>
+      <a href="#">Admission Form (PDF)</a>
+      <a href="#">Fee Structure</a>
+      <a href="#">School Rules</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="contact.html">Help Center</a>
+      <a href="login.html">Portal Support</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <p>Facebook</p>
+      <p>YouTube</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

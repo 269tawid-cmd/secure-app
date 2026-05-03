@@ -251,15 +251,106 @@ html {
   transition: width 0.5s ease-out;
 }
 
-/* AUTH PAGES SPECIFIC */
-.auth-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at top left, #1e293b, #0f172a);
+/* NAVBAR */
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: var(--glass-effect);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 0;
 }
 
-.login-box {
-  width: 100%;
-  max-width: 400px;
+.nav .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--accent-color);
+}
+
+/* FOOTER */
+.footer {
+  background: #0a0f1c;
+  padding: 4rem 2rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: 5rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-col h4 {
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.footer-col p, .footer-col a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* DASHBOARD SPECIFIC */
+.sidebar {
+  width: 260px;
+  background: var(--surface-color);
+  backdrop-filter: var(--glass-effect);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-right: 1px solid var(--border-color);
+  padding: 2rem 1.5rem;
+  z-index: 100;
+}
+
+.main-content {
+  margin-left: 260px;
+  padding: 2rem;
+}
+
+.side-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.side-link:hover, .side-link.active {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent-color);
 }
