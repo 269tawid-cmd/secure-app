@@ -1,24 +1,25 @@
 function register(){
-  const username = document.getElementById("username").value;
+  const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value;
-  const confirm = document.getElementById("confirm").value;
+  const confirm = document.getElementById("confirm-password").value;
+  const btn = document.querySelector(".btn-primary");
 
   if(!username || !password){
-    shakeForm();
-    return alert("Fill all fields");
+    return alert("Please fill in all fields.");
   }
 
   if(password !== confirm){
-    shakeForm();
-    return alert("Password not match");
+    return alert("Passwords do not match.");
   }
 
   if(!isStrongPassword(password)){
-    shakeForm();
-    return alert("Password weak (Use capital + number)");
+    return alert("Password must be at least 6 characters and include a capital letter and a number.");
   }
 
-  setLoading(true);
+  // Set loading state
+  const originalText = btn.innerText;
+  btn.innerText = "Creating Account...";
+  btn.disabled = true;
 
   fetch("/register",{
     method:"POST",
@@ -27,38 +28,21 @@ function register(){
   })
   .then(res=>res.json())
   .then(data=>{
-    setLoading(false);
+    btn.innerText = originalText;
+    btn.disabled = false;
 
     if(data.success){
-      alert("Registered সফল ✅");
-      location.href = "index.html";
+      alert("Registration successful! Please login.");
+      location.href = "login.html";
     }else{
-      shakeForm();
-      alert("User already exists");
+      alert(data.message || "User already exists.");
     }
   })
   .catch(()=>{
-    setLoading(false);
-    shakeForm();
-    alert("Server error");
+    btn.innerText = originalText;
+    btn.disabled = false;
+    alert("Server error. Please try again later.");
   });
-}
-
-function togglePassword(id){
-  const input = document.getElementById(id);
-  input.type = input.type === "password" ? "text" : "password";
-}
-
-function setLoading(state){
-  const btn = document.getElementById("regBtn");
-  btn.innerText = state ? "Loading..." : "Register";
-  btn.disabled = state;
-}
-
-function shakeForm(){
-  const box = document.querySelector(".register-box");
-  box.classList.add("shake");
-  setTimeout(()=>box.classList.remove("shake"),300);
 }
 
 function isStrongPassword(pw){
