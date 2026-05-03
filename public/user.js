@@ -1,6 +1,6 @@
 // 🔐 auth guard
 const token = localStorage.getItem("token");
-if (!token) location.href = "index.html";
+if (!token) location.href = "login.html";
 
 // DOM refs
 const table = document.getElementById("table");
@@ -195,7 +195,7 @@ function downloadPDF() {
 function logout() {
   localStorage.removeItem("token");
   localStorage.removeItem("role");
-  location.href = "index.html";
+  location.href = "login.html";
 }
 
 // 🎨 THEME

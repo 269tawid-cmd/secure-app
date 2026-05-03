@@ -2,11 +2,16 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URL);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    const mongoURI = process.env.MONGO_URL;
+    if (!mongoURI) {
+      throw new Error("MONGO_URL is not defined in .env file");
+    }
+    
+    const conn = await mongoose.connect(mongoURI);
+    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1); // Exit process with failure
+    console.error(`❌ Database Connection Error: ${error.message}`);
+    process.exit(1); 
   }
 };
 

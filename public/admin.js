@@ -1,7 +1,7 @@
 // 🔐 auth guard
 const token = localStorage.getItem("token");
 if(!token){
-  location.href = "index.html";
+  location.href = "login.html";
 }
 
 // subjects
@@ -84,7 +84,7 @@ function deleteStudent(id) {
 function logout(){
   localStorage.removeItem("token");
   localStorage.removeItem("role");
-  location.href = "index.html";
+  location.href = "login.html";
 }
 
 // init

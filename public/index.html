@@ -3,38 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secure Access | Login</title>
+  <title>Secure Access | Premium Student Management</title>
   <link rel="stylesheet" href="common.css">
-  <link rel="stylesheet" href="login.css">
+  <style>
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: radial-gradient(circle at center, #1e293b, #0f172a);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-content {
+      z-index: 10;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #fff, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 5rem 2rem;
+    }
+
+    .feature-card {
+      text-align: left;
+    }
+
+    .icon-wrapper {
+      background: rgba(59, 130, 246, 0.1);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    .blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--accent-color);
+      filter: blur(150px);
+      opacity: 0.1;
+      border-radius: 50%;
+      z-index: 1;
+    }
+  </style>
 </head>
-<body class="auth-page">
+<body>
 
-<div class="login-box card">
+<header class="header">
+  <div class="wrap">
+    <div class="brand">
+      <div style="background: var(--accent-color); padding: 8px; border-radius: 8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h1>Secure Access</h1>
+    </div>
+    <div class="actions">
+      <a href="login.html" class="btn btn-ghost" style="text-decoration: none; margin-right: 1rem;">Login</a>
+      <a href="register.html" class="btn btn-primary" style="text-decoration: none;">Get Started</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="blob" style="top: -10%; left: -10%;"></div>
+  <div class="blob" style="bottom: -10%; right: -10%;"></div>
+  
+  <div class="hero-content reveal">
+    <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Next Generation Management</span>
+    <h1>Elevate Your Academic Performance</h1>
+    <p>A sophisticated platform for tracking results, analyzing performance, and managing student records with military-grade security.</p>
+    <div style="display: flex; gap: 1.5rem; justify-content: center;">
+      <a href="register.html" class="btn btn-primary pulse" style="padding: 1rem 2.5rem; font-size: 1rem; text-decoration: none;">Create Free Account</a>
+      <a href="#features" class="btn btn-ghost" style="padding: 1rem 2.5rem; font-size: 1rem; text-decoration: none;">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<main class="container" id="features">
   <div class="text-center mb-12">
-    <h2>Welcome Back</h2>
-    <p style="color: var(--text-secondary); font-size: 0.875rem;">Please enter your credentials</p>
+    <h2 style="font-size: 2.5rem;">Powerful Features</h2>
+    <p style="color: var(--text-secondary);">Designed for both students and administrators</p>
   </div>
 
-  <div class="input-group">
-    <label for="username">Username</label>
-    <input type="text" id="username" placeholder="e.g. tawhid_admin" required>
+  <div class="features">
+    <div class="card feature-card">
+      <div class="icon-wrapper">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <h3>Modular Architecture</h3>
+      <p style="color: var(--text-secondary); margin-top: 1rem;">Clean, scalable codebase built with modern Node.js and Express patterns.</p>
+    </div>
+
+    <div class="card feature-card">
+      <div class="icon-wrapper">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Secure Authentication</h3>
+      <p style="color: var(--text-secondary); margin-top: 1rem;">JWT-based security with Bcrypt hashing ensures your data stays private and safe.</p>
+    </div>
+
+    <div class="card feature-card">
+      <div class="icon-wrapper">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <h3>Visual Analytics</h3>
+      <p style="color: var(--text-secondary); margin-top: 1rem;">Beautiful charts and real-time statistics to visualize academic progress effortlessly.</p>
+    </div>
   </div>
+</main>
 
-  <div class="input-group" style="position: relative;">
-    <label for="password">Password</label>
-    <input type="password" id="password" placeholder="••••••••" required>
-    <span class="toggle" onclick="togglePassword()" style="position: absolute; right: 1rem; top: 2.5rem; cursor: pointer; opacity: 0.5;">👁</span>
-  </div>
+<footer class="text-center" style="padding: 4rem; border-top: 1px solid var(--border-color); margin-top: 5rem;">
+  <p style="color: var(--text-secondary);">&copy; 2026 Secure Access. Crafted for Excellence.</p>
+</footer>
 
-  <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="login()">Sign In</button>
-
-  <div class="text-center mt-12">
-    <p style="font-size: 0.875rem; color: var(--text-secondary);">
-      Don't have an account? <a href="register.html" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">Create one</a>
-    </p>
-  </div>
-</div>
-
-<script src="login.js"></script>
 </body>
 </html>

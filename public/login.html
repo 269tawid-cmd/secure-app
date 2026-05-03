@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Access | Login</title>
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body class="auth-page">
+
+<div class="login-box card reveal">
+  <div class="text-center mb-12">
+    <h2>Welcome Back</h2>
+    <p style="color: var(--text-secondary); font-size: 0.875rem;">Please enter your credentials</p>
+  </div>
+
+  <div class="input-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="e.g. tawhid_admin" required>
+  </div>
+
+  <div class="input-group" style="position: relative;">
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="••••••••" required>
+    <span class="toggle" onclick="togglePassword()" style="position: absolute; right: 1rem; top: 2.5rem; cursor: pointer; opacity: 0.5;">👁</span>
+  </div>
+
+  <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="login()">Sign In</button>
+
+  <div class="text-center mt-12">
+    <p style="font-size: 0.875rem; color: var(--text-secondary);">
+      Don't have an account? <a href="register.html" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">Create one</a>
+    </p>
+  </div>
+</div>
+
+<script src="login.js"></script>
+</body>
+</html>
