@@ -69,43 +69,32 @@ function highlight(text, q) {
 
 // 🖥️ RENDER
 function render(data, q="") {
-  renderHeader();
-
   table.innerHTML = data.map((s, i) => {
     return `
       <tr>
-        <td>${i + 1}</td>
-        <td>${highlight(s.id, q)}</td>
-        <td>${highlight(s.name, q)}</td>
-
-        ${SUBJECT_CONFIG.map(sub => {
-          // ✅ FIXED LINE
-          const val = s.subjects?.[sub.key] ?? s[sub.key] ?? 0;
-
-          return `<td>${progress(val)}</td>`;
-        }).join("")}
-
-        <td>${s.total}</td>
+        <td style="font-weight: 600; color: var(--accent-color);">${highlight(s.id, q)}</td>
+        <td style="font-weight: 500;">${highlight(s.name, q)}</td>
+        <td style="width: 300px;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            ${SUBJECT_CONFIG.map(sub => {
+              const val = s.subjects?.[sub.key] ?? s[sub.key] ?? 0;
+              return `
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem;">
+                  <span style="color: var(--text-secondary);">${sub.label}</span>
+                  <span style="font-weight: 600;">${val}</span>
+                </div>
+                <div class="progress-container" style="height: 4px;">
+                  <div class="progress-bar" style="width: ${val}%;"></div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        </td>
+        <td style="font-weight: 700; font-size: 1.1rem;">${s.total}</td>
         <td>${getGradeBadge(s.grade)}</td>
       </tr>
     `;
   }).join("");
-}
-
-// 📊 HEADER
-function renderHeader() {
-  thead.innerHTML = `
-    <tr>
-      <th>#</th>
-      <th>ID</th>
-      <th>Name</th>
-      ${SUBJECT_CONFIG.map(s => `
-        <th>${s.icon} ${s.label}</th>
-      `).join("")}
-      <th>Total</th>
-      <th>Grade</th>
-    </tr>
-  `;
 }
 
 // 📊 STATS
@@ -118,25 +107,39 @@ function renderStats(data) {
   const top = data[0];
 
   stats.innerHTML = `
-    Students: ${count} |
-    Avg: ${avg} |
-    Top: ${top ? top.name + " (" + top.total + ")" : "-"}
+    <div class="card" style="padding: 1rem; border-left: 4px solid var(--accent-color);">
+      <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 700;">Total Students</div>
+      <div style="font-size: 1.5rem; font-weight: 700;">${count}</div>
+    </div>
+    <div class="card" style="padding: 1rem; border-left: 4px solid var(--success-color);">
+      <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 700;">Average Marks</div>
+      <div style="font-size: 1.5rem; font-weight: 700;">${avg}</div>
+    </div>
+    <div class="card" style="padding: 1rem; border-left: 4px solid gold;">
+      <div style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 700;">Top Performer</div>
+      <div style="font-size: 1.1rem; font-weight: 700;">${top ? top.name : "N/A"}</div>
+      <div style="font-size: 0.8rem; color: var(--text-secondary);">${top ? "Score: " + top.total : ""}</div>
+    </div>
   `;
 }
 
 // 🎨 BADGE
 function getGradeBadge(grade) {
-  return `<span class="badge">${grade}</span>`;
-}
-
-// 📊 PROGRESS
-function progress(val) {
-  return `
-    <div class="progress-box">
-      <div class="progress-bar" style="width:${val}%"></div>
-      <span>${val}</span>
-    </div>
-  `;
+  let color = "var(--accent-color)";
+  let bg = "rgba(59, 130, 246, 0.1)";
+  
+  if (grade === "A+") { color = "#10b981"; bg = "rgba(16, 185, 129, 0.1)"; }
+  else if (grade === "F") { color = "#ef4444"; bg = "rgba(239, 68, 68, 0.1)"; }
+  
+  return `<span style="
+    padding: 6px 12px; 
+    border-radius: 999px; 
+    font-size: 0.75rem; 
+    font-weight: 700;
+    background: ${bg};
+    color: ${color};
+    border: 1px solid ${color.replace(')', ', 0.2)')};
+  ">${grade}</span>`;
 }
 
 // 📈 CHART
@@ -144,14 +147,41 @@ let chartInstance;
 function renderChart(data) {
   if (chartInstance) chartInstance.destroy();
 
-  chartInstance = new Chart(document.getElementById("chart"), {
+  const ctx = document.getElementById("chart").getContext("2d");
+  const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+  gradient.addColorStop(0, 'rgba(59, 130, 246, 0.5)');
+  gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+
+  chartInstance = new Chart(ctx, {
     type: "bar",
     data: {
       labels: data.map(s => s.name),
       datasets: [{
         label: "Total Marks",
-        data: data.map(s => s.total)
+        data: data.map(s => s.total),
+        backgroundColor: gradient,
+        borderColor: '#3b82f6',
+        borderWidth: 2,
+        borderRadius: 8,
+        barPercentage: 0.6
       }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: { color: 'rgba(255, 255, 255, 0.05)' },
+          ticks: { color: '#94a3b8' }
+        },
+        x: {
+          grid: { display: false },
+          ticks: { color: '#94a3b8' }
+        }
+      }
     }
   });
 }

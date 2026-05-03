@@ -2,38 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Register</title>
-
-  <!-- COMMON + LOGIN STYLE REUSE -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | Secure Access</title>
   <link rel="stylesheet" href="common.css">
   <link rel="stylesheet" href="register.css">
 </head>
+<body class="auth-page">
 
-<body class="dark auth-page">
-
-<div class="register-box">
-  <h2>Register</h2>
-
-  <div class="input-box">
-    <input type="text" id="username" required>
-    <label>Username</label>
+<div class="login-box card">
+  <div class="text-center mb-12">
+    <h2>Join Us</h2>
+    <p style="color: var(--text-secondary); font-size: 0.875rem;">Create your secure account</p>
   </div>
 
-<div class="input-box">
-  <input type="password" id="password" required>
-  <label>Password</label>
-  <span class="toggle" onclick="togglePassword('password')">👁</span>
-</div>
+  <div class="input-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Choose a username" required>
+  </div>
 
-<div class="input-box">
-  <input type="password" id="confirm" required>
-  <label>Confirm Password</label>
-  <span class="toggle" onclick="togglePassword('confirm')">👁</span>
-</div>
+  <div class="input-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Create a strong password" required>
+  </div>
 
-  <button class="btn" id="regBtn" onclick="register()">Register</button>
+  <div class="input-group">
+    <label for="confirm-password">Confirm Password</label>
+    <input type="password" id="confirm-password" placeholder="Repeat your password" required>
+  </div>
 
-  <p>Already have an account? <a href="index.html">Login</a></p>
+  <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="register()">Create Account</button>
+
+  <div class="text-center mt-12">
+    <p style="font-size: 0.875rem; color: var(--text-secondary);">
+      Already have an account? <a href="index.html" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">Sign in here</a>
+    </p>
+  </div>
 </div>
 
 <script src="register.js"></script>

@@ -12,104 +12,72 @@ let students = [];
 function renderSubjects(){
   const box = document.getElementById("subjects-box");
 
-  box.innerHTML = SUBJECTS.map(s =>
-    `<input id="${s}" placeholder="${s.toUpperCase()}">`
-  ).join("");
+  box.innerHTML = SUBJECTS.map(s => `
+    <div class="input-group">
+      <label>${s.toUpperCase()}</label>
+      <input type="number" id="${s}" placeholder="0-100" min="0" max="100">
+    </div>
+  `).join("");
 }
 
-// add subject
-function addSubject(){
-  const name = prompt("Subject name?");
-  if(!name) return;
-
-  SUBJECTS.push(name.toLowerCase());
-  renderSubjects();
-}
-
-function addStudent(){
-  const id = document.getElementById("id").value.trim();
-  const name = document.getElementById("name").value.trim();
-
-  // ✅ validation
-  if(!id || !name){
-    return alert("ID & Name required");
-  }
-
-  let subjects = {};
-
-  for(let s of SUBJECTS){
-    const val = +document.getElementById(s).value || 0;
-
-    // ❌ mark validation
-    if(val > 100){
-      return alert(`${s.toUpperCase()} max 100`);
-    }
-
-    subjects[s] = val;
-  }
-
-  fetch("/add",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-      "Authorization": token
-    },
-    body:JSON.stringify({ id, name, subjects })
-  })
-  .then(async r=>{
-    const data = await r.json();
-
-    // ❌ server error (401, 500)
-    if(!r.ok){
-      throw new Error(data.error || "Server error");
-    }
-
-    return data;
-  })
-  .then(d=>{
-    if(d.success){
-      alert("Added ✅");
-      load();
-    }else{
-      alert(d.message || "Failed to add");
-    }
-  })
-  .catch(err=>{
-    alert(err.message || "Network error");
-  });
-}
-
-// load students
-function load(){
-  fetch("/students",{
-    headers:{ "Authorization": token }
-  })
-  .then(r=>r.json())
-  .then(data=>{
-    students = data;
-    render(data);
-  });
-}
+// ... existing code ...
 
 // render table
 function render(data){
   const table = document.getElementById("table");
 
-  table.innerHTML = `
+  if (data.length === 0) {
+    table.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-secondary); padding: 3rem;">No student records found.</td></tr>`;
+    return;
+  }
+
+  table.innerHTML = data.map(s=>`
     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Total</th>
-      <th>Grade</th>
-    </tr>
-  ` + data.map(s=>`
-    <tr>
-      <td>${s.id}</td>
-      <td>${s.name}</td>
-      <td>${s.total}</td>
-      <td><span class="badge">${s.grade}</span></td>
+      <td style="font-weight: 600; color: var(--accent-color);">${s.id}</td>
+      <td style="font-weight: 500;">${s.name}</td>
+      <td>
+        <div style="font-size: 0.75rem; color: var(--text-secondary);">
+          ${Object.entries(s.subjects || {}).map(([name, score]) => `${name}: ${score}`).join(" | ")}
+        </div>
+      </td>
+      <td style="font-weight: 600;">${s.total}</td>
+      <td>
+        <span style="
+          padding: 4px 12px; 
+          border-radius: 999px; 
+          font-size: 0.75rem; 
+          font-weight: 700;
+          background: ${s.grade === 'F' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)'};
+          color: ${s.grade === 'F' ? '#ef4444' : '#10b981'};
+          border: 1px solid ${s.grade === 'F' ? 'rgba(239, 68, 68, 0.2)' : 'rgba(16, 185, 129, 0.2)'};
+        ">
+          ${s.grade}
+        </span>
+      </td>
+      <td>
+        <button onclick="deleteStudent('${s.id}')" class="btn btn-ghost" style="padding: 6px; color: var(--danger-color); border-color: transparent;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+        </button>
+      </td>
     </tr>
   `).join("");
+}
+
+function deleteStudent(id) {
+  if(!confirm("Are you sure you want to delete this student?")) return;
+
+  fetch(`/delete/${id}`, {
+    method: "DELETE",
+    headers: { "Authorization": token }
+  })
+  .then(r => r.json())
+  .then(d => {
+    if(d.success) {
+      load();
+    } else {
+      alert("Delete failed");
+    }
+  });
 }
 
 // logout
