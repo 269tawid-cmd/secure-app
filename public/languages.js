@@ -101,7 +101,84 @@ const translations = {
     create_account: "Create your secure account",
     confirm_password: "Confirm Password",
     already_account: "Already have an account?",
-    sign_in_here: "Sign in here"
+    sign_in_here: "Sign in here",
+
+    // Academics Page Additional
+    nazera_hifz: "Nazera & Hifz",
+    nazera_hifz_p: "The foundation of our spiritual journey, focusing on memorization and pronunciation.",
+    elementary_arabic: "Elementary Arabic",
+    elementary_arabic_p: "Initial steps into Arabic grammar and basic Islamic texts.",
+    advanced_grammar: "Advanced Grammar",
+    advanced_grammar_p: "Deep diving into Nahw and Sarf for comprehensive text analysis.",
+    higher_jurisprudence: "Higher Jurisprudence",
+    higher_jurisprudence_p: "Extensive study of Shariah, Fiqh, and diverse Islamic literature.",
+
+    // Admissions Page Additional
+    desired_course: "Desired Course",
+    modern_academics: "Modern Academics Only",
+    parent_email: "Parent/Guardian Email",
+
+    // Contact Page Additional
+    address_label: "Address",
+    email_phone: "Email & Phone",
+    office_hours_text: "Sat - Thu: 8:00 AM - 5:00 PM",
+    friday_closed: "Friday: Closed",
+
+    // Footer Additional
+    downloads: "Downloads",
+    admission_form_pdf: "Admission Form (PDF)",
+    fee_structure: "Fee Structure",
+    school_rules: "School Rules",
+    support: "Support",
+    help_center: "Help Center",
+    portal_support: "Portal Support",
+    connect: "Connect",
+
+    // Dashboard
+    student_dashboard: "Student Dashboard",
+    logout: "Logout",
+    all_grades: "All Grades",
+    refresh_data: "Refresh Data",
+    performance: "Performance",
+    search_students: "Search Students",
+    grade_filter: "Grade Filter",
+    sort_by: "Sort By",
+    default: "Default",
+    total_low_high: "Total: Low to High",
+    total_high_low: "Total: High to Low",
+    export_pdf: "Export PDF",
+    id: "ID",
+    name: "Name",
+    total_marks: "Total Marks",
+    average: "Average",
+    grade: "Grade",
+    performance_analytics: "Performance Analytics",
+
+    // Admin
+    admin_dashboard: "Admin Dashboard",
+    student_management: "Student Management",
+    manage_records: "Manage academic records",
+    student_id: "Student ID",
+    full_name: "Full Name",
+    class_label: "Class",
+    add_subject: "Add Subject",
+    save_student: "Save Student",
+    student_records: "Student Records",
+    subjects: "Subjects",
+    total: "Total",
+    actions: "Actions",
+    dashboard_overview: "Dashboard Overview",
+    welcome_admin: "Welcome back, Administrator",
+    total_enrollment: "Total Enrollment",
+    avg_performance: "Average Performance",
+    top_grade: "Top Grade (A+)",
+    add_new_student: "Add New Student",
+    register_student: "Register a student and assign ID",
+    verify_results: "Verify Results",
+    review_publish: "Review and publish academic scores",
+    generate_reports: "Generate Reports",
+    export_annual_pdf: "Export annual performance PDF",
+    recent_records: "Recent Student Records"
   },
   bn: {
     // ... rest of BN ...
@@ -163,7 +240,84 @@ const translations = {
     create_account: "আপনার সুরক্ষিত অ্যাকাউন্ট তৈরি করুন",
     confirm_password: "পাসওয়ার্ড নিশ্চিত করুন",
     already_account: "আগে থেকেই অ্যাকাউন্ট আছে?",
-    sign_in_here: "এখানে সাইন ইন করুন"
+    sign_in_here: "এখানে সাইন ইন করুন",
+
+    // Academics Page Additional
+    nazera_hifz: "নাজেরা ও হিফজ",
+    nazera_hifz_p: "আমাদের আধ্যাত্মিক যাত্রার ভিত্তি, মুখস্থ করা এবং উচ্চারণের উপর ফোকাস করা।",
+    elementary_arabic: "প্রাথমিক আরবি",
+    elementary_arabic_p: "আরবি ব্যাকরণ এবং মৌলিক ইসলামিক টেক্সটে প্রাথমিক পদক্ষেপ।",
+    advanced_grammar: "উন্নত ব্যাকরণ",
+    advanced_grammar_p: "ব্যাপক টেক্সট বিশ্লেষণের জন্য নাহূ এবং সারফে গভীর ডুব।",
+    higher_jurisprudence: "উচ্চতর ফিকহ",
+    higher_jurisprudence_p: "শরিয়াহ, ফিকহ এবং বিবিধ ইসলামিক সাহিত্যের বিস্তৃত অধ্যয়ন।",
+
+    // Admissions Page Additional
+    desired_course: "কাঙ্ক্ষিত কোর্স",
+    modern_academics: "আধুনিক একাডেমিক মাত্র",
+    parent_email: "অভিভাবক/অভিভাবিকার ইমেইল",
+
+    // Contact Page Additional
+    address_label: "ঠিকানা",
+    email_phone: "ইমেইল এবং ফোন",
+    office_hours_text: "শনি - বৃহস্পতি: ৮:০০ AM - ৫:০০ PM",
+    friday_closed: "শুক্রবার: বন্ধ",
+
+    // Footer Additional
+    downloads: "ডাউনলোডস",
+    admission_form_pdf: "ভর্তি ফর্ম (PDF)",
+    fee_structure: "ফি স্ট্রাকচার",
+    school_rules: "স্কুল নিয়ম",
+    support: "সাপোর্ট",
+    help_center: "হেল্প সেন্টার",
+    portal_support: "পোর্টাল সাপোর্ট",
+    connect: "যোগাযোগ",
+
+    // Dashboard
+    student_dashboard: "ছাত্র ড্যাশবোর্ড",
+    logout: "লগআউট",
+    all_grades: "সব গ্রেড",
+    refresh_data: "ডাটা রিফ্রেশ",
+    performance: "পারফরমেন্স",
+    search_students: "ছাত্রদের অনুসন্ধান করুন",
+    grade_filter: "গ্রেড ফিল্টার",
+    sort_by: "সাজান",
+    default: "ডিফল্ট",
+    total_low_high: "মোট: কম থেকে বেশি",
+    total_high_low: "মোট: বেশি থেকে কম",
+    export_pdf: "পিডিএফ এক্সপোর্ট",
+    id: "আইডি",
+    name: "নাম",
+    total_marks: "মোট নম্বর",
+    average: "গড়",
+    grade: "গ্রেড",
+    performance_analytics: "পারফরমেন্স অ্যানালাইটিক্স",
+
+    // Admin
+    admin_dashboard: "অ্যাডমিন ড্যাশবোর্ড",
+    student_management: "ছাত্র ব্যবস্থাপনা",
+    manage_records: "একাডেমিক রেকর্ড পরিচালনা",
+    student_id: "ছাত্র আইডি",
+    full_name: "পূর্ণ নাম",
+    class_label: "ক্লাস",
+    add_subject: "বিষয় যোগ করুন",
+    save_student: "ছাত্র সংরক্ষণ",
+    student_records: "ছাত্র রেকর্ড",
+    subjects: "বিষয়সমূহ",
+    total: "মোট",
+    actions: "কার্যকলাপ",
+    dashboard_overview: "ড্যাশবোর্ড ওভারভিউ",
+    welcome_admin: "স্বাগতম, অ্যাডমিনিস্ট্রেটর",
+    total_enrollment: "মোট ভর্তি",
+    avg_performance: "গড় পারফরমেন্স",
+    top_grade: "সেরা গ্রেড (A+)",
+    add_new_student: "নতুন ছাত্র যোগ",
+    register_student: "ছাত্র নিবন্ধন এবং আইড বরাদ্দ",
+    verify_results: "ফলাফল যাচাই",
+    review_publish: "একাডেমিক স্কোর পর্যালোচনা ও প্রকাশ",
+    generate_reports: "রিপোর্ট তৈরি",
+    export_annual_pdf: "বার্ষিক পারফরমেন্স পিডিএফ এক্সপোর্ট",
+    recent_records: "সাম্প্রতিক ছাত্র রেকর্ড"
   },
   ar: {
     // ... rest of AR ...
@@ -225,6 +379,83 @@ const translations = {
     create_account: "أنشئ حسابك الآمن",
     confirm_password: "تأكيد كلمة المرور",
     already_account: "لديك حساب بالفعل؟",
-    sign_in_here: "سجل الدخول هنا"
+    sign_in_here: "سجل الدخول هنا",
+
+    // Academics Page Additional
+    nazera_hifz: "ناظرة والحفظ",
+    nazera_hifz_p: "أساس رحلتنا الروحية، مع التركيز على الحفظ والتجويد.",
+    elementary_arabic: "العربية الابتدائية",
+    elementary_arabic_p: "خطوات أولية في قواعد العربية والنصوص الإسلامية الأساسية.",
+    advanced_grammar: "القواعد المتقدمة",
+    advanced_grammar_p: "غوص عميق في النحو والصرف لتحليل النصوص الشامل.",
+    higher_jurisprudence: "الفقه الأعلى",
+    higher_jurisprudence_p: "دراسة مستفيضة للشريعة والفقه والأدب الإسلامي المتنوع.",
+
+    // Admissions Page Additional
+    desired_course: "الكورس المرغوب",
+    modern_academics: "الأكاديميات الحديثة فقط",
+    parent_email: "إيميل الوالدين/الوصي",
+
+    // Contact Page Additional
+    address_label: "العنوان",
+    email_phone: "الإيميل والهاتف",
+    office_hours_text: "السبت - الخميس: ٨ ص - ٥ م",
+    friday_closed: "الجمعة: مغلق",
+
+    // Footer Additional
+    downloads: "التحميلات",
+    admission_form_pdf: "نموذج القبول (PDF)",
+    fee_structure: "هيكل الرسوم",
+    school_rules: "قواعد المدرسة",
+    support: "الدعم",
+    help_center: "مركز المساعدة",
+    portal_support: "دعم البوابة",
+    connect: "تواصل",
+
+    // Dashboard
+    student_dashboard: "لوحة تحكم الطالب",
+    logout: "تسجيل خروج",
+    all_grades: "جميع الدرجات",
+    refresh_data: "تحديث البيانات",
+    performance: "الأداء",
+    search_students: "البحث عن الطلاب",
+    grade_filter: "فلتر الدرجة",
+    sort_by: "ترتيب حسب",
+    default: "الافتراضي",
+    total_low_high: "المجموع: من المنخفض للمرتفع",
+    total_high_low: "المجموع: من المرتفع للمنخفض",
+    export_pdf: "تصدير PDF",
+    id: "الرقم",
+    name: "الاسم",
+    total_marks: "إجمالي العلامات",
+    average: "المتوسط",
+    grade: "الدرجة",
+    performance_analytics: "تحليلات الأداء",
+
+    // Admin
+    admin_dashboard: "لوحة تحكم المدير",
+    student_management: "إدارة الطلاب",
+    manage_records: "إدارة السجلات الأكاديمية",
+    student_id: "رقم الطالب",
+    full_name: "الاسم الكامل",
+    class_label: "الصف",
+    add_subject: "إضافة مادة",
+    save_student: "حفظ الطالب",
+    student_records: "سجلات الطلاب",
+    subjects: "المواد",
+    total: "المجموع",
+    actions: "الإجراءات",
+    dashboard_overview: "نظرة عامة على لوحة التحكم",
+    welcome_admin: "مرحباً بعودتك، أيها المدير",
+    total_enrollment: "إجمالي القيد",
+    avg_performance: "متوسط الأداء",
+    top_grade: "أعلى درجة (A+)",
+    add_new_student: "إضافة طالب جديد",
+    register_student: "تسجيل طالب وتعيين رقم",
+    verify_results: "التحقق من النتائج",
+    review_publish: "مراجعة ونشر الدرجات الأكاديمية",
+    generate_reports: "توليد التقارير",
+    export_annual_pdf: "تصدير تقرير الأداء السنوي PDF",
+    recent_records: "سجلات الطلاب الحديثة"
   }
 };

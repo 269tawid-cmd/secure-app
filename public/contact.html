@@ -15,21 +15,28 @@
       <h1 style="font-size: 1rem;">Madrashatur Rashid</h1>
     </div>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="academics.html">Academics</a>
-      <a href="admissions.html">Admissions</a>
-      <a href="contact.html" class="active">Contact</a>
-      <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Portal</a>
+      <div class="lang-switcher-wrapper">
+        <select id="lang-switcher" class="lang-select">
+          <option value="en">EN</option>
+          <option value="bn">BN</option>
+          <option value="ar">AR</option>
+        </select>
+      </div>
+      <a href="index.html" data-i18n="home">Home</a>
+      <a href="about.html" data-i18n="about">About</a>
+      <a href="academics.html" data-i18n="academics">Academics</a>
+      <a href="admissions.html" data-i18n="admissions">Admissions</a>
+      <a href="contact.html" class="active" data-i18n="contact">Contact</a>
+      <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;" data-i18n="portal">Portal</a>
     </div>
   </div>
 </nav>
 
 <header style="padding: 10rem 2rem 5rem; text-align: center; background: radial-gradient(circle at top, #1e293b, #0f172a);">
   <div class="container reveal">
-    <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Get in Touch</span>
-    <h1 style="font-size: 3rem; margin-top: 1rem;">Contact Our Office</h1>
-    <p style="max-width: 600px; margin: 1.5rem auto; color: var(--text-secondary);">We are here to answer your questions and welcome you to our community.</p>
+    <span style="color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;" data-i18n="get_in_touch">Get in Touch</span>
+    <h1 style="font-size: 3rem; margin-top: 1rem;" data-i18n="contact_office">Contact Our Office</h1>
+    <p style="max-width: 600px; margin: 1.5rem auto; color: var(--text-secondary);" data-i18n="contact_p">We are here to answer your questions and welcome you to our community.</p>
   </div>
 </header>
 
@@ -37,43 +44,43 @@
   <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; margin-top: 2rem;">
     <div class="reveal">
       <div class="card mb-12">
-        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Address</h4>
-        <p style="color: var(--text-secondary); font-size: 0.9rem;">123 Education Lane, Dhaka, Bangladesh</p>
+        <h4 style="color: var(--accent-color); margin-bottom: 1rem;" data-i18n="address_label">Address</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;" data-i18n="address">123 Education Lane, Dhaka, Bangladesh</p>
       </div>
       <div class="card mb-12">
-        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Email & Phone</h4>
+        <h4 style="color: var(--accent-color); margin-bottom: 1rem;" data-i18n="email_phone">Email & Phone</h4>
         <p style="color: var(--text-secondary); font-size: 0.9rem;">info@rashid-islamia.edu</p>
         <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">+880 1234 567890</p>
       </div>
       <div class="card">
-        <h4 style="color: var(--accent-color); margin-bottom: 1rem;">Office Hours</h4>
-        <p style="color: var(--text-secondary); font-size: 0.9rem;">Sat - Thu: 8:00 AM - 5:00 PM</p>
-        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">Friday: Closed</p>
+        <h4 style="color: var(--accent-color); margin-bottom: 1rem;" data-i18n="office_hours">Office Hours</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;" data-i18n="office_hours_text">Sat - Thu: 8:00 AM - 5:00 PM</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;" data-i18n="friday_closed">Friday: Closed</p>
       </div>
     </div>
 
     <div class="card reveal" style="animation-delay: 0.2s;">
-      <h3 style="margin-bottom: 2rem;">Send a Message</h3>
+      <h3 style="margin-bottom: 2rem;" data-i18n="send_message">Send a Message</h3>
       <form onsubmit="event.preventDefault(); alert('Message sent! We will get back to you soon.')">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
           <div class="input-group">
-            <label>Your Name</label>
-            <input type="text" placeholder="John Doe" required class="glass-input">
+            <label data-i18n="your_name">Your Name</label>
+            <input type="text" placeholder="John Doe" required class="glass-input" data-i18n-placeholder="your_name">
           </div>
           <div class="input-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="john@example.com" required class="glass-input">
+            <label data-i18n="email_address">Email Address</label>
+            <input type="email" placeholder="john@example.com" required class="glass-input" data-i18n-placeholder="email_address">
           </div>
         </div>
         <div class="input-group">
-          <label>Subject</label>
-          <input type="text" placeholder="Admission inquiry" required class="glass-input">
+          <label data-i18n="subject">Subject</label>
+          <input type="text" placeholder="Admission inquiry" required class="glass-input" data-i18n-placeholder="subject">
         </div>
         <div class="input-group">
-          <label>Message</label>
-          <textarea rows="5" placeholder="How can we help you?" required class="glass-input" style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); color: white; width: 100%; border-radius: 0.5rem; padding: 1rem;"></textarea>
+          <label data-i18n="message">Message</label>
+          <textarea rows="5" placeholder="How can we help you?" required class="glass-input" data-i18n-placeholder="message" style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); color: white; width: 100%; border-radius: 0.5rem; padding: 1rem;"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary pulse" style="width: 100%; margin-top: 1rem;">Send Message</button>
+        <button type="submit" class="btn btn-primary pulse" style="width: 100%; margin-top: 1rem;" data-i18n="send_message">Send Message</button>
       </form>
     </div>
   </div>
@@ -82,22 +89,24 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-col">
-      <h4>Madrashatur Rashid</h4>
-      <p>Building a brighter future through faith and knowledge.</p>
+      <h4 data-i18n="school_name">Madrashatur Rashid</h4>
+      <p data-i18n="nurturing_faith">Building a brighter future through faith and knowledge.</p>
     </div>
     <div class="footer-col">
-      <h4>Navigation</h4>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="academics.html">Academics</a>
+      <h4 data-i18n="information">Navigation</h4>
+      <a href="index.html" data-i18n="home">Home</a>
+      <a href="about.html" data-i18n="about">About</a>
+      <a href="academics.html" data-i18n="academics">Academics</a>
     </div>
     <div class="footer-col">
-      <h4>Connect</h4>
+      <h4 data-i18n="connect">Connect</h4>
       <p>Facebook</p>
       <p>YouTube</p>
     </div>
   </div>
 </footer>
 
+<script src="languages.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>
