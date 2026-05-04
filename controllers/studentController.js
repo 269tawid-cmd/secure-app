@@ -29,7 +29,7 @@ const addStudent = async (req, res) => {
     }
 
     // validate marks
-    if (s.subjects) {
+    if (s.subjects && Object.keys(s.subjects).length > 0) {
       for (let key in s.subjects) {
         if (s.subjects[key] > 100) {
           return res.json({ success: false, message: `${key} max 100` });
@@ -61,7 +61,31 @@ const addStudent = async (req, res) => {
 // @access  Private/Admin
 const updateStudent = async (req, res) => {
   try {
-    await Student.findOneAndUpdate({ id: req.params.id }, req.body);
+    const updateData = { ...req.body };
+    
+    // Recalculate total and grade if subjects are being updated
+    if (updateData.subjects && Object.keys(updateData.subjects).length > 0) {
+      // Validate marks
+      for (let key in updateData.subjects) {
+        if (updateData.subjects[key] > 100) {
+          return res.json({ success: false, message: `${key} max 100` });
+        }
+      }
+      
+      // Calculate total
+      updateData.total = Object.values(updateData.subjects).reduce((a, b) => a + b, 0);
+      
+      // Calculate average
+      const avg = updateData.total / Object.keys(updateData.subjects).length;
+      
+      // Grade system
+      if (avg >= 80) updateData.grade = "A+";
+      else if (avg >= 60) updateData.grade = "A";
+      else if (avg >= 40) updateData.grade = "B";
+      else updateData.grade = "F";
+    }
+    
+    await Student.findOneAndUpdate({ id: req.params.id }, updateData);
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: "Update error" });

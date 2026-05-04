@@ -31,6 +31,10 @@ const registerUser = async (req, res) => {
 // @access  Public
 const loginUser = async (req, res) => {
   try {
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ error: "Server config error" });
+    }
+
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     
