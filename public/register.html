@@ -9,36 +9,46 @@
 </head>
 <body class="auth-page">
 
+<div style="position: absolute; top: 1rem; right: 1rem;">
+  <select id="lang-switcher" class="lang-select">
+    <option value="en">EN</option>
+    <option value="bn">BN</option>
+    <option value="ar">AR</option>
+  </select>
+</div>
+
 <div class="login-box card reveal">
   <div class="text-center mb-12">
-    <h2>Join Us</h2>
-    <p style="color: var(--text-secondary); font-size: 0.875rem;">Create your secure account</p>
+    <h2 data-i18n="join_us">Join Us</h2>
+    <p style="color: var(--text-secondary); font-size: 0.875rem;" data-i18n="create_account">Create your secure account</p>
   </div>
 
   <div class="input-group">
-    <label for="username">Username</label>
-    <input type="text" id="username" placeholder="Choose a username" required>
+    <label for="username" data-i18n="username">Username</label>
+    <input type="text" id="username" placeholder="Choose a username" data-i18n-placeholder="username" required>
   </div>
 
   <div class="input-group">
-    <label for="password">Password</label>
-    <input type="password" id="password" placeholder="Create a strong password" required>
+    <label for="password" data-i18n="password">Password</label>
+    <input type="password" id="password" placeholder="Create a strong password" data-i18n-placeholder="password" required>
   </div>
 
   <div class="input-group">
-    <label for="confirm-password">Confirm Password</label>
-    <input type="password" id="confirm-password" placeholder="Repeat your password" required>
+    <label for="confirm-password" data-i18n="confirm_password">Confirm Password</label>
+    <input type="password" id="confirm-password" placeholder="Repeat your password" data-i18n-placeholder="confirm_password" required>
   </div>
 
-  <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="register()">Create Account</button>
+  <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="register()" data-i18n="join_us">Create Account</button>
 
   <div class="text-center mt-12">
     <p style="font-size: 0.875rem; color: var(--text-secondary);">
-      Already have an account? <a href="login.html" style="color: var(--accent-color); text-decoration: none; font-weight: 500;">Sign in here</a>
+      <span data-i18n="already_account">Already have an account?</span> <a href="login.html" style="color: var(--accent-color); text-decoration: none; font-weight: 500;" data-i18n="sign_in_here">Sign in here</a>
     </p>
   </div>
 </div>
 
+<script src="languages.js"></script>
+<script src="i18n.js"></script>
 <script src="register.js"></script>
 </body>
 </html>
