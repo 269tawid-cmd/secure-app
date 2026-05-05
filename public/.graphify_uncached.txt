@@ -1,0 +1,16 @@
+C:\Users\Tawhid\Web of school\secure-app\public\admin.js
+C:\Users\Tawhid\Web of school\secure-app\public\i18n.js
+C:\Users\Tawhid\Web of school\secure-app\public\languages.js
+C:\Users\Tawhid\Web of school\secure-app\public\login.js
+C:\Users\Tawhid\Web of school\secure-app\public\register.js
+C:\Users\Tawhid\Web of school\secure-app\public\user.js
+C:\Users\Tawhid\Web of school\secure-app\public\about.html
+C:\Users\Tawhid\Web of school\secure-app\public\academics.html
+C:\Users\Tawhid\Web of school\secure-app\public\admin.html
+C:\Users\Tawhid\Web of school\secure-app\public\admissions.html
+C:\Users\Tawhid\Web of school\secure-app\public\contact.html
+C:\Users\Tawhid\Web of school\secure-app\public\dashboard.html
+C:\Users\Tawhid\Web of school\secure-app\public\index.html
+C:\Users\Tawhid\Web of school\secure-app\public\login.html
+C:\Users\Tawhid\Web of school\secure-app\public\register.html
+C:\Users\Tawhid\Web of school\secure-app\public\user.html

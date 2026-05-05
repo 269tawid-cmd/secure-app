@@ -1,0 +1,606 @@
+{
+  "nodes": [
+    {
+      "id": "admin_js",
+      "label": "admin.js",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_admin_addsubject",
+      "label": "addSubject()",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L11"
+    },
+    {
+      "id": "public_admin_onclasschange",
+      "label": "onClassChange()",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L25"
+    },
+    {
+      "id": "public_admin_rendersubjects",
+      "label": "renderSubjects()",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L31"
+    },
+    {
+      "id": "public_admin_removesubject",
+      "label": "removeSubject()",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L48"
+    },
+    {
+      "id": "public_admin_addstudent",
+      "label": "addStudent()",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L53"
+    },
+    {
+      "id": "public_admin_load",
+      "label": "load()",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L111"
+    },
+    {
+      "id": "public_admin_render",
+      "label": "render()",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L123"
+    },
+    {
+      "id": "public_admin_deletestudent",
+      "label": "deleteStudent()",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L166"
+    },
+    {
+      "id": "public_admin_logout",
+      "label": "logout()",
+      "file_type": "code",
+      "source_file": "admin.js",
+      "source_location": "L183"
+    },
+    {
+      "id": "i18n_js",
+      "label": "i18n.js",
+      "file_type": "code",
+      "source_file": "i18n.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_i18n_updatelanguage",
+      "label": "updateLanguage()",
+      "file_type": "code",
+      "source_file": "i18n.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_i18n_initi18n",
+      "label": "initI18n()",
+      "file_type": "code",
+      "source_file": "i18n.js",
+      "source_location": "L58"
+    },
+    {
+      "id": "languages_js",
+      "label": "languages.js",
+      "file_type": "code",
+      "source_file": "languages.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "login_js",
+      "label": "login.js",
+      "file_type": "code",
+      "source_file": "login.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_login_login",
+      "label": "login()",
+      "file_type": "code",
+      "source_file": "login.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_login_togglepassword",
+      "label": "togglePassword()",
+      "file_type": "code",
+      "source_file": "login.js",
+      "source_location": "L47"
+    },
+    {
+      "id": "register_js",
+      "label": "register.js",
+      "file_type": "code",
+      "source_file": "register.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_register_register",
+      "label": "register()",
+      "file_type": "code",
+      "source_file": "register.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_register_isstrongpassword",
+      "label": "isStrongPassword()",
+      "file_type": "code",
+      "source_file": "register.js",
+      "source_location": "L48"
+    },
+    {
+      "id": "user_js",
+      "label": "user.js",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "public_user_loadstudents",
+      "label": "loadStudents()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L30"
+    },
+    {
+      "id": "public_user_onsearchinput",
+      "label": "onSearchInput()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L43"
+    },
+    {
+      "id": "public_user_applyall",
+      "label": "applyAll()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L49"
+    },
+    {
+      "id": "public_user_highlight",
+      "label": "highlight()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L69"
+    },
+    {
+      "id": "public_user_render",
+      "label": "render()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L76"
+    },
+    {
+      "id": "public_user_renderstats",
+      "label": "renderStats()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L112"
+    },
+    {
+      "id": "public_user_getgradebadge",
+      "label": "getGradeBadge()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L138"
+    },
+    {
+      "id": "public_user_renderchart",
+      "label": "renderChart()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L158"
+    },
+    {
+      "id": "public_user_downloadpdf",
+      "label": "downloadPDF()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L201"
+    },
+    {
+      "id": "public_user_logout",
+      "label": "logout()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L206"
+    },
+    {
+      "id": "public_user_toggletheme",
+      "label": "toggleTheme()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L213"
+    },
+    {
+      "id": "public_user_applytheme",
+      "label": "applyTheme()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L224"
+    },
+    {
+      "id": "public_user_updatethemebtn",
+      "label": "updateThemeBtn()",
+      "file_type": "code",
+      "source_file": "user.js",
+      "source_location": "L244"
+    }
+  ],
+  "edges": [
+    {
+      "source": "admin_js",
+      "target": "public_admin_addsubject",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "admin_js",
+      "target": "public_admin_onclasschange",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "admin_js",
+      "target": "public_admin_rendersubjects",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "admin_js",
+      "target": "public_admin_removesubject",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "admin_js",
+      "target": "public_admin_addstudent",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "admin_js",
+      "target": "public_admin_load",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "admin_js",
+      "target": "public_admin_render",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L123",
+      "weight": 1.0
+    },
+    {
+      "source": "admin_js",
+      "target": "public_admin_deletestudent",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L166",
+      "weight": 1.0
+    },
+    {
+      "source": "admin_js",
+      "target": "public_admin_logout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L183",
+      "weight": 1.0
+    },
+    {
+      "source": "public_admin_addsubject",
+      "target": "public_admin_rendersubjects",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "public_admin_onclasschange",
+      "target": "public_admin_rendersubjects",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "public_admin_removesubject",
+      "target": "public_admin_rendersubjects",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "admin.js",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "i18n_js",
+      "target": "public_i18n_updatelanguage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "i18n.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "i18n_js",
+      "target": "public_i18n_initi18n",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "i18n.js",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "public_i18n_initi18n",
+      "target": "public_i18n_updatelanguage",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "i18n.js",
+      "source_location": "L60",
+      "weight": 1.0
+    },
+    {
+      "source": "login_js",
+      "target": "public_login_login",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "login.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "login_js",
+      "target": "public_login_togglepassword",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "login.js",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "register_js",
+      "target": "public_register_register",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "register.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "register_js",
+      "target": "public_register_isstrongpassword",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "register.js",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "public_register_register",
+      "target": "public_register_isstrongpassword",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "register.js",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_loadstudents",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_onsearchinput",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_applyall",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_highlight",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_render",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_renderstats",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_getgradebadge",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_renderchart",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L158",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_downloadpdf",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L201",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_logout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L206",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_toggletheme",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L213",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_applytheme",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L224",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_toggletheme",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L229",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_updatethemebtn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L244",
+      "weight": 1.0
+    },
+    {
+      "source": "user_js",
+      "target": "public_user_toggletheme",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L253",
+      "weight": 1.0
+    },
+    {
+      "source": "public_user_applyall",
+      "target": "public_user_render",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "public_user_applyall",
+      "target": "public_user_renderstats",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "public_user_toggletheme",
+      "target": "public_user_applytheme",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L232",
+      "weight": 1.0
+    },
+    {
+      "source": "public_user_toggletheme",
+      "target": "public_user_updatethemebtn",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "user.js",
+      "source_location": "L258",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
